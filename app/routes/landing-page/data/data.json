@@ -1,0 +1,93 @@
+{
+  "updated": "2025-11-06",
+  "ministries": [
+    {
+      "id": "immigration_services",
+      "title": "Immigration / Citizenship Services",
+      "items": [
+        {
+          "name": "Directorate of Citizenship & Immigration Control (DCIC) - official",
+          "url": "https://immigration.go.ug/",
+          "description": "Main immigration authority in Uganda: passports, visas, permits, policy and service points."
+        },
+        {
+          "name": "Uganda Electronic Visa / Permit Application (e-visa)",
+          "url": "https://visas.immigration.go.ug/",
+          "description": "Official online visa/permit application portal for Uganda (tourist, business, work permits, etc.)."
+        },
+        {
+          "name": "Uganda Online Passport Application",
+          "url": "https://passports.go.ug/",
+          "description": "Online passport application portal and passport service information."
+        },
+        {
+          "name": "Ministry of Internal Affairs (MoIA)",
+          "url": "https://mia.go.ug/",
+          "description": "Parent ministry responsible for immigration, citizenship, and national internal security functions."
+        },
+        {
+          "name": "Ministry of Foreign Affairs (MOFA)",
+          "url": "https://mofa.go.ug/",
+          "description": "Consular services, diplomatic relations and guidance for Ugandans abroad; embassies information."
+        }
+      ]
+    },
+    {
+      "id": "consular_travel",
+      "title": "Consular & Travel / Guidance",
+      "items": [
+        {
+          "name": "Uganda Embassy / High Commission Consular pages (sample: Washington)",
+          "url": "https://washington.mofa.go.ug/consular/visas",
+          "description": "Example consular page linking back to the official visa portal and consular instructions."
+        },
+        {
+          "name": "UK Foreign Travel Advice - Uganda (for entry/visa guidelines)",
+          "url": "https://www.gov.uk/foreign-travel-advice/uganda/entry-requirements",
+          "description": "Travel advisory and entry requirement summary useful for travellers (non-official guidance)."
+        }
+      ]
+    },
+    {
+      "id": "other_agencies",
+      "title": "Other related government agencies",
+      "items": [
+        {
+          "name": "Uganda Revenue Authority (border & customs info)",
+          "url": "https://www.ura.go.ug/",
+          "description": "Customs, duties and taxes information relevant to cross-border movement of goods."
+        },
+        {
+          "name": "Uganda Tourism Board / Visit Uganda (tourist guidance)",
+          "url": "https://www.visituganda.com/",
+          "description": "Tourism guidance, traveler information and resources for visitors."
+        }
+      ]
+    },
+    {
+      "name": "Office of the President",
+      "url": "https://www.statehouse.go.ug/",
+      "description": "Office of the President of Uganda."
+    },
+    {
+      "name": "Office of the Vice President",
+      "url": "https://www.statehouse.go.ug/vice-president", 
+      "description": "Office of the Vice President of Uganda."
+    },
+    {
+      "name": "Office of the Prime Minister",
+      "url": "https://www.opm.go.ug/",
+      "description": "Office of the Prime Minister of Uganda."
+    },
+    {
+      "name": "Ministry of Defence & Veteran Affairs",
+      "url": "https://www.modva.go.ug/",
+      "description": "Defence, national security and veterans affairs."
+    },
+    {
+      "name": "Ministry of Internal Affairs",
+      "url": "https://www.mia.go.ug/",
+      "description": "Citizenship, immigration, internal affairs and security."
+    }
+  ]
+}
