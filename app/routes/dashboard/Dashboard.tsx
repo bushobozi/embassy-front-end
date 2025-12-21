@@ -4,7 +4,7 @@ import { Publications } from "~/components";
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "Home" },
-    { name: "description", content: "Embassy Dashboard Page" },
+    { name: "description", content: "Welcome" },
   ];
 }
 

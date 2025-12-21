@@ -9,6 +9,7 @@ type ButtonProps = {
   type?: "button" | "submit" | "reset";
   rounded?: boolean;
   loading?: boolean;
+  block?: boolean;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export default function Button({
@@ -20,6 +21,7 @@ export default function Button({
   type = "button",
   rounded = false,
   loading = false,
+  block=false,
   ...props
 }: ButtonProps) {
   const baseStyles = "inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2";
@@ -38,12 +40,13 @@ export default function Button({
   };
 
   const roundedClass = rounded ? "rounded-xl" : "rounded-lg";
+  const blockClass = block ? "w-full" : "";
 
   return (
     <button
       type={type}
       onClick={onClick}
-      className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className} ${roundedClass}`}
+      className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${blockClass} ${className} ${roundedClass}`}
       {...props}
     >
       {children}
