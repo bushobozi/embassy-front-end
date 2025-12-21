@@ -11,10 +11,11 @@ import {
   RiLogoutBoxRLine,
 } from "react-icons/ri";
 import { Coat, ExploreUg } from "~/images";
+import FooterBottom from "./FooterBottom";
 
 const navigationLinks = [
-  { to: "/dashboard", label: "Home", icon: RiHome5Line },
-  { to: "/publications", label: "Create Publications", icon: RiArticleLine },
+  { to: "/home_embassy", label: "Home", icon: RiHome5Line },
+  { to: "/publications", label: "Publications", icon: RiArticleLine },
   { to: "/messages", label: "Messages", icon: RiInbox2Line },
   { to: "/events", label: "Events", icon: RiCalendarEventLine },
   { to: "/staff", label: "Staff", icon: RiParentLine },
@@ -73,10 +74,11 @@ export default function DashboardLayout() {
       </div>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-4" type="checkbox" className="drawer-toggle" defaultChecked />
-        <div className="drawer-content mr-4 mt-3 bg-white border border-gray-300 rounded-2xl shadow-0 flex flex-col max-h-[calc(100vh-5.0rem)]">
-          <div className="max-h-[calc(100vh-5.0rem)] overflow-auto p-4">
+        <div className="drawer-content mr-4 mt-3 bg-white border border-gray-300 rounded-2xl shadow-0 flex flex-col max-h-[calc(100vh-5rem)]">
+          <div className="flex-1 overflow-auto">
             <Outlet />
           </div>
+          <FooterBottom />
         </div>
         <div className="drawer-side is-drawer-close:overflow-visible">
           <label
@@ -84,7 +86,7 @@ export default function DashboardLayout() {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <div className="flex min-h-[calc(100vh-5.3rem)] is-drawer-open:bg-gray-100 mt-4 is-drawer-open:overflow-hidden is-drawer-close:overflow-visible flex-col items-start justify-between is-drawer-close:w-16 is-drawer-open:w-70">
+          <div className="flex min-h-[calc(100vh-5.3rem)] is-drawer-open:bg-gray-100 mt-4 is-drawer-open:overflow-hidden is-drawer-close:overflow-visible flex-col items-start justify-between is-drawer-close:w-15 is-drawer-open:w-70">
             <ul className="menu w-full grow">
               {navigationLinks.map((link) => {
                 const Icon = link.icon;
@@ -126,14 +128,14 @@ export default function DashboardLayout() {
               </li>
               <li
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Toggle Sidebar"
+                data-tip="Collapse Sidebar"
               >
                  <label
               htmlFor="my-drawer-4"
               aria-label="open sidebar"
             >
               <RiSidebarUnfoldLine className="size-5.5" />
-                <span className="is-drawer-close:hidden">Toggle Sidebar</span>
+                <span className="is-drawer-close:hidden">Collapse Sidebar</span>
             </label>
               </li>
               <li

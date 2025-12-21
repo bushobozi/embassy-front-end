@@ -2,7 +2,9 @@ import { Link, Outlet, useLocation } from "react-router";
 import ImportantLinks from "./important-links";
 
 const quickInnerLinks = [
-  { name: "Dashboard", href: "/dashboard" },
+  { name: "Home", href: "/home_embassy" },
+  { name: "Overview", href: "/embassy_overview" },
+  { name: "Write Publication", href: "/publications_write" },
   { name: "Settings", href: "/settings" },
 ];
 
@@ -21,7 +23,7 @@ export default function HomeLayout() {
                     to={link.href}
                     className={`flex items-center justify-between px-6 py-2 transition-colors duration-200 rounded-3xl ${
                       isActive
-                        ? "bg-blue-300/70 text-gray-950 font-semibold"
+                        ? "bg-blue-300/70 text-gray-950 font-semibold shadow-md"
                         : "text-gray-700 hover:text-gray-900 bg-blue-100 hover:bg-blue-200/50"
                     }`}
                   >
@@ -38,7 +40,7 @@ export default function HomeLayout() {
           <Outlet />
         </main>
       </div>
-       <div className="w-1/6 flex-none p-4 sticky top-0 self-stretch h-full">
+      <div className="w-1/6 flex-none p-4 sticky top-0 self-stretch h-full">
         <ImportantLinks />
       </div>
     </div>
