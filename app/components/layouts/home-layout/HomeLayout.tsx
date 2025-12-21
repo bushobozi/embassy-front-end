@@ -34,7 +34,7 @@ export default function HomeLayout() {
         </nav>
       </aside>
       <div className="overflow-auto w-2/3">
-        <main className="flex-1 flex-col min-w-0 p-6 pb-12 bg-gray-50/20 mx-20">
+        <main className="flex-1 flex-col min-w-0 p-6 pb-12 bg-gray-50/20 mx-22">
           <Outlet />
         </main>
       </div>
