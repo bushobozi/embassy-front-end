@@ -13,12 +13,12 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v21
         with:
           node-version: 16
 
       - name: Install dependencies
         run: npm install
 
-      - name: Run typechecks
-        run: npm run typecheck
+      - name: Run build
+        run: npm run build
