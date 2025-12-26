@@ -9,6 +9,7 @@ import {
   RiSidebarUnfoldLine,
   RiParentLine,
   RiLogoutBoxRLine,
+  RiTimeLine
 } from "react-icons/ri";
 import { Coat, ExploreUg } from "~/images";
 import FooterBottom from "./FooterBottom";
@@ -18,6 +19,7 @@ const navigationLinks = [
   { to: "/publications", label: "Publications", icon: RiArticleLine },
   { to: "/messages", label: "Messages", icon: RiInbox2Line },
   { to: "/events", label: "Events", icon: RiCalendarEventLine },
+  { to: "/tasks", label: "Tasks", icon: RiTimeLine },
   { to: "/staff", label: "Staff", icon: RiParentLine },
   { to: "/user", label: "User", icon: RiAccountCircleLine },
   { to: "/settings", label: "Settings", icon: RiSettings3Line },

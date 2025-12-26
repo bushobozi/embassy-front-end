@@ -1,4 +1,5 @@
-import type { Route } from "./+types/Messages"
+import type { Route } from "./+types/Messages";
+import { FancyText } from "~/components";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -8,7 +9,13 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Messages() {
-    return(
-        <div>Messages Page</div>
-    )
+  return (
+    <div>
+      Messages Page
+      <FancyText
+        title="Welcome to the Messages Page!"
+        text="Here you can view and manage your messages."
+      />
+    </div>
+  );
 }
