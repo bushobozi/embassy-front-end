@@ -97,9 +97,9 @@ export default function DashboardLayout() {
                     <NavLink
                       to={link.to}
                       className={({ isActive }: { isActive: boolean }) =>
-                        `is-drawer-close:tooltip is-drawer-close:tooltip-right hover:bg-gray-200 hover:rounded-2xl ${
+                        `is-drawer-close:tooltip is-drawer-close:tooltip-right hover:bg-blue-200 hover:rounded-2xl ${
                           isActive
-                            ? "bg-red-600 text-white font-bold rounded-2xl hover:bg-red-500"
+                            ? "bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700"
                             : "bg-gray-100 rounded-2xl"
                         }`
                       }

@@ -23,7 +23,7 @@ export default function HomeLayout() {
                     to={link.href}
                     className={`flex items-center justify-between px-6 py-2 transition-colors duration-200 rounded-3xl ${
                       isActive
-                        ? "bg-blue-300/70 text-gray-950 font-semibold shadow-sm"
+                        ? "bg-blue-300/70 text-gray-950 font-semibold"
                         : "text-gray-700 hover:text-gray-900 bg-blue-100 hover:bg-blue-200/50"
                     }`}
                   >
