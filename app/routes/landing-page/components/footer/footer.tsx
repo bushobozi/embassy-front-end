@@ -34,7 +34,7 @@ export default function FooterBottom() {
               LinkedIn
             </a>
             <Link
-              to="consular-panel-login"
+              to="consular_login"
               target="_blank"
               className="text-gray-400 hover:text-white text-sm border-b mx-2"
             >
