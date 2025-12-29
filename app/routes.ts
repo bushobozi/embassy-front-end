@@ -20,6 +20,7 @@ export default [
       route("settings", "routes/settings/Settings.tsx"),
       route("publications", "routes/publications/Publications.tsx"),
       route("messages", "routes/messages/Messages.tsx"),
+      route("tasks", "routes/tasks/Tasks.tsx"),
       route("events", "routes/events/Events.tsx"),
       route("staff", "routes/staff/Staff.tsx"),
       route("user", "routes/user/User.tsx"),

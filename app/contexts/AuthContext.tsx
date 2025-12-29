@@ -15,6 +15,7 @@ interface AuthContextType {
   login: (user: UserData, accessToken: string, refreshToken: string) => void;
   logout: () => void;
   accessToken: string | null;
+  updateUserData: (userData: Partial<UserData>) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -54,6 +55,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setIsAuthenticated(false);
   };
 
+  const updateUserData = (updatedData: Partial<UserData>) => {
+    if (user) {
+      const newUserData = { ...user, ...updatedData };
+      setUser(newUserData);
+      saveUserData(newUserData);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -62,6 +71,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         login,
         logout,
         accessToken,
+        updateUserData,
       }}
     >
       {children}

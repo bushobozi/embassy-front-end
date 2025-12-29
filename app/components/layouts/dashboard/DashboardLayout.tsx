@@ -13,6 +13,7 @@ import {
 } from "react-icons/ri";
 import { Coat, ExploreUg } from "~/images";
 import FooterBottom from "./FooterBottom";
+import { useAuth } from "~/contexts/AuthContext";
 
 const navigationLinks = [
   { to: "/home_embassy", label: "Home", icon: RiHome5Line },
@@ -21,17 +22,20 @@ const navigationLinks = [
   { to: "/events", label: "Events", icon: RiCalendarEventLine },
   { to: "/tasks", label: "Tasks", icon: RiTimeLine },
   { to: "/staff", label: "Staff", icon: RiParentLine },
-  { to: "/user", label: "User", icon: RiAccountCircleLine },
+  { to: "/user", label: "My Profile", icon: RiAccountCircleLine },
   { to: "/settings", label: "Settings", icon: RiSettings3Line },
 ];
 
 export default function DashboardLayout() {
   const location = useLocation();
+  const { user } = useAuth();
   const activeLink = navigationLinks
     .slice()
     .sort((a, b) => b.to.length - a.to.length)
     .find((link) => location.pathname.startsWith(link.to));
   const navbarTitle = activeLink ? activeLink.label : "Navbar Title";
+
+  const userProfilePicture = user?.profile_picture || "https://cdn.pixabay.com/photo/2025/10/07/10/59/parrot-9878922_1280.jpg";
 
   return (
     <div className="bg-gray-100 overflow-hidden h-screen w-screen">
@@ -67,11 +71,13 @@ export default function DashboardLayout() {
           </label>
         </div>
         <div className="flex items-center gap-3">
-          <img
-            src="https://cdn.pixabay.com/photo/2025/10/07/10/59/parrot-9878922_1280.jpg"
-            alt="User Avatar"
-            className="w-8 h-8 rounded-full"
-          />
+          <Link to="/user">
+            <img
+              src={userProfilePicture}
+              alt="User Avatar"
+              className="w-8 h-8 rounded-full object-cover"
+            />
+          </Link>
         </div>
       </div>
       <div className="drawer lg:drawer-open">
@@ -121,9 +127,9 @@ export default function DashboardLayout() {
               >
                 <Link to="/user">
                   <img
-                    src="https://cdn.pixabay.com/photo/2025/10/07/10/59/parrot-9878922_1280.jpg"
+                    src={userProfilePicture}
                     alt="User Avatar"
-                    className="my-1.5 inline-block size-6 rounded-full"
+                    className="my-1.5 inline-block size-6 rounded-full object-cover"
                   />
                   <span className="is-drawer-close:hidden">My Profile</span>
                 </Link>
