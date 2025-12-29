@@ -61,7 +61,7 @@ export async function apiPost(url: string, data: any): Promise<any> {
  */
 export async function apiPut(url: string, data: any): Promise<any> {
   const response = await authenticatedFetch(url, {
-    method: "PUT",
+    method: "PATCH",
     body: JSON.stringify(data),
   });
 

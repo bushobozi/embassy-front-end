@@ -7,5 +7,9 @@ import FancyText from "./test-components/FancyText";
 import PublicationCard from "./publications/cards/PublicationCard";
 import Welcome from "./layouts/login/Welcome";
 import ProtectedLayout from "./layouts/protected/ProtectedLayout";
-
-export { Button, Publications, Alert, Banner, Stats, FancyText, PublicationCard, Welcome, ProtectedLayout };
+import ProfileTabs from "./user-data/profile-tabs/ProfileTabs";
+import UserProfileHeader from "./user-data/Profile-header/UserProfileHeader";
+import BiographyTab from "./user-data/Biography/BiographyTab";
+import PersonalDetailsTab from "./user-data/Personal-details/PersonalDetailsTab";
+import UserHistoryTab from "./user-data/User-history/UserHistoryTab";
+export { Button, Publications, Alert, Banner, Stats, FancyText, PublicationCard, Welcome, ProtectedLayout, ProfileTabs, UserProfileHeader, BiographyTab, PersonalDetailsTab, UserHistoryTab };

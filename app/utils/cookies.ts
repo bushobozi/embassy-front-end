@@ -9,6 +9,7 @@ export interface UserData {
   last_name: string;
   role: string;
   embassy_id: string;
+  profile_picture?: string | null;
 }
 
 /**
@@ -91,6 +92,9 @@ export function setUserData(user: UserData): void {
   setCookie("user_email", user.email, 7);
   setCookie("user_role", user.role, 7);
   setCookie("user_name", `${user.first_name} ${user.last_name}`, 7);
+  if (user.profile_picture) {
+    setCookie("user_profile_picture", user.profile_picture, 7);
+  }
 }
 
 /**
@@ -102,6 +106,7 @@ export function getUserData(): UserData | null {
   const email = getCookie("user_email");
   const role = getCookie("user_role");
   const userName = getCookie("user_name");
+  const profilePicture = getCookie("user_profile_picture");
 
   if (!userId || !embassyId || !email || !role || !userName) {
     return null;
@@ -115,6 +120,7 @@ export function getUserData(): UserData | null {
     role,
     first_name: firstName,
     last_name: lastNameParts.join(" "),
+    profile_picture: profilePicture,
   };
 }
 
@@ -143,6 +149,7 @@ export function clearAuthData(): void {
   deleteCookie("user_email");
   deleteCookie("user_role");
   deleteCookie("user_name");
+  deleteCookie("user_profile_picture");
 }
 
 /**
