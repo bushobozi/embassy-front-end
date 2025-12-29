@@ -38,7 +38,7 @@ export default function DashboardLayout() {
   const userProfilePicture = user?.profile_picture || "https://cdn.pixabay.com/photo/2025/10/07/10/59/parrot-9878922_1280.jpg";
 
   return (
-    <div className="bg-gray-100 overflow-hidden h-screen w-screen">
+    <div className="bg-blue-50 overflow-hidden h-screen w-screen">
       <div className="flex justify-between items-center h-14 mr-3">
         <Link to="/dashboard" className="ml-4 mt-4">
           <img
@@ -94,7 +94,7 @@ export default function DashboardLayout() {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <div className="flex min-h-[calc(100vh-5.3rem)] is-drawer-open:bg-gray-100 mt-4 is-drawer-open:overflow-hidden is-drawer-close:overflow-visible flex-col items-start justify-between is-drawer-close:w-15 is-drawer-open:w-70">
+          <div className="flex min-h-[calc(100vh-5.3rem)] is-drawer-open:bg-blue-50 mt-4 is-drawer-open:overflow-hidden is-drawer-close:overflow-visible flex-col items-start justify-between is-drawer-close:w-15 is-drawer-open:w-70">
             <ul className="menu w-full grow">
               {navigationLinks.map((link) => {
                 const Icon = link.icon;
@@ -106,7 +106,7 @@ export default function DashboardLayout() {
                         `is-drawer-close:tooltip is-drawer-close:tooltip-right hover:bg-blue-200 hover:rounded-2xl ${
                           isActive
                             ? "bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700"
-                            : "bg-gray-100 rounded-2xl"
+                            : "bg-blue-50 rounded-2xl"
                         }`
                       }
                       data-tip={link.label}
