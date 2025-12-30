@@ -99,13 +99,13 @@ export default function User() {
           />
           <ProfileTabs activeTab={activeTab} onTabChange={setActiveTab} />
           {activeTab === "personal" && (
-           <PersonalDetailsTab
-                UserInfo={userData as any}
-                formatDate={formatDate}
-                userId={userId!}
-                token={token!}
-                onUpdateSuccess={refreshUserData}
-              />
+            <PersonalDetailsTab
+              UserInfo={userData as any}
+              formatDate={formatDate}
+              userId={userId!}
+              token={token!}
+              onUpdateSuccess={refreshUserData}
+            />
           )}
           {activeTab === "education" && (
             <BiographyTab
@@ -130,10 +130,20 @@ export default function User() {
         </>
       )}
 
-      {loading && <div className="flex flex-col items-center my-16 gap-2 justify-center h-full w-full">
-        <span className="loading loading-spinner loading-md"></span>
-        <p className="text-center">Loading your profile. Please wait...</p>
-        </div>}
+      {loading && (
+        <div className="flex flex-col items-center my-16 gap-2 justify-center h-full w-full">
+          <div className="flex w-52 flex-col gap-4">
+            <div className="flex items-center gap-4">
+              <div className="skeleton h-16 w-16 shrink-0 rounded-full"></div>
+              <div className="flex flex-col gap-4">
+                <div className="skeleton h-4 w-20"></div>
+                <div className="skeleton h-4 w-28"></div>
+              </div>
+            </div>
+            <div className="skeleton h-32 w-full"></div>
+          </div>
+        </div>
+      )}
       {error && <p className="text-red-500">Error: {error}</p>}
     </div>
   );
