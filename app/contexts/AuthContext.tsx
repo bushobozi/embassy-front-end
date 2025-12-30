@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
 import type { ReactNode } from "react";
 import {
   type UserData,
@@ -21,21 +21,14 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<UserData | null>(null);
-  const [accessToken, setAccessToken] = useState<string | null>(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    // Load user data and token from cookies on mount (client-side only)
-    const userData = getUserData();
+  // Initialize state from cookies immediately to prevent redirect on refresh
+  const [user, setUser] = useState<UserData | null>(() => getUserData());
+  const [accessToken, setAccessToken] = useState<string | null>(() => getAccessToken());
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
     const token = getAccessToken();
-
-    if (userData && token) {
-      setUser(userData);
-      setAccessToken(token);
-      setIsAuthenticated(true);
-    }
-  }, []);
+    const userData = getUserData();
+    return !!(token && userData);
+  });
 
   const login = (userData: UserData, access: string, refresh: string) => {
     // Save to cookies
