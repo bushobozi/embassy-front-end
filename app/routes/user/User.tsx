@@ -144,7 +144,11 @@ export default function User() {
           </div>
         </div>
       )}
-      {error && <p className="text-red-500">Error: {error}</p>}
+      {error && (
+        <div className="bg-red-100 text-red-800 p-4 rounded mb-4">
+          <span>{error}</span>
+        </div>
+      )}
     </div>
   );
 }
