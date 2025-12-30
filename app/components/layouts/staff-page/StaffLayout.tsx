@@ -1,0 +1,54 @@
+import { Outlet, Link, useLocation } from "react-router";
+
+const staffQuickLinks = [
+  { name: "Staff Overview", href: "/embassy_staff" },
+  { name: "Staff List", href: "/embassy_staff_list" },
+  { name: "Add Staff", href: "/embassy_staff_add" },
+];
+
+export default function StaffLayout() {
+  return (
+    <div className="w-full h-screen flex items-stretch relative container-fluid mx-auto overflow-hidden">
+      <aside className="w-full md:w-1/6 flex-none p-6 sticky top-0 self-stretch h-full">
+        <nav>
+          <ul className="space-y-2">
+            {staffQuickLinks.map((link) => {
+              const isActive = location.pathname === link.href;
+              return (
+                <li key={link.name}>
+                  <Link
+                    to={link.href}
+                    className={`flex items-center justify-between px-6 py-2 transition-colors duration-200 rounded-3xl ${
+                      isActive
+                        ? "bg-blue-300/70 text-gray-950 font-semibold"
+                        : "text-gray-700 hover:text-gray-900 bg-blue-100 hover:bg-blue-200/50"
+                    }`}
+                  >
+                    <span>{link.name}</span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </aside>
+      <div className="overflow-auto w-full md:w-2/3">
+        <main className="flex-1 flex-col min-w-0 p-6 pb-12 bg-gray-50/20 mx-22">
+          <Outlet />
+        </main>
+      </div>
+      <div className="w-full md:w-1/6 flex-none p-4 sticky top-0 self-stretch h-full">
+        <p className="mt-2 text-gray-500 text-sm">
+          Incase of any issues associated with staff management. Please reach out to
+          the system admin through the link below:
+          <a
+            href="#!"
+            className="font-semibold mx-2 text-gray-600 hover:underline focus:text-gray-800 focus:outline-none"
+          >
+            Contact System Admin
+          </a>
+        </p>
+      </div>
+    </div>
+  );
+}

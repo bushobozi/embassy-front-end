@@ -1,10 +1,13 @@
-export default function Banner() {
+type BannerProps = {
+  children: React.ReactNode;
+};
+
+export default function Banner({ children }: BannerProps) {
   return (
-    <div className="bg-blue-600 text-white p-8 rounded-2xl mb-6 shadow-sm">
-      <h2 className="text-xl font-semibold">Welcome to Overview!</h2>
+    <div className="bg-blue-600 text-white p-8 rounded-2xl mb-6 shadow-0 hover:shadow-md transition-shadow">
+      <h2 className="text-xl font-semibold">Statistics Overview</h2>
       <h1 className="mt-2 text-5xl font-bold">
-        Here you can manage your publications, view statistics, and update your
-        profile.
+        {children}
       </h1>
     </div>
   );

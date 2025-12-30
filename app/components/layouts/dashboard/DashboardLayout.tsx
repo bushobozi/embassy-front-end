@@ -21,7 +21,7 @@ const navigationLinks = [
   { to: "/messages", label: "Messages", icon: RiInbox2Line },
   { to: "/events", label: "Events", icon: RiCalendarEventLine },
   { to: "/tasks", label: "Tasks", icon: RiTimeLine },
-  { to: "/staff", label: "Staff", icon: RiParentLine },
+  { to: "/embassy_staff", label: "Embassy Staff", icon: RiParentLine },
   { to: "/user", label: "My Profile", icon: RiAccountCircleLine },
   { to: "/settings", label: "Settings", icon: RiSettings3Line },
 ];
@@ -81,7 +81,8 @@ export default function DashboardLayout() {
         </div>
       </div>
       <div className="drawer lg:drawer-open">
-        <input id="my-drawer-4" type="checkbox" className="drawer-toggle" defaultChecked />
+        {/* defaultChecked  */}
+        <input id="my-drawer-4" type="checkbox" className="drawer-toggle"/>
         <div className="drawer-content mr-4 mt-3 bg-white border border-gray-300 rounded-2xl shadow-0 flex flex-col max-h-[calc(100vh-5rem)]">
           <div className="flex-1 overflow-auto">
             <Outlet />
