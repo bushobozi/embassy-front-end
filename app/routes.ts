@@ -26,6 +26,7 @@ export default [
         route("embassy_staff", "routes/staff/Staff.tsx"),
         route("embassy_staff_list", "routes/staff/staff-list/StaffList.tsx"),
         route("embassy_staff_add", "routes/staff/add-staff/AddStaff.tsx"),
+        route("embassy_staff_profile/:staffId/page", "routes/staff/staff-profile/StaffProfile.tsx"),
       ]),
       route("user", "routes/user/User.tsx"),
     ]),
