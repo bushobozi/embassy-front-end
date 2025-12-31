@@ -60,11 +60,12 @@ export default function Staff() {
     fetchStaffOverview();
   }, [embassyId]);
   return (
-    <div className="container mx-auto max-w-6xl h-full">
-      <Banner>
+    <div className="h-full">
+       <div className="w-full">
+        <Banner>
         Embassy Staff Management Overview
-      </Banner>
-      <div className="my-8">
+      </Banner></div>     
+      <div className="my-8 w-full">
         {staffOverview && !loading && (
           <div className="mt-0 grid grid-cols-1 sm:grid-cols-4 gap-6">
             <StatsCard title="Total Staff" value={staffOverview.total} />
