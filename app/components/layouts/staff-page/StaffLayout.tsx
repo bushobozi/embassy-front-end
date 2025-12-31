@@ -1,14 +1,14 @@
 import { Outlet, Link, useLocation } from "react-router";
 
 const staffQuickLinks = [
-  { name: "Embassy Staff Overview", href: "/embassy_staff" },
-  { name: "Embassy Staff List", href: "/embassy_staff_list" },
+  { name: "Staff Overview", href: "/embassy_staff" },
+  { name: "Staff List", href: "/embassy_staff_list" },
   { name: "Add Staff", href: "/embassy_staff_add" },
 ];
 
 export default function StaffLayout() {
   return (
-    <div className="w-full h-screen flex items-stretch relative container-fluid mx-auto overflow-hidden">
+    <div className="w-full md:w-10/12 h-screen flex items-stretch relative container-fluid mx-auto overflow-hidden">
       <aside className="w-full md:w-1/6 flex-none p-6 sticky top-0 self-stretch h-full">
         <nav>
           <ul className="space-y-2">
@@ -32,13 +32,13 @@ export default function StaffLayout() {
           </ul>
         </nav>
       </aside>
-      <div className="overflow-auto w-full md:w-2/3">
-        <main className="flex-1 flex-col min-w-0 p-6 pb-12 bg-gray-50/20 mx-22">
+      <div className="overflow-auto w-full md:w-3/4">
+        <main className="flex-1 flex-col min-w-0 p-6 pb-12 bg-gray-50/20 mx-2">
           <Outlet />
         </main>
       </div>
-      <div className="w-full md:w-1/6 flex-none p-4 sticky top-0 self-stretch h-full">
-        <p className="mt-2 text-gray-500 text-sm">
+      <div className="w-full md:w-1/6 p-6 sticky top-0 self-stretch h-full hidden md:block">
+       <p className="text-gray-500 text-sm">
           Incase of any issues associated with staff management. Please reach out to
           the system admin through the link below:
           <a

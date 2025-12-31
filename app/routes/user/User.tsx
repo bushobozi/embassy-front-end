@@ -85,7 +85,7 @@ export default function User() {
   }, []);
 
   return (
-    <div className="container mx-auto max-w-6xl h-full">
+    <div className="container mx-auto w-full md:w-10/12 h-full">
       {userData && (
         <>
           <UserProfileHeader

@@ -11,7 +11,7 @@ const quickInnerLinks = [
 export default function HomeLayout() {
   const location = useLocation();
   return (
-    <div className="w-full h-screen flex items-stretch relative container-fluid mx-auto overflow-hidden">
+    <div className="w-full md:w-10/12 h-screen flex items-stretch relative container-fluid mx-auto overflow-hidden">
       <aside className="w-1/6 flex-none p-6 sticky top-0 self-stretch h-full">
         <nav>
           <ul className="space-y-2">
@@ -36,12 +36,14 @@ export default function HomeLayout() {
         </nav>
       </aside>
       <div className="overflow-auto w-2/3">
-        <main className="flex-1 flex-col min-w-0 p-6 pb-12 bg-gray-50/20 mx-22">
+        <main className="flex-1 flex-col min-w-0 p-6 pb-12 bg-gray-50/20 mx-2">
           <Outlet />
         </main>
       </div>
       <div className="w-1/6 flex-none p-4 sticky top-0 self-stretch h-full">
-        <ImportantLinks />
+        <div className="mt-3">
+          <ImportantLinks />
+        </div>
       </div>
     </div>
   );
