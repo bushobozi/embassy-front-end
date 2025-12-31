@@ -7,6 +7,7 @@ import type {
 } from "../types/Staff-List/GetStaff";
 import { defaultStaffListResponse } from "../types/Staff-List/GetStaff";
 import { Banner, Button } from "~/components";
+import { useNavigate } from "react-router";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -16,6 +17,7 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function StaffList() {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [staffList, setStaffList] = useState<StaffList[]>([]);
@@ -131,6 +133,10 @@ export default function StaffList() {
     staffListResponse &&
     staffListResponse.meta.limit >= 25 &&
     staffListResponse.meta.totalPages > 1;
+
+  const goToStaffProfile = (staffId: string) => {
+    navigate(`/embassy_staff_profile/${staffId}/page`);
+  };
   return (
     <div className="h-full">
       <div className="w-full">
@@ -244,7 +250,8 @@ export default function StaffList() {
                   <tr key={staff.id} className="hover">
                     <td>{(page - 1) * limit + index + 1}</td>
                     <td>
-                      <div className="flex gap-3 items-center">
+                      <div className="flex gap-3 items-center tooltip tooltip-success tooltip-right cursor-pointer" onClick={() => goToStaffProfile(staff.id)}
+                        data-tip={`View ${staff.first_name} ${staff.last_name} Profile`}>
                         <div className="avatar">
                           <div className="mask mask-squircle h-12 w-12">
                             <img
@@ -260,7 +267,7 @@ export default function StaffList() {
                           {staff.first_name} {staff.last_name}
                           <br />
                            <span
-                          className={`badge text-white ${
+                          className={`badge text-white text-xs ${
                             staff.staff_status === "active"
                               ? "badge-success"
                               : staff.staff_status === "inactive"
@@ -285,7 +292,9 @@ export default function StaffList() {
                     <td>{staff.nationality}</td>
                     <td>{staff.country}</td>
                     <td>
-                      <Button variant="outline" size="sm" className="cursor-pointer">View</Button>
+                      <Button variant="outline" size="sm" className="cursor-pointer tooltip tooltip-success tooltip-left" onClick={() => goToStaffProfile(staff.id)}
+                        data-tip={`View ${staff.first_name} ${staff.last_name} Profile`}
+                        >View</Button>
                     </td>
                   </tr>
                 ))

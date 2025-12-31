@@ -101,9 +101,9 @@ export default function BiographyTab({
             <h3 className="font-bold text-lg mb-4">Edit Biography</h3>
 
             {error && (
-              <div className="alert alert-error mb-4">
-                <span>{error}</span>
-              </div>
+               <div className="bg-red-100 text-red-800 p-4 rounded mb-4">
+                  <span>{error}</span>
+                </div>
             )}
 
             <form onSubmit={handleSubmit} className="space-y-4">
