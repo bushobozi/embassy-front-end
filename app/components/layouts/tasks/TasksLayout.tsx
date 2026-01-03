@@ -1,9 +1,7 @@
-import { Outlet, Link, useLocation } from "react-router";
+import { Outlet, Link } from "react-router";
 
 const staffQuickLinks = [
-  { name: "Staff Overview", href: "/embassy_staff" },
-  { name: "Staff List", href: "/embassy_staff_list" },
-  { name: "Add Staff", href: "/embassy_staff_add" },
+  { name: "Tasks Overview", href: "/tasks" },
 ];
 
 export default function StaffLayout() {

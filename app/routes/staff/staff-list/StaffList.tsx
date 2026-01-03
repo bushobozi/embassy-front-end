@@ -85,7 +85,6 @@ export default function StaffList() {
       }
 
       const data: StaffListResponse = await response.json();
-      console.log("Staff list data:", data);
       setStaffList(data.data);
       setStaffListResponse(data);
     } catch (err) {
