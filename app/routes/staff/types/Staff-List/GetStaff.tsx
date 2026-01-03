@@ -4,6 +4,7 @@ export interface StaffList {
     embassy_id: string;
     photo: string;
     first_name: string;
+    middle_name?: string;
     last_name: string;
     email: string;
     phone: string;
@@ -38,6 +39,7 @@ export const defaultStaffListResponse: StaffListResponse = {
             embassy_id: '',
             photo: '',
             first_name: '',
+            middle_name: '',
             last_name: '',
             email: '',
             phone: '',

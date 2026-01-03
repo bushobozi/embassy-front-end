@@ -239,8 +239,8 @@ export default function StaffList() {
                 <th>Position</th>
                 <th>Department</th>
                 <th>Gender</th>
-                <th>Nationality</th>
-                <th>Country</th>
+                {/* <th>Nationality</th>
+                <th>Country</th> */}
                 <th>Actions</th>
               </tr>
             </thead>
@@ -264,21 +264,7 @@ export default function StaffList() {
                           </div>
                         </div>
                         <div className="font-bold">
-                          {staff.first_name} {staff.last_name}
-                          <br />
-                           <span
-                          className={`badge text-white text-xs ${
-                            staff.staff_status === "active"
-                              ? "badge-success"
-                              : staff.staff_status === "inactive"
-                                ? "badge-error"
-                                : staff.staff_status === "on_leave"
-                                  ? "badge-warning"
-                                  : "badge-neutral"
-                          }`}
-                        >
-                          {staff.staff_status.replace("_", " ").toUpperCase()}
-                        </span>
+                          {staff.first_name} {staff.middle_name ? ` ${staff.middle_name} ` : " "} {staff.last_name}
                         </div>
                       </div>
                     </td>
@@ -289,8 +275,8 @@ export default function StaffList() {
                     <td>
                       <span className="capitalize">{staff.gender}</span>
                     </td>
-                    <td>{staff.nationality}</td>
-                    <td>{staff.country}</td>
+                    {/* <td>{staff.nationality}</td>
+                    <td>{staff.country}</td> */}
                     <td>
                       <Button variant="outline" size="sm" className="cursor-pointer tooltip tooltip-success tooltip-left" onClick={() => goToStaffProfile(staff.id)}
                         data-tip={`View ${staff.first_name} ${staff.last_name} Profile`}
