@@ -8,7 +8,7 @@ const staffQuickLinks = [
 
 export default function StaffLayout() {
   return (
-    <div className="w-full md:w-10/12 h-screen flex items-stretch relative container-fluid mx-auto overflow-hidden">
+    <div className="w-full h-screen flex items-stretch relative container-fluid mx-auto overflow-hidden">
       <aside className="w-full md:w-1/6 flex-none p-6 sticky top-0 self-stretch h-full">
         <nav>
           <ul className="space-y-2">

@@ -88,7 +88,7 @@ export default function StaffProfile({
   };
 
   return (
-    <div className="container mx-auto w-full h-full">
+    <div className="container mx-auto w-full h-full my-4">
       <BreadCrumb
         links={[
           { label: "Embassy Staff Overview", href: "/embassy_staff" },
