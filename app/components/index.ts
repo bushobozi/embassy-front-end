@@ -13,4 +13,5 @@ import BiographyTab from "./user-data/Biography/BiographyTab";
 import PersonalDetailsTab from "./user-data/Personal-details/PersonalDetailsTab";
 import UserHistoryTab from "./user-data/User-history/UserHistoryTab";
 import BreadCrumb from "./bread-crumb/BreadCrumb";
-export { Button, Publications, Alert, Banner, Stats, FancyText, PublicationCard, Welcome, ProtectedLayout, ProfileTabs, UserProfileHeader, BiographyTab, PersonalDetailsTab, UserHistoryTab, BreadCrumb };
+import StatsCard from "./staff/stats-card/StatsCard";
+export { Button, Publications, Alert, Banner, Stats, FancyText, PublicationCard, Welcome, ProtectedLayout, ProfileTabs, UserProfileHeader, BiographyTab, PersonalDetailsTab, UserHistoryTab, BreadCrumb, StatsCard };

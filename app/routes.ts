@@ -20,7 +20,9 @@ export default [
       route("settings", "routes/settings/Settings.tsx"),
       route("publications", "routes/publications/Publications.tsx"),
       route("messages", "routes/messages/Messages.tsx"),
-      route("tasks", "routes/tasks/Tasks.tsx"),
+      layout("components/layouts/tasks/TasksLayout.tsx", [
+        route("tasks", "routes/tasks/Tasks.tsx"),
+      ]),
       route("events", "routes/events/Events.tsx"),
       layout("components/layouts/staff-page/StaffLayout.tsx", [
         route("embassy_staff", "routes/staff/Staff.tsx"),

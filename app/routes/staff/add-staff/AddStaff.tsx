@@ -165,7 +165,7 @@ export default function AddStaff() {
   };
   return (
     <>
-      <div>
+      <div className="my-8">
         <BreadCrumb
           links={[
             { label: "Embassy Staff Overview", href: "/embassy_staff" },
