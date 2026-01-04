@@ -87,7 +87,7 @@ export default function DashboardLayout() {
           <div className="flex-1 overflow-auto">
             <Outlet />
           </div>
-          <FooterBottom />
+          {/* <FooterBottom /> */}
         </div>
         <div className="drawer-side is-drawer-close:overflow-visible">
           <label
