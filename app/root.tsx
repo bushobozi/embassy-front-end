@@ -9,6 +9,8 @@ import {
 
 import type { Route } from "./+types/root";
 import { AuthProvider } from "./contexts/AuthContext";
+import { ApolloProvider } from "@apollo/client/react";
+import { apolloClient } from "./apolloClient";
 import "./app.css";
 
 export const links: Route.LinksFunction = () => [
@@ -45,7 +47,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <AuthProvider>
-      <Outlet />
+      <ApolloProvider client={apolloClient}>
+        <Outlet />
+      </ApolloProvider>   
     </AuthProvider>
   );
 }
