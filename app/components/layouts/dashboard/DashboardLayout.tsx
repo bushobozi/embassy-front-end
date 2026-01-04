@@ -12,7 +12,7 @@ import {
   RiTimeLine
 } from "react-icons/ri";
 import { Coat, ExploreUg } from "~/images";
-import FooterBottom from "./FooterBottom";
+// import FooterBottom from "./FooterBottom";
 import { useAuth } from "~/contexts/AuthContext";
 
 const navigationLinks = [
@@ -87,7 +87,7 @@ export default function DashboardLayout() {
           <div className="flex-1 overflow-auto">
             <Outlet />
           </div>
-          <FooterBottom />
+          {/* <FooterBottom /> */}
         </div>
         <div className="drawer-side is-drawer-close:overflow-visible">
           <label
