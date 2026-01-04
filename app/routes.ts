@@ -23,7 +23,9 @@ export default [
       layout("components/layouts/tasks/TasksLayout.tsx", [
         route("tasks", "routes/tasks/Tasks.tsx"),
       ]),
-      route("events", "routes/events/Events.tsx"),
+      layout("components/layouts/events/EventsLayout.tsx", [
+        route("events", "routes/events/events-page.tsx"),
+      ]),
       layout("components/layouts/staff-page/StaffLayout.tsx", [
         route("embassy_staff", "routes/staff/Staff.tsx"),
         route("embassy_staff_list", "routes/staff/staff-list/StaffList.tsx"),
