@@ -12,7 +12,7 @@ import {
   RiTimeLine
 } from "react-icons/ri";
 import { Coat, ExploreUg } from "~/images";
-import FooterBottom from "./FooterBottom";
+// import FooterBottom from "./FooterBottom";
 import { useAuth } from "~/contexts/AuthContext";
 
 const navigationLinks = [
