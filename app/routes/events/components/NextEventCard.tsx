@@ -86,6 +86,21 @@ export const NextEventCard: React.FC<NextEventCardProps> = ({ event }) => {
             </div>
           )}
           <h3 className="font-bold text-2xl mb-4">{event.event_name}</h3>
+          {event.embassy_name && (
+            <div className="flex items-center gap-3 mb-4 p-3 bg-gray-50 rounded-lg border border-gray-200">
+              {event.embassy_picture && (
+                <img
+                  src={event.embassy_picture}
+                  alt={event.embassy_name}
+                  className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm"
+                />
+              )}
+              <div>
+                <div className="text-xs text-gray-500 uppercase tracking-wide">Hosted by</div>
+                <div className="font-semibold text-gray-900">{event.embassy_name}</div>
+              </div>
+            </div>
+          )}
           <div className="space-y-3">
             <div className="grid grid-cols-2 gap-3">
               <div className="flex items-start gap-3">
@@ -136,15 +151,15 @@ export const NextEventCard: React.FC<NextEventCardProps> = ({ event }) => {
               </div>
             )}
           </div>
-          <div className="grid grid-cols-2 gap-2 mt-6">
+          <div className="grid grid-cols-1 gap-2 mt-6">
             <Button variant="secondary" block={true} size="md">
               Remind Me
             </Button>
-            <form method="dialog" className="flex-1">
+            {/* <form method="dialog" className="flex-1">
               <Button variant="outline" block={true} size="md">
                 Close
               </Button>
-            </form>
+            </form> */}
           </div>
         </div>
         <form method="dialog" className="modal-backdrop">

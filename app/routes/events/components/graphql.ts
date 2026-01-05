@@ -21,6 +21,8 @@ export const GET_EMBASSY_EVENTS = gql`
       event_description
       registration_deadline
       embassy_id
+      embassy_name
+      embassy_picture   
       created_at
       created_by
       updated_at

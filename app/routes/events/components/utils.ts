@@ -24,6 +24,8 @@ export const convertToCalendarEvents = (
         event_location: event.event_location,
         event_description: event.event_description,
         event_image: event.event_image,
+        embassy_name: event.embassy_name,
+        embassy_picture: event.embassy_picture,
     }));
 };
 

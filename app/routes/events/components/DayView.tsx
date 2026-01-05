@@ -99,7 +99,7 @@ export const DayView: React.FC<DayViewProps> = ({ events, date }) => {
                   </div>
                   <div className="ml-6 p-4">
                     <div className="font-semibold text-gray-900 text-lg mb-3">
-                      {truncate(event.event_name)}
+                      {truncate(event.event_name)} 
                     </div>
 
                     <div className="flex items-center gap-6 mb-3">
@@ -117,7 +117,7 @@ export const DayView: React.FC<DayViewProps> = ({ events, date }) => {
                         </div>
                       )}
                     </div>
-                    <div className="flex items-center gap-2 mt-3 pt-0">
+                    <div className="flex items-start flex-col gap-2 mt-3 pt-0">
                       <div
                         className={`${event.color || "bg-gray-400"} w-fit shrink-0 mt-2 rounded-sm text-center`}
                       >
@@ -127,6 +127,20 @@ export const DayView: React.FC<DayViewProps> = ({ events, date }) => {
                           </span>
                         )}
                       </div>
+                      {event.embassy_name && (
+                        <div className="flex items-center gap-2">
+                          {event.embassy_picture && (
+                            <img
+                              src={event.embassy_picture}
+                              alt={event.embassy_name}
+                              className="w-6 h-6 rounded-full object-cover border border-gray-300"
+                            />
+                          )}
+                          <span className="text-sm text-gray-600">
+                            {event.embassy_name}
+                          </span>
+                        </div>
+                      )}
                     </div>
                     {event.attendees && event.attendees.length > 0 && (
                       <div className="flex items-center gap-2 mt-3 pt-3 border-t border-gray-100">
@@ -167,6 +181,21 @@ export const DayView: React.FC<DayViewProps> = ({ events, date }) => {
                     </div>
                   )}
                   <h3 className="font-bold text-2xl mb-4">{event.event_name}</h3>
+                  {event.embassy_name && (
+                    <div className="flex items-center gap-3 mb-4 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                      {event.embassy_picture && (
+                        <img
+                          src={event.embassy_picture}
+                          alt={event.embassy_name}
+                          className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm"
+                        />
+                      )}
+                      <div>
+                        <div className="text-xs text-gray-500 uppercase tracking-wide">Hosted by</div>
+                        <div className="font-semibold text-gray-900">{event.embassy_name}</div>
+                      </div>
+                    </div>
+                  )}
                   <div className="space-y-3">
                     <div className="grid grid-cols-2 gap-3">
                       <div className="flex items-start gap-3">
