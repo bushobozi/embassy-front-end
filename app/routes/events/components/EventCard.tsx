@@ -20,7 +20,6 @@ export const EventCard: React.FC<EventCardProps> = ({ event, style }) => {
       {/* Color bar on the left */}
       <div className="flex h-full">
         <div className={`${colorClass} w-1.5 shrink-0`}></div>
-
         {/* Event details */}
         <div className="flex-1 p-2 min-w-0">
           <div className="font-semibold text-gray-900 text-xs truncate mb-1">
@@ -30,7 +29,8 @@ export const EventCard: React.FC<EventCardProps> = ({ event, style }) => {
           <div className="text-xs text-gray-600 flex items-center gap-1">
             <span>🕐</span>
             <span>
-              {new Date(event.event_start_date).toLocaleTimeString()} - {new Date(event.event_end_date).toLocaleTimeString()}
+              {new Date(event.event_start_date).toLocaleTimeString()} -{" "}
+              {new Date(event.event_end_date).toLocaleTimeString()}
             </span>
           </div>
 
@@ -56,6 +56,18 @@ export const EventCard: React.FC<EventCardProps> = ({ event, style }) => {
               )}
             </div>
           )}
+           {event.embassy_name && (
+          <div className="flex items-center gap-2">
+            {event.embassy_picture && (
+              <img
+                src={event.embassy_picture}
+                alt={event.embassy_name}
+                className="w-6 h-6 rounded-full object-cover border border-gray-300"
+              />
+            )}
+            <span className="text-sm text-gray-600">{event.embassy_name}</span>
+          </div>
+        )}
         </div>
       </div>
     </div>

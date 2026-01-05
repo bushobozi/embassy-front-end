@@ -49,7 +49,7 @@ export const MonthView: React.FC<MonthViewProps> = ({ date, events }) => {
             return (
               <div
                 key={`empty-${index}`}
-                className="min-h-[120px] bg-gray-50 rounded-lg"
+                className="min-h-30 bg-gray-50 rounded-lg"
               ></div>
             );
           }
@@ -60,7 +60,7 @@ export const MonthView: React.FC<MonthViewProps> = ({ date, events }) => {
           return (
             <div
               key={index}
-              className={`min-h-[120px] border rounded-lg p-2 ${
+              className={`min-h-30 border rounded-lg p-2 ${
                 isTodayDate
                   ? "bg-red-200 border-red-200"
                   : "bg-blue-50 border-blue-50"

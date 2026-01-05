@@ -18,6 +18,8 @@ export interface EmbassyEvent {
     event_description: string;
     registration_deadline: string | null;
     embassy_id: string;
+    embassy_name: string;
+    embassy_picture: string | null;
     created_at: string;
     created_by: string;
     updated_at: string;
@@ -35,6 +37,8 @@ export interface CalendarEvent {
     event_location?: string;
     event_description?: string;
     event_image: string | null;
+    embassy_name?: string;
+    embassy_picture?: string | null;
 }
 
 export type ViewType = "month" | "week" | "day";
