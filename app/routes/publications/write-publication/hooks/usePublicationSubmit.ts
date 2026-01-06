@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { PublicationFormData } from "../publicationtypes";
+import { useAuth } from "~/contexts/AuthContext";
 
 interface SubmitMessage {
     type: "success" | "error";
@@ -12,47 +13,77 @@ export function usePublicationSubmit() {
     const [submitMessage, setSubmitMessage] = useState<SubmitMessage | null>(
         null
     );
-    const url = "https://embassy-backend.fly.dev/api/v1/";
+    const { user, accessToken } = useAuth();
+    const URL = import.meta.env.VITE_API_URL;
+    const PUBLISHURL = `${URL}/publications`;
+    
+    const fileToBase64 = (file: File): Promise<string> => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                resolve(reader.result as string);
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        });
+    };
+    
     const submitPublication = async (formData: PublicationFormData) => {
         setIsSubmitting(true);
         setSubmitMessage(null);
         try {
-            const token = localStorage.getItem("access_token");
-            const embassy = localStorage.getItem("embassy_id");
+            const token = accessToken;
+            const embassy = user?.embassy_id;
+            const user_id = user?.id;
+            const url = PUBLISHURL;
             if (!token) {
                 throw new Error("Authentication token not found. Please log in again.");
             }
-            const submitData = new FormData();
-            submitData.append("embassy_id", embassy || "");
-            submitData.append("title", formData.title);
-            submitData.append("publication_type", formData.publication_type);
-            submitData.append("content", formData.content);
-            submitData.append("status", formData.status);
-
-            if (formData.tags) {
-                submitData.append("tags", formData.tags);
+            
+            // Convert cover image File to base64 string, otherwise use existing string
+            let coverImageString: string | null = null;
+            if (formData.cover_image instanceof File) {
+                console.log('Converting cover image to base64:', formData.cover_image.name);
+                coverImageString = await fileToBase64(formData.cover_image);
+            } else if (typeof formData.cover_image === "string" && formData.cover_image.trim() !== "") {
+                coverImageString = formData.cover_image;
             }
 
-            if (formData.cover_image) {
-                submitData.append("cover_image", formData.cover_image);
+            // Convert attachment Files to base64 strings, otherwise use existing strings
+            const attachmentsStrings: string[] = [];
+            if (formData.attachments && Array.isArray(formData.attachments)) {
+                for (const item of formData.attachments) {
+                    if (typeof item === "string" && item.trim() !== "") {
+                        attachmentsStrings.push(item);
+                    }
+                }
             }
 
-            const response = await fetch(`${url}publications/`, {
+            const submitData = {
+                embassy_id: embassy || "",
+                created_by: user_id || "",
+                title: formData.title,
+                slug: formData.slug,
+                publication_type: formData.publication_type,
+                content: formData.content,
+                status: formData.status,
+                tags: formData.tags || [],
+                attachments: attachmentsStrings,
+                cover_image: coverImageString,
+            };
+
+            const response = await fetch(`${url}`, {
                 method: "POST",
-                body: submitData,
+                body: JSON.stringify(submitData),
                 headers: {
+                    "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
                 },
                 credentials: "include",
             });
 
             if (response.status === 401) {
-                // Token expired or invalid - redirect to login
-                localStorage.removeItem("access_token");
-                localStorage.removeItem("refresh_token");
-                localStorage.removeItem("embassy_id");
-                localStorage.removeItem("user_id");
-                window.location.href = "/consular-panel-login";
+                window.location.href = "/consular_login";
                 return { success: false, data: null };
             }
 
@@ -67,7 +98,7 @@ export function usePublicationSubmit() {
                 message: "Publication created successfully!",
             });
             alert("Publication created successfully!");
-            window.location.href = "/dashboard";
+            window.location.href = "/em_my_publications";
             return { success: true, data: result };
         } catch (error) {
             console.error("Error submitting publication:", error);

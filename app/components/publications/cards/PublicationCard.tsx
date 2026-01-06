@@ -78,14 +78,14 @@ export default function PublicationCard({
   const navigate = useNavigate();
   return (
     <>
-      <Link to={`/read_publications_press_news_blog/${id}`} className="block">
+      <Link to={`/publication_detail_view_id/${id}/viewed`} className="block">
         <div className="relative h-120 bg-white overflow-hidden">
           <div className="relative">
             <div className="flex items-center justify-center gap-2 absolute top-0 right-3 z-10 p-2">
               <button
                 type="button"
                 onClick={() =>
-                  navigate(`/read_publications_press_news_blog/${id}`)
+                  navigate(`/publication_detail_view_id/${id}/viewed`)
                 }
                 aria-label="View publication"
                 data-tip="View publication"
@@ -123,7 +123,7 @@ export default function PublicationCard({
           </div>
         </div>
         <Link
-          to={`/read_publications_press_news_blog/${id}`}
+          to={`/publication_detail_view_id/${id}/viewed`}
           className="block mb-3"
         >
           <h2 className="text-xl font-bold text-gray-900 hover:text-indigo-600 transition-colors line-clamp-2">

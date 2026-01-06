@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from "react-router";
 import { useState, useMemo, useEffect } from "react";
 import { apolloClient } from "~/apolloClient";
 import { useAuth } from "~/contexts/AuthContext";
-import { GET_PUBLICATIONS } from "~/routes/publications/components/graphql";
+import { GET_EMBASSY_PUBLICATIONS } from "~/routes/publications/components/graphql";
 
 type Publication = {
   id: number;
@@ -62,7 +62,7 @@ const PUBLICATION_TAGS = [
 
 const ITEMS_PER_PAGE = 25;
 
-export default function Publications() {
+export default function EmbassyPublications() {
   const { user } = useAuth();
   const embassyId = user?.embassy_id;
   const [refreshing, setRefreshing] = useState(false);
@@ -93,6 +93,11 @@ export default function Publications() {
   const displayedPublications = filteredPublications.slice(0, displayCount);
   const hasMoreData = displayCount < filteredPublications.length;
 
+  const handleRefresh = () => {
+    setDisplayCount(ITEMS_PER_PAGE);
+    setSelectedTag(null);
+  };
+
   const handleLoadMore = () => {
     setDisplayCount((prev) => prev + ITEMS_PER_PAGE);
   };
@@ -113,19 +118,18 @@ export default function Publications() {
 
     try {
       const variables = {
-        // embassy_id: embassyId,
+        embassy_id: embassyId,
         page: 1,
         limit: 25,
         // status: "published",
       };
       const result = await apolloClient.query<PublicationQueryResponse>({
-        query: GET_PUBLICATIONS,
+        query: GET_EMBASSY_PUBLICATIONS,
         variables,
         fetchPolicy: "network-only",
       });
 
       if (result.data?.publications) {
-        console.log(`Fetched ${result.data.publications.length} publications`);
         const mappedPublications: Publication[] = result.data.publications.map(
           (pub: any) => ({
             id: pub.id,
@@ -178,13 +182,11 @@ export default function Publications() {
   return (
     <div className="w-full pb-8 pt-0">
       <div className="relative">
-        <Banner>Latest Publications</Banner>
+        <Banner>My Embassy Publications</Banner>
       </div>
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-4">
-          <h1 className="text-3xl font-bold text-gray-900">
-            View all Publications From Other Embassies
-          </h1>
+          <h1 className="text-3xl font-bold text-gray-900">My Publications</h1>
           {embassyIdFromUrl && (
             <button
               onClick={() => {

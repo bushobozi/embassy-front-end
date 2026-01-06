@@ -6,3 +6,4 @@ export { StatusSelect } from "./StatusSelect";
 export { CoverImageUpload } from "./CoverImageUpload";
 export { ContentEditor } from "./ContentEditor";
 export { AlertMessage } from "./AlertMessage";
+export { AttachmentsUpload } from "./AttachmentsUploadProps";

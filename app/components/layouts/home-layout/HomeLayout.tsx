@@ -2,10 +2,12 @@ import { Link, Outlet, useLocation } from "react-router";
 import ImportantLinks from "./important-links";
 
 const quickInnerLinks = [
-  { name: "Home", href: "/home_embassy" },
-  { name: "Overview", href: "/embassy_overview" },
+  { name: "Latest Publications", href: "/home_embassy" },
+  // { name: "Overview", href: "/embassy_overview" },
+  { name: "My Publications", href: "/em_my_publications" },
   { name: "Write Publication", href: "/publications_write" },
-  { name: "Settings", href: "/settings" },
+  
+  // { name: "Settings", href: "/settings" },
 ];
 
 export default function HomeLayout() {
@@ -36,7 +38,7 @@ export default function HomeLayout() {
         </nav>
       </aside>
       <div className="overflow-auto w-2/3">
-        <main className="flex-1 flex-col min-w-0 p-6 pb-12 bg-gray-50/20 mx-2">
+        <main className="flex-1 flex-col min-w-0 p-0 pb-12 bg-gray-50/20 mx-2">
           <Outlet />
         </main>
       </div>

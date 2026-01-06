@@ -59,7 +59,6 @@ export default function EventsPage() {
 
       setEmbassyEvents((result.data as any).events || []);
     } catch (err) {
-      console.error("Error fetching events:", err);
       setError(err instanceof Error ? err.message : "Failed to fetch events");
     } finally {
       setLoading(false);

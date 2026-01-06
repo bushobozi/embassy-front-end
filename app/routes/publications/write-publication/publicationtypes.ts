@@ -58,9 +58,21 @@ export const publicationTagLabels: Record<string, string> = {
 
 export interface PublicationFormData {
     title: string;
+    slug: string;
     publication_type: string;
     content: string;
-    cover_image: File | null;
-    tags: string;
+    cover_image: File | string | null;
+    tags: string[];
     status: string;
+    attachments?: string[];
 }
+
+// Utility function to generate slug from title
+export const generateSlug = (title: string): string => {
+    return title
+        .toLowerCase()
+        .trim()
+        .replace(/[^\w\s-]/g, '') // Remove special characters
+        .replace(/[\s_]+/g, '-')   // Replace spaces and underscores with hyphens
+        .replace(/^-+|-+$/g, '');  // Remove leading/trailing hyphens
+};
