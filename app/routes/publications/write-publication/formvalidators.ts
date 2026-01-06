@@ -4,6 +4,7 @@ export interface ValidationErrors {
     content?: string;
     status?: string;
     cover_image?: string;
+    attachments?: string;
 }
 
 export const validateTitle = (title: string): string | undefined => {

@@ -2,7 +2,7 @@ interface PreviewProps {
   title: string;
   content: string;
   publicationType: string;
-  tags: string;
+  tags: string[];
   coverImagePreview: string | null;
 }
 
@@ -13,12 +13,7 @@ export default function Preview({
   tags,
   coverImagePreview,
 }: PreviewProps) {
-  const tagsArray = tags
-    ? tags
-        .split(",")
-        .map((tag) => tag.trim())
-        .filter(Boolean)
-    : [];
+  const tagsArray = Array.isArray(tags) ? tags : [];
 
   const hasContent = title || content || coverImagePreview;
 

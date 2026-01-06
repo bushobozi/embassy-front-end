@@ -16,9 +16,10 @@ export default [
           "publications_write",
           "routes/publications/write-publication/write-publications.tsx"
         ),
+        route("publication_detail_view_id/:publicationId/viewed", "routes/publications/view-publication/ViewPublication.tsx"),
+        route("em_my_publications", "routes/publications/Publications.tsx"),
       ]),
-      route("settings", "routes/settings/Settings.tsx"),
-      route("publications", "routes/publications/Publications.tsx"),
+      route("settings", "routes/settings/Settings.tsx"),      
       route("messages", "routes/messages/Messages.tsx"),
       layout("components/layouts/tasks/TasksLayout.tsx", [
         route("tasks", "routes/tasks/Tasks.tsx"),

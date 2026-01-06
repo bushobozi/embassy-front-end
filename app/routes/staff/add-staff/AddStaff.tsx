@@ -173,10 +173,7 @@ export default function AddStaff() {
             { label: "Add Staff Member to Embassy" },
           ]}
         />
-        <h1 className="text-2xl font-semibold mb-4">
-          Add Staff Member to Embassy
-        </h1>
-        <div className="w-full m:w-3/4 my-8">
+        <div className="w-full m:w-3/4 my-4">
           {error && (
             <div className="bg-red-100 text-red-800 p-4 rounded mb-4 w-full">
               <span>{error}</span>

@@ -4,6 +4,7 @@ import {
     PublicationTypes,
     PublicationStatus,
     PublicationTags,
+    generateSlug,
 } from "../publicationtypes";
 import {
     validateTitle,
@@ -16,10 +17,11 @@ import {
 export function usePublicationForm() {
     const [formData, setFormData] = useState<PublicationFormData>({
         title: "",
+        slug: "",
         publication_type: PublicationTypes.ARTICLE,
         content: "",
-        cover_image: null,
-        tags: PublicationTags.GENERAL,
+        cover_image: null as string | File | null,
+        tags: [PublicationTags.GENERAL],
         status: PublicationStatus.DRAFT,
     });
 
@@ -33,10 +35,28 @@ export function usePublicationForm() {
         e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
     ) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value,
-        }));
+        
+        // Auto-generate slug when title changes
+        if (name === "title") {
+            const slug = generateSlug(value);
+            setFormData((prev) => ({
+                ...prev,
+                title: value,
+                slug: slug,
+            }));
+        } else if (name === "tags") {
+            // Convert single tag value to array
+            setFormData((prev) => ({
+                ...prev,
+                tags: [value],
+            }));
+        } else {
+            setFormData((prev) => ({
+                ...prev,
+                [name]: value,
+            }));
+        }
+        
         if (touched[name]) {
             if (name === "title") {
                 const error = validateTitle(value);
@@ -95,15 +115,45 @@ export function usePublicationForm() {
         }
     };
 
+    const handleAttachmentsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files;
+        if (files) {
+            const fileArray = Array.from(files);
+            // Convert Files to data URLs or file names as strings
+            const filePromises = fileArray.map(file => {
+                return new Promise<string>((resolve) => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                        resolve(reader.result as string);
+                    };
+                    reader.readAsDataURL(file);
+                });
+            });
+
+            Promise.all(filePromises).then(fileStrings => {
+                setFormData((prev) => ({
+                    ...prev,
+                    attachments: fileStrings,
+                }));
+            });
+        }
+    };
+
     const validateFormData = () => {
         setTouched({
             title: true,
+            slug: true,
             publication_type: true,
             content: true,
             status: true,
             cover_image: true,
+            attachments: true,
+            tags: true,
         });
-        const validationErrors = validateForm(formData);
+        const validationErrors = validateForm({
+            ...formData,
+            cover_image: formData.cover_image instanceof File ? formData.cover_image : null,
+        });
         setErrors(validationErrors);
 
         return Object.keys(validationErrors).length === 0;
@@ -112,10 +162,13 @@ export function usePublicationForm() {
     const resetForm = () => {
         setFormData({
             title: "",
+            slug: "",
             publication_type: PublicationTypes.ARTICLE,
             content: "",
             cover_image: null,
-            tags: PublicationTags.GENERAL,
+            // reset tags array to empty
+            tags: [PublicationTags.GENERAL],
+            attachments: [],
             status: PublicationStatus.DRAFT,
         });
         setCoverImagePreview(null);
@@ -132,6 +185,7 @@ export function usePublicationForm() {
         handleBlur,
         handleFileChange,
         handleEditorChange,
+        handleAttachmentsChange,
         validateFormData,
         resetForm,
     };
