@@ -113,16 +113,16 @@ export default function WritePublications() {
       </div>
       <BreadCrumb
         links={[
-          { label: "Latest Publications", href: "/home_embassy" },
-          { label: "My Publications", href: "/em_my_publications" },
+          { label: "Latest News Updates", href: "/home_embassy" },
+          { label: "My News Updates", href: "/em_my_publications" },
           {
-            label: "Create New Publication",
+            label: "Create New News Update",
           },
         ]}
       />
       <fieldset className="fieldset border-base-300 rounded-box w-full border p-4">
         <legend className="fieldset-legend text-xl">
-          Create New Publication
+          Create News Update Publication
         </legend>
         <form onSubmit={handleSubmit} className="space-y-6">
           <TitleInput

@@ -27,7 +27,6 @@ export default function StaffList() {
   const embassyId = user?.embassy_id;
   const token = accessToken;
   const URL = import.meta.env.VITE_API_URL;
-  // http://localhost:3000/api/v1/staff
   const STAFF_LIST_URL = `${URL}/staff`;
   const genderOptions = ["male", "female", "other"];
   const maritalStatus = ["single", "married", "divorced", "widowed", "other"];
@@ -238,8 +237,6 @@ export default function StaffList() {
                 <th>Position</th>
                 <th>Department</th>
                 <th>Gender</th>
-                {/* <th>Nationality</th>
-                <th>Country</th> */}
                 <th>Actions</th>
               </tr>
             </thead>
@@ -249,8 +246,11 @@ export default function StaffList() {
                   <tr key={staff.id} className="hover">
                     <td>{(page - 1) * limit + index + 1}</td>
                     <td>
-                      <div className="flex gap-3 items-center tooltip tooltip-success tooltip-right cursor-pointer" onClick={() => goToStaffProfile(staff.id)}
-                        data-tip={`View ${staff.first_name} ${staff.last_name} Profile`}>
+                      <div
+                        className="flex gap-3 items-center tooltip tooltip-success tooltip-right cursor-pointer"
+                        onClick={() => goToStaffProfile(staff.id)}
+                        data-tip={`View ${staff.first_name} ${staff.last_name} Profile`}
+                      >
                         <div className="avatar">
                           <div className="mask mask-squircle h-12 w-12">
                             <img
@@ -263,7 +263,9 @@ export default function StaffList() {
                           </div>
                         </div>
                         <div className="font-bold">
-                          {staff.first_name} {staff.middle_name ? ` ${staff.middle_name} ` : " "} {staff.last_name}
+                          {staff.first_name}{" "}
+                          {staff.middle_name ? ` ${staff.middle_name} ` : " "}{" "}
+                          {staff.last_name}
                         </div>
                       </div>
                     </td>
@@ -274,12 +276,16 @@ export default function StaffList() {
                     <td>
                       <span className="capitalize">{staff.gender}</span>
                     </td>
-                    {/* <td>{staff.nationality}</td>
-                    <td>{staff.country}</td> */}
                     <td>
-                      <Button variant="outline" size="sm" className="cursor-pointer tooltip tooltip-success tooltip-left" onClick={() => goToStaffProfile(staff.id)}
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="cursor-pointer tooltip tooltip-success tooltip-left"
+                        onClick={() => goToStaffProfile(staff.id)}
                         data-tip={`View ${staff.first_name} ${staff.last_name} Profile`}
-                        >View</Button>
+                      >
+                        View
+                      </Button>
                     </td>
                   </tr>
                 ))

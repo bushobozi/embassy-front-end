@@ -32,7 +32,7 @@ export default function StaffLayout() {
           </ul>
         </nav>
       </aside>
-      <div className="overflow-auto w-full md:w-3/4">
+      <div className="overflow-auto w-full md:w-3/4 no-scrollbar">
         <main className="flex-1 flex-col min-w-0 p-0 pb-12 bg-gray-50/20 mx-2">
           <Outlet />
         </main>

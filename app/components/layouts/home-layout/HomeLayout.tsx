@@ -1,13 +1,14 @@
 import { Link, Outlet, useLocation } from "react-router";
 import ImportantLinks from "./important-links";
+import FooterBottom from "../dashboard/FooterBottom";
+import { EmbassyList } from "~/components/embassy-lists/EmbassyList";
 
 const quickInnerLinks = [
-  { name: "Latest Publications", href: "/home_embassy" },
-  // { name: "Overview", href: "/embassy_overview" },
-  { name: "My Publications", href: "/em_my_publications" },
-  { name: "Write Publication", href: "/publications_write" },
-  
-  // { name: "Settings", href: "/settings" },
+  { name: "Latest News", href: "/home_embassy" },
+  { name: "My News Updates", href: "/em_my_publications" },
+  { name: "Manage News Updates", href: "/em_manage_publications" },
+  { name: "Write News Update", href: "/publications_write" },  
+  { name: "Information Boards", href: "/information_desk_boards" },
 ];
 
 export default function HomeLayout() {
@@ -36,8 +37,14 @@ export default function HomeLayout() {
             })}
           </ul>
         </nav>
+        <div className="rounded-2xl my-4">
+          <h1 className="text-xl font-bold text-blue-900">
+            Check other Embassies
+          </h1>
+        </div>
+        <EmbassyList />
       </aside>
-      <div className="overflow-auto w-2/3">
+      <div className="overflow-auto w-2/3 no-scrollbar">
         <main className="flex-1 flex-col min-w-0 p-0 pb-12 bg-gray-50/20 mx-2">
           <Outlet />
         </main>
@@ -45,6 +52,18 @@ export default function HomeLayout() {
       <div className="w-1/6 flex-none p-4 sticky top-0 self-stretch h-full">
         <div className="mt-3">
           <ImportantLinks />
+          <p className="text-gray-500 text-sm mt-8">
+          Incase of any issues associated with news management. Please reach out to
+          the system admin through the link below:
+          <a
+            href="#!"
+            className="font-semibold mx-2 text-gray-600 hover:underline focus:text-gray-800 focus:outline-none"
+          >
+            Contact System Admin
+          </a>
+        </p>
+        <hr className="my-8 border-t border-gray-300" />
+        <FooterBottom />
         </div>
       </div>
     </div>
