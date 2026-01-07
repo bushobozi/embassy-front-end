@@ -11,7 +11,6 @@ export default [
     layout("components/layouts/dashboard/DashboardLayout.tsx", [
       layout("components/layouts/home-layout/HomeLayout.tsx", [
         route("home_embassy", "routes/dashboard/Dashboard.tsx"),
-        route("embassy_overview", "routes/overview/Overview.tsx"),
         route(
           "publications_write",
           "routes/publications/write-publication/write-publications.tsx"

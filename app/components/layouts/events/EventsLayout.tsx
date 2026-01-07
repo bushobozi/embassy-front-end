@@ -2,7 +2,7 @@ import { Outlet, Link } from "react-router";
 import Banner from "~/components/banner/Banner";
 
 const staffQuickLinks = [
-  { name: "EventsOverview", href: "/events" },
+  { name: "Events Overview", href: "/events" },
 ];
 
 export default function StaffLayout() {

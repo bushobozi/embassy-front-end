@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Coat } from "~/images";
 import { useAuth } from "~/contexts/AuthContext";
 
@@ -24,7 +24,6 @@ const embassyData: embassy = {
 }
 
 export default function Banner({ children }: BannerProps) {
-  const hasFetched = useRef(false);
   const [loading, setLoading] = useState(false);
   const [embassy, setEmbassy] = useState<embassy | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -38,6 +37,15 @@ export default function Banner({ children }: BannerProps) {
     if (!embassyId) {
       setError("Embassy ID not found");
       return;
+    }
+    const cachedEmbassy = sessionStorage.getItem(`embassy_${embassyId}`);
+    if (cachedEmbassy) {
+      try {
+        setEmbassy(JSON.parse(cachedEmbassy));
+        return;
+      } catch (e) {
+        sessionStorage.removeItem(`embassy_${embassyId}`);
+      }
     }
 
     setLoading(true);
@@ -59,6 +67,7 @@ export default function Banner({ children }: BannerProps) {
 
       const data = await response.json();
       setEmbassy(data);
+      sessionStorage.setItem(`embassy_${embassyId}`, JSON.stringify(data));
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
@@ -71,9 +80,8 @@ export default function Banner({ children }: BannerProps) {
   };
 
   useEffect(() => {
-    if(!hasFetched.current && embassyId) {
+    if (embassyId) {
       fetchEmbassyData();
-      hasFetched.current = true;
     }
   }, [embassyId]);
   return (
