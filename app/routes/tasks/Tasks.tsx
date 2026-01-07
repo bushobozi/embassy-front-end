@@ -21,7 +21,6 @@ export default function Tasks() {
   const embassyId = user?.embassy_id;
   const token = accessToken;
   const URL = import.meta.env.VITE_API_URL;
-  // http://localhost:3000/api/v1/tasks/stats/summary?embassy_id=8442f828-2a6f-4c33-8381-dc268803a07d
   const TASKS_OVERVIEW_URL = `${URL}/tasks/stats/summary`;
 
   const fetchTasksOverview = async () => {
@@ -67,7 +66,7 @@ export default function Tasks() {
         <Banner>Tasks Summary</Banner>
         <div className="my-8 w-full">
           {tasksOverview && !loading && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-6 gap-4">
               <StatsCard title="Total Tasks" value={tasksOverview.total} />
               <StatsCard
                 title="Pending Tasks"

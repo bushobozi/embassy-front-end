@@ -17,7 +17,7 @@ import { useAuth } from "~/contexts/AuthContext";
 
 const navigationLinks = [
   { to: "/home_embassy", label: "Home", icon: RiHome5Line },
-  { to: "/em_my_publications", label: "My Publications", icon: RiArticleLine },
+  { to: "/em_my_publications", label: "My News Updates", icon: RiArticleLine },
   { to: "/messages", label: "Messages", icon: RiInbox2Line },
   { to: "/events", label: "Events", icon: RiCalendarEventLine },
   { to: "/tasks", label: "Tasks", icon: RiTimeLine },
@@ -84,7 +84,7 @@ export default function DashboardLayout() {
         {/* defaultChecked  */}
         <input id="my-drawer-4" type="checkbox" className="drawer-toggle"/>
         <div className="drawer-content mr-4 mt-3 bg-white border border-gray-300 rounded-2xl shadow-0 flex flex-col max-h-[calc(100vh-5rem)]">
-          <div className="flex-1 overflow-auto">
+          <div className="flex-1 overflow-auto no-scrollbar">
             <Outlet />
           </div>
           {/* <FooterBottom /> */}

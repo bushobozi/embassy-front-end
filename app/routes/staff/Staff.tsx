@@ -19,7 +19,6 @@ export default function Staff() {
   const embassyId = user?.embassy_id;
   const token = accessToken;
   const URL = import.meta.env.VITE_API_URL;
-  // http://localhost:3000/api/v1/staff/stats/summary?embassy_id=8442f828-2a6f-4c33-8381-dc268803a07d
   const STAFF_OVERVIEW_URL = `${URL}/staff/stats/summary`;
 
   const fetchStaffOverview = async () => {
@@ -67,7 +66,7 @@ export default function Staff() {
       </Banner></div>     
       <div className="my-8 w-full">
         {staffOverview && !loading && (
-          <div className="mt-0 grid grid-cols-1 sm:grid-cols-4 gap-6">
+          <div className="mt-0 grid grid-cols-1 sm:grid-cols-6 gap-4">
             <StatsCard title="Total Staff" value={staffOverview.total} />
             <StatsCard title="Active Staff" value={staffOverview.byStatus.active} />
             <StatsCard title="Inactive Staff" value={staffOverview.byStatus.inactive} />

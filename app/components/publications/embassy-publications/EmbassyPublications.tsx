@@ -182,7 +182,7 @@ export default function EmbassyPublications() {
   return (
     <div className="w-full pb-8 pt-0">
       <div className="relative">
-        <Banner>My Embassy Publications</Banner>
+        <Banner>My Embassy News Updates</Banner>
       </div>
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-4">
@@ -262,20 +262,16 @@ export default function EmbassyPublications() {
           </div>
         )}
         {loading && (
-          <div className="flex flex-col items-center my-16 gap-2 justify-center h-full w-full">
+          <div className="grid place-content-center h-full">
             <div className="flex w-52 flex-col gap-4">
-              <div className="flex items-center gap-4">
-                <div className="skeleton h-16 w-16 shrink-0 rounded-full"></div>
-                <div className="flex flex-col gap-4">
-                  <div className="skeleton h-4 w-20"></div>
-                  <div className="skeleton h-4 w-28"></div>
-                </div>
-              </div>
               <div className="skeleton h-32 w-full"></div>
+              <div className="skeleton h-4 w-28"></div>
+              <div className="skeleton h-4 w-full"></div>
+              <div className="skeleton h-4 w-full"></div>
             </div>
           </div>
         )}
-        {displayedPublications.length === 0 ? (
+        {!loading && displayedPublications.length === 0 ? (
           <div className="text-center py-16">
             <p className="text-gray-500 text-lg">
               No publications found for this filter.
@@ -283,11 +279,12 @@ export default function EmbassyPublications() {
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {displayedPublications.map((pub) => (
                 <article
                   key={pub.id}
-                  className="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-sm transition-shadow duration-300 flex flex-col"
+                  className="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-sm transition-shadow duration-300 flex flex-col tooltip tooltip-bottom"
+                  data-tip={pub.title}
                 >
                   <PublicationCard {...pub} />
                 </article>

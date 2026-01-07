@@ -82,8 +82,8 @@ export default function ViewPublication({
     <div className="container mx-auto w-full h-full my-4">
       <BreadCrumb
         links={[
-          { label: "Latest Publications", href: "/home_embassy" },
-          { label: "Publications", href: "/em_my_publications" },
+          { label: "Latest News Updates", href: "/home_embassy" },
+          { label: "My News Updates", href: "/em_my_publications" },
           {
             label: publicationData ? publicationData.title : "Loading...",
             href: `/publication_detail_view_id/${params.publicationId}/viewed`,
@@ -200,16 +200,12 @@ export default function ViewPublication({
         </>
       )}
       {loading && (
-        <div className="flex flex-col items-center my-16 gap-2 justify-center h-full w-full">
+        <div className="grid place-content-center h-full mb-8">
           <div className="flex w-52 flex-col gap-4">
-            <div className="flex items-center gap-4">
-              <div className="skeleton h-16 w-16 shrink-0 rounded-full"></div>
-              <div className="flex flex-col gap-4">
-                <div className="skeleton h-4 w-20"></div>
-                <div className="skeleton h-4 w-28"></div>
-              </div>
-            </div>
             <div className="skeleton h-32 w-full"></div>
+            <div className="skeleton h-4 w-28"></div>
+            <div className="skeleton h-4 w-full"></div>
+            <div className="skeleton h-4 w-full"></div>
           </div>
         </div>
       )}

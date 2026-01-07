@@ -82,13 +82,8 @@ export default function Publications() {
         (pub) => pub.tag.toUpperCase() === selectedTag
       );
     }
-    if (embassyIdFromUrl) {
-      const embassyId = parseInt(embassyIdFromUrl, 10);
-      filtered = filtered.filter((pub) => pub.embassy.id === embassyId);
-    }
-
     return filtered;
-  }, [selectedTag, embassyIdFromUrl, publications]);
+  }, [selectedTag, publications]);
 
   const displayedPublications = filteredPublications.slice(0, displayCount);
   const hasMoreData = displayCount < filteredPublications.length;
@@ -103,7 +98,9 @@ export default function Publications() {
   };
 
   const fetchPublications = async () => {
-    if (!embassyId) {
+    const targetEmbassyId = embassyIdFromUrl || embassyId;
+
+    if (!targetEmbassyId) {
       setError("Embassy ID not found");
       return;
     }
@@ -113,11 +110,12 @@ export default function Publications() {
 
     try {
       const variables = {
-        // embassy_id: embassyId,
+        embassy_id: targetEmbassyId,
         page: 1,
         limit: 25,
         // status: "published",
       };
+      console.log("Fetching publications with variables:", variables);
       const result = await apolloClient.query<PublicationQueryResponse>({
         query: GET_PUBLICATIONS,
         variables,
@@ -173,17 +171,17 @@ export default function Publications() {
 
   useEffect(() => {
     fetchPublications();
-  }, [embassyId]);
+  }, [embassyId, embassyIdFromUrl]);
 
   return (
     <div className="w-full pb-8 pt-0">
       <div className="relative">
-        <Banner>Latest Publications</Banner>
+        <Banner>Latest News Updates</Banner>
       </div>
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-4">
           <h1 className="text-3xl font-bold text-gray-900">
-            View all Publications From Other Embassies
+            View all News Updates From Other Embassies
           </h1>
           {embassyIdFromUrl && (
             <button
@@ -191,7 +189,8 @@ export default function Publications() {
                 searchParams.delete("embassyId");
                 navigate({ search: searchParams.toString() });
               }}
-              className="px-3 py-1.5 text-sm bg-yellow-100 hover:bg-yellow-200 text-gray-900 rounded-full border border-yellow-300 transition-colors"
+              className="px-3 py-1.5 text-sm bg-yellow-100 hover:bg-yellow-200 text-gray-900 rounded-full border border-yellow-300 transition-colors cursor-pointer tooltip tooltip-bottom"
+              data-tip="Clear embassy filter"
             >
               Clear Embassy Filter
             </button>
@@ -260,20 +259,16 @@ export default function Publications() {
           </div>
         )}
         {loading && (
-          <div className="flex flex-col items-center my-16 gap-2 justify-center h-full w-full">
+          <div className="grid place-content-center h-full mb-8">
             <div className="flex w-52 flex-col gap-4">
-              <div className="flex items-center gap-4">
-                <div className="skeleton h-16 w-16 shrink-0 rounded-full"></div>
-                <div className="flex flex-col gap-4">
-                  <div className="skeleton h-4 w-20"></div>
-                  <div className="skeleton h-4 w-28"></div>
-                </div>
-              </div>
               <div className="skeleton h-32 w-full"></div>
+              <div className="skeleton h-4 w-28"></div>
+              <div className="skeleton h-4 w-full"></div>
+              <div className="skeleton h-4 w-full"></div>
             </div>
           </div>
         )}
-        {displayedPublications.length === 0 ? (
+        {!loading && displayedPublications.length === 0 ? (
           <div className="text-center py-16">
             <p className="text-gray-500 text-lg">
               No publications found for this filter.
@@ -281,7 +276,7 @@ export default function Publications() {
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {displayedPublications.map((pub) => (
                 <article
                   key={pub.id}
