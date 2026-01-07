@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { PublicationFormData } from "../publicationtypes";
 import { useAuth } from "~/contexts/AuthContext";
+import { useNavigate } from "react-router";
 
 interface SubmitMessage {
     type: "success" | "error";
@@ -9,6 +10,7 @@ interface SubmitMessage {
 
 
 export function usePublicationSubmit() {
+    const navigate = useNavigate();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitMessage, setSubmitMessage] = useState<SubmitMessage | null>(
         null
@@ -16,6 +18,10 @@ export function usePublicationSubmit() {
     const { user, accessToken } = useAuth();
     const URL = import.meta.env.VITE_API_URL;
     const PUBLISHURL = `${URL}/publications`;
+
+    const goToPublicationsList = () => {
+        navigate("/em_my_publications");
+    }
     
     const fileToBase64 = (file: File): Promise<string> => {
         return new Promise((resolve, reject) => {
@@ -98,7 +104,7 @@ export function usePublicationSubmit() {
                 message: "Publication created successfully!",
             });
             alert("Publication created successfully!");
-            window.location.href = "/em_my_publications";
+            goToPublicationsList();
             return { success: true, data: result };
         } catch (error) {
             console.error("Error submitting publication:", error);
