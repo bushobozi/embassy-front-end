@@ -96,28 +96,29 @@ export default function ViewPublication({
           <FaChevronLeft className="mr-2" />
           Back
         </Button>
-            {publicationData && publicationData.attachments &&
-              publicationData.attachments.length > 0 && (
-                <div>
-                  <ul className="list-disc-none list-inside border border-gray-300 rounded-4xl p-4 bg-white shadow-md w-fit">
-                    {publicationData.attachments.map((attachment, index) => (
-                      <li key={index}>
-                        <a
-                          href={attachment}
-                          download
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-blue-600 hover:underline flex items-center px-4 text-xl tooltip tooltip-bottom"
-                          data-tip="Download Attachment"
-                        >
-                          <RiFolderDownloadLine className="inline mr-1" size={20} />
-                          Download Attachment
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+        {publicationData &&
+          publicationData.attachments &&
+          publicationData.attachments.length > 0 && (
+            <div>
+              <ul className="list-disc-none list-inside border border-gray-300 rounded-4xl p-4 bg-white shadow-md w-fit">
+                {publicationData.attachments.map((attachment, index) => (
+                  <li key={index}>
+                    <a
+                      href={attachment}
+                      download
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:underline flex items-center px-4 text-xl tooltip tooltip-bottom"
+                      data-tip="Download Attachment"
+                    >
+                      <RiFolderDownloadLine className="inline mr-1" size={20} />
+                      Download Attachment
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         <Button
           variant="outline"
           size="md"
@@ -176,7 +177,7 @@ export default function ViewPublication({
                   {publicationData.embassy_name}
                 </h1>
               </div>
-            </div>            
+            </div>
           </div>
           {publicationData.tags && publicationData.tags.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-8">
