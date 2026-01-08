@@ -15,4 +15,5 @@ import UserHistoryTab from "./user-data/User-history/UserHistoryTab";
 import BreadCrumb from "./bread-crumb/BreadCrumb";
 import StatsCard from "./staff/stats-card/StatsCard";
 import EmbassyPublications from "./publications/embassy-publications/EmbassyPublications";
-export { Button, Publications, Alert, Banner, Stats, FancyText, PublicationCard, Welcome, ProtectedLayout, ProfileTabs, UserProfileHeader, BiographyTab, PersonalDetailsTab, UserHistoryTab, BreadCrumb, StatsCard, EmbassyPublications };
+import ManagePublicationCard from "./publications/cards/ManagePublicationCard";
+export { Button, Publications, Alert, Banner, Stats, FancyText, PublicationCard, Welcome, ProtectedLayout, ProfileTabs, UserProfileHeader, BiographyTab, PersonalDetailsTab, UserHistoryTab, BreadCrumb, StatsCard, EmbassyPublications, ManagePublicationCard };

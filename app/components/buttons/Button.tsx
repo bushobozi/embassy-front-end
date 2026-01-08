@@ -3,7 +3,7 @@ import React from "react";
 type ButtonProps = {
   children: React.ReactNode;
   onClick?: () => void;
-  variant?: "primary" | "secondary" | "ghost" | "outline";
+  variant?: "primary" | "secondary" | "ghost" | "outline" | "danger";
   size?: "sm" | "md" | "lg";
   className?: string;
   type?: "button" | "submit" | "reset";
@@ -31,6 +31,7 @@ export default function Button({
     secondary: "bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500",
     ghost: "bg-transparent hover:bg-gray-100 focus:ring-gray-500",
     outline: "bg-white border border-gray-300 text-gray-900 hover:bg-gray-50 focus:ring-gray-500",
+    danger: "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500",
   };
 
   const sizeStyles = {

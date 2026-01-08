@@ -113,7 +113,7 @@ export default function Publications() {
         embassy_id: targetEmbassyId,
         page: 1,
         limit: 25,
-        // status: "published",
+        status: "published",
       };
       console.log("Fetching publications with variables:", variables);
       const result = await apolloClient.query<PublicationQueryResponse>({

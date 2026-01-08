@@ -17,7 +17,8 @@ export default [
         ),
         route("publication_detail_view_id/:publicationId/viewed", "routes/publications/view-publication/ViewPublication.tsx"),
         route("em_my_publications", "routes/publications/Publications.tsx"),
-        route("em_manage_publications", "routes/publications/manage-publications/ManagePublications.tsx")
+        route("em_manage_publications", "routes/publications/manage-publications/ManagePublications.tsx"),
+        route("publications_update_em/:publicationId/update", "routes/publications/edit-publication/EditPublication.tsx"),
       ]),
       route("settings", "routes/settings/Settings.tsx"),      
       route("messages", "routes/messages/Messages.tsx"),

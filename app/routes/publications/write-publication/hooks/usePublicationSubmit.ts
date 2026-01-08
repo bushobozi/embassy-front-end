@@ -20,7 +20,7 @@ export function usePublicationSubmit() {
     const PUBLISHURL = `${URL}/publications`;
 
     const goToPublicationsList = () => {
-        navigate("/em_my_publications");
+        navigate("/em_manage_publications");
     }
     
     const fileToBase64 = (file: File): Promise<string> => {
@@ -103,7 +103,7 @@ export function usePublicationSubmit() {
                 type: "success",
                 message: "Publication created successfully!",
             });
-            alert("Publication created successfully!");
+            alert("Publication created successfully! Please click publish to make it visible to the public.");
             goToPublicationsList();
             return { success: true, data: result };
         } catch (error) {

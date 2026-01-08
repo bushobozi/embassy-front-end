@@ -4,6 +4,15 @@ import { Banner, Button } from "~/components";
 import { useAuth } from "~/contexts/AuthContext";
 import { StatsCard } from "~/components";
 import { RiArrowLeftSLine } from "react-icons/ri";
+import CreatedPublications from "./CreatedPublications";
+import type { Route } from "./+types/ManagePublications";
+
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: "Manage Publications - Embassy Dashboard" },
+    { name: "description", content: "Embassy manage publications dashboard" },
+  ];
+}
 
 export interface PublicationStats {
   total: number;
@@ -109,7 +118,7 @@ export default function ManagePublications() {
       ) : stats ? (
         <>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-8 gap-4 my-8">
-          <StatsCard title="Total Publications" value={stats.total} />
+          <StatsCard title="Total" value={stats.total} />
           <StatsCard title="Published" value={stats.published} />
           <StatsCard title="Drafts" value={stats.draft} />
           <StatsCard title="Archived" value={stats.archived} />
@@ -122,8 +131,7 @@ export default function ManagePublications() {
               ))}
         </div>
         <div>
-            <h3 className="my-4 text-2xl font-bold text-blue-900">Manage News Updates and Publications</h3>
-
+            <CreatedPublications onStatsChange={getStats} />
         </div>
         </>
       ) : (
