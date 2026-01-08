@@ -15,7 +15,7 @@ export default function StatsCard({ title, value, icon, className = "" }: StatsC
       <div className="flex justify-between items-start">
         <div className="flex-1">
           <h2 className="text-sm font-medium text-gray-500">{title}</h2>
-          <p className="text-4xl font-bold mt-1 text-gray-800">
+          <p className="text-5xl font-bold mt-1 text-gray-800">
             {value}
           </p>
         </div>

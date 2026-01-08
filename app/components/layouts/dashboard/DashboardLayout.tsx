@@ -1,6 +1,7 @@
 import { Outlet, NavLink, Link, useLocation } from "react-router";
 import {
   RiHome5Line,
+  RiPenNibLine,
   RiInbox2Line,
   RiSettings3Line,
   RiArticleLine,
@@ -9,15 +10,18 @@ import {
   RiSidebarUnfoldLine,
   RiParentLine,
   RiLogoutBoxRLine,
-  RiTimeLine
+  RiTimeLine,
+  RiSpeakerLine
 } from "react-icons/ri";
-import { Coat, ExploreUg } from "~/images";
+import { Coat } from "~/images";
 // import FooterBottom from "./FooterBottom";
 import { useAuth } from "~/contexts/AuthContext";
 
 const navigationLinks = [
   { to: "/home_embassy", label: "Home", icon: RiHome5Line },
   { to: "/em_my_publications", label: "My News Updates", icon: RiArticleLine },
+  { to: "/em_manage_publications", label: "Manage News Updates", icon: RiPenNibLine },
+  { to: "/information_desk_boards", label: "Information Desk", icon: RiSpeakerLine },
   { to: "/messages", label: "Messages", icon: RiInbox2Line },
   { to: "/events", label: "Events", icon: RiCalendarEventLine },
   { to: "/tasks", label: "Tasks", icon: RiTimeLine },

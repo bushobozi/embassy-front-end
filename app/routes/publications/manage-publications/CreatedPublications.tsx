@@ -394,7 +394,6 @@ export default function CreatedPublications({ onStatsChange }: CreatedPublicatio
 
   return (
     <div className="w-full pb-8 pt-0">
-      {/* Toast Container */}
       <div className="fixed inset-x-0 bottom-4 z-50 flex flex-col items-center gap-4 pointer-events-none">
         {toasts.map((toast) => (
           <div

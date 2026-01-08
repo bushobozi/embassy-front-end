@@ -117,26 +117,26 @@ export default function ManagePublications() {
         <div className="text-red-500">Error: {error}</div>
       ) : stats ? (
         <>
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-8 gap-4 my-8">
-          <StatsCard title="Total" value={stats.total} />
-          <StatsCard title="Published" value={stats.published} />
-          <StatsCard title="Drafts" value={stats.draft} />
-          <StatsCard title="Archived" value={stats.archived} />
-             {Object.entries(stats.byType).map(([type, count]) => (
-                <StatsCard
-                  key={type}
-                  title={type.charAt(0).toUpperCase() + type.slice(1)}
-                  value={count}
-                />
-              ))}
-        </div>
-        <div>
-            <CreatedPublications onStatsChange={getStats} />
-        </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-8 gap-4 my-8">
+            <StatsCard title="Total" value={stats.total} />
+            <StatsCard title="Published" value={stats.published} />
+            <StatsCard title="Drafts" value={stats.draft} />
+            <StatsCard title="Archived" value={stats.archived} />
+            {Object.entries(stats.byType).map(([type, count]) => (
+              <StatsCard
+                key={type}
+                title={type.charAt(0).toUpperCase() + type.slice(1)}
+                value={count}
+              />
+            ))}
+          </div>
         </>
       ) : (
         <div>No statistics available.</div>
       )}
+      <div>
+        <CreatedPublications onStatsChange={getStats} />
+      </div>
     </div>
   );
 }
