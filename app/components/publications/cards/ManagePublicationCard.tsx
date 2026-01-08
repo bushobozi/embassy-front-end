@@ -37,15 +37,7 @@ export interface ManagePublicationCardProps extends Publication {
   loadingState?: string;
 }
 
-export const formatShortDate = (iso: string) => {
-  const d = new Date(iso);
-  const month = d.toLocaleString("en-US", { month: "long" });
-  const day = d.getDate();
-  const year = d.getFullYear();
-  return `${day} ${month}, ${year}`;
-};
-
-export default function ManagePublicationCard({
+function ManagePublicationCard({
   id,
   title,
   cover,
@@ -62,6 +54,14 @@ export default function ManagePublicationCard({
   loadingState,
 }: ManagePublicationCardProps) {
   const navigate = useNavigate();
+  
+  const formatShortDate = (iso: string) => {
+    const d = new Date(iso);
+    const month = d.toLocaleString("en-US", { month: "long" });
+    const day = d.getDate();
+    const year = d.getFullYear();
+    return `${day} ${month}, ${year}`;
+  };
   return (
     <>
       <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-md overflow-hidden h-60">
@@ -201,3 +201,5 @@ export default function ManagePublicationCard({
     </>
   );
 }
+
+export default ManagePublicationCard;

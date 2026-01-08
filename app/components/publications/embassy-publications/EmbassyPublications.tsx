@@ -46,7 +46,7 @@ export type PublicationQueryResponse = {
   }>;
 };
 
-export const PUBLICATION_TAGS = [
+const PUBLICATION_TAGS = [
   { value: "GENERAL", label: "General" },
   { value: "CULTURE", label: "Culture" },
   { value: "EDUCATION", label: "Education" },
@@ -60,9 +60,12 @@ export const PUBLICATION_TAGS = [
   { value: "OTHER", label: "Other" },
 ] as const;
 
-export const ITEMS_PER_PAGE = 25;
+const ITEMS_PER_PAGE = 25;
 
-export default function EmbassyPublications() {
+// Export for use in other files
+export { PUBLICATION_TAGS, ITEMS_PER_PAGE };
+
+function EmbassyPublications() {
   const { user } = useAuth();
   const embassyId = user?.embassy_id;
   const [refreshing, setRefreshing] = useState(false);
@@ -308,3 +311,5 @@ export default function EmbassyPublications() {
     </div>
   );
 }
+
+export default EmbassyPublications;
