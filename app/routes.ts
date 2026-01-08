@@ -19,6 +19,7 @@ export default [
         route("em_my_publications", "routes/publications/Publications.tsx"),
         route("em_manage_publications", "routes/publications/manage-publications/ManagePublications.tsx"),
         route("publications_update_em/:publicationId/update", "routes/publications/edit-publication/EditPublication.tsx"),
+        route("information_desk_boards", "routes/information-boards/InformationBoards.tsx"),
       ]),
       route("settings", "routes/settings/Settings.tsx"),      
       route("messages", "routes/messages/Messages.tsx"),
