@@ -5,7 +5,7 @@ import { apolloClient } from "~/apolloClient";
 import { useAuth } from "~/contexts/AuthContext";
 import { GET_EMBASSY_PUBLICATIONS } from "~/routes/publications/components/graphql";
 
-type Publication = {
+export type Publication = {
   id: number;
   title: string;
   cover: string;
@@ -31,7 +31,7 @@ type Publication = {
   };
 };
 
-type PublicationQueryResponse = {
+export type PublicationQueryResponse = {
   publications: Array<{
     id: number;
     title: string;
@@ -46,7 +46,7 @@ type PublicationQueryResponse = {
   }>;
 };
 
-const PUBLICATION_TAGS = [
+export const PUBLICATION_TAGS = [
   { value: "GENERAL", label: "General" },
   { value: "CULTURE", label: "Culture" },
   { value: "EDUCATION", label: "Education" },
@@ -60,7 +60,7 @@ const PUBLICATION_TAGS = [
   { value: "OTHER", label: "Other" },
 ] as const;
 
-const ITEMS_PER_PAGE = 25;
+export const ITEMS_PER_PAGE = 25;
 
 export default function EmbassyPublications() {
   const { user } = useAuth();
@@ -92,11 +92,6 @@ export default function EmbassyPublications() {
 
   const displayedPublications = filteredPublications.slice(0, displayCount);
   const hasMoreData = displayCount < filteredPublications.length;
-
-  const handleRefresh = () => {
-    setDisplayCount(ITEMS_PER_PAGE);
-    setSelectedTag(null);
-  };
 
   const handleLoadMore = () => {
     setDisplayCount((prev) => prev + ITEMS_PER_PAGE);
