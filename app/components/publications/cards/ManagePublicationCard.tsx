@@ -87,7 +87,7 @@ function ManagePublicationCard({
             <img
               src={cover || "https://via.placeholder.com/400x300?text=No+Image"}
               alt={title || "Publication cover"}
-              className="w-full h-full object-cover transition-transform duration-300 rounded-r-4xl shadow-lg hover:scale-105"
+              className="w-full h-full object-cover transition-transform duration-300 rounded-r-0 shadow-lg hover:scale-105"
             />
           </div>
         </Link>
