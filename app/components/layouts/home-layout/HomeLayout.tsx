@@ -7,7 +7,7 @@ const quickInnerLinks = [
   { name: "Latest News", href: "/home_embassy" },
   { name: "My News Updates", href: "/em_my_publications" },
   { name: "Manage News Updates", href: "/em_manage_publications" },
-  { name: "Write News Update", href: "/publications_write" },  
+  { name: "Write News Update", href: "/publications_write" },
   { name: "Information Boards", href: "/information_desk_boards" },
 ];
 
@@ -53,17 +53,17 @@ export default function HomeLayout() {
         <div className="mt-3">
           <ImportantLinks />
           <p className="text-gray-500 text-sm mt-8">
-          Incase of any issues associated with news management. Please reach out to
-          the system admin through the link below:
-          <a
-            href="#!"
-            className="font-semibold mx-2 text-gray-600 hover:underline focus:text-gray-800 focus:outline-none"
-          >
-            Contact System Admin
-          </a>
-        </p>
-        <hr className="my-8 border-t border-gray-300" />
-        <FooterBottom />
+            Incase of any issues associated with news management. Please reach
+            out to the system admin through the link below:
+            <a
+              href="#!"
+              className="font-semibold mx-2 text-gray-600 hover:underline focus:text-gray-800 focus:outline-none"
+            >
+              Contact System Admin
+            </a>
+          </p>
+          <hr className="my-8 border-t border-gray-300" />
+          <FooterBottom />
         </div>
       </div>
     </div>

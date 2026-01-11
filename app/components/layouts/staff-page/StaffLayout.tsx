@@ -1,4 +1,6 @@
-import { Outlet, Link, useLocation } from "react-router";
+import { Outlet, Link } from "react-router";
+import FooterBottom from "../dashboard/FooterBottom";
+import ImportantLinks from "../home-layout/important-links";
 
 const staffQuickLinks = [
   { name: "Staff Overview", href: "/embassy_staff" },
@@ -8,7 +10,7 @@ const staffQuickLinks = [
 export default function StaffLayout() {
   return (
     <div className="w-full h-screen flex items-stretch relative container-fluid mx-auto overflow-hidden">
-      <aside className="w-full md:w-1/6 flex-none p-6 sticky top-0 self-stretch h-full">
+      <aside className="w-1/6 flex-none p-6 sticky top-0 self-stretch h-full">
         <nav>
           <ul className="space-y-2">
             {staffQuickLinks.map((link) => {
@@ -31,22 +33,27 @@ export default function StaffLayout() {
           </ul>
         </nav>
       </aside>
-      <div className="overflow-auto w-full md:w-3/4 no-scrollbar">
+      <div className="overflow-auto w-2/3 no-scrollbar">
         <main className="flex-1 flex-col min-w-0 p-0 pb-12 bg-gray-50/20 mx-2">
           <Outlet />
         </main>
       </div>
-      <div className="w-full md:w-1/6 p-6 sticky top-0 self-stretch h-full hidden md:block">
-       <p className="text-gray-500 text-sm">
-          Incase of any issues associated with staff management. Please reach out to
-          the system admin through the link below:
-          <a
-            href="#!"
-            className="font-semibold mx-2 text-gray-600 hover:underline focus:text-gray-800 focus:outline-none"
-          >
-            Contact System Admin
-          </a>
-        </p>
+      <div className="w-full md:w-1/6 p-4 sticky top-0 self-stretch h-full hidden md:block">
+        <div className="mt-3">
+          <ImportantLinks />
+          <p className="text-gray-500 text-sm mt-8">
+            Incase of any issues associated with staff management. Please reach
+            out to the system admin through the link below:
+            <a
+              href="#!"
+              className="font-semibold mx-2 text-gray-600 hover:underline focus:text-gray-800 focus:outline-none"
+            >
+              Contact System Admin
+            </a>
+          </p>
+          <hr className="my-8 border-t border-gray-300" />
+          <FooterBottom />
+        </div>
       </div>
     </div>
   );
