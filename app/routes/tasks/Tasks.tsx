@@ -66,7 +66,7 @@ export default function Tasks() {
         <Banner>Tasks Summary</Banner>
         <div className="my-8 w-full">
           {tasksOverview && !loading && (
-            <div className="grid grid-cols-1 sm:grid-cols-6 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-8 gap-4">
               <StatsCard title="Total Tasks" value={tasksOverview.total} />
               <StatsCard
                 title="Pending Tasks"

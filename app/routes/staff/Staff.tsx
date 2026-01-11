@@ -71,7 +71,7 @@ export default function Staff() {
             <StatsCard title="Total Staff" value={staffOverview.total} />
             <StatsCard title="Active Staff" value={staffOverview.byStatus.active} />
             <StatsCard title="Inactive Staff" value={staffOverview.byStatus.inactive} />
-            <StatsCard title="On-Leave Staff" value={staffOverview.byStatus.onLeave} />
+            <StatsCard title="On-Leave" value={staffOverview.byStatus.onLeave} />
             <StatsCard title="Retired Staff" value={staffOverview.byStatus.retired} />
             <StatsCard title="Male Staff" value={staffOverview.byGender.male ?? 0} />
             <StatsCard title="Female Staff" value={staffOverview.byGender.female ?? 0} />
