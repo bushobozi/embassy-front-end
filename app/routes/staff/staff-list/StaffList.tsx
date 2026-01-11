@@ -1,20 +1,12 @@
 import { useState, useEffect } from "react";
-import type { Route } from "./+types/StaffList";
 import { useAuth } from "~/contexts/AuthContext";
 import type {
   StaffList,
   StaffListResponse,
 } from "../types/Staff-List/GetStaff";
 import { defaultStaffListResponse } from "../types/Staff-List/GetStaff";
-import { Banner, Button } from "~/components";
+import { Button } from "~/components";
 import { useNavigate } from "react-router";
-
-export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Embassy Staff Lists" },
-    { name: "description", content: "Embassy Staff List" },
-  ];
-}
 
 export default function StaffList() {
   const navigate = useNavigate();
@@ -137,9 +129,6 @@ export default function StaffList() {
   };
   return (
     <div className="h-full">
-      <div className="w-full">
-        <Banner>Embassy Staff List</Banner>
-      </div>
       <div className="w-full grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mb-8">
         <div>
           <label htmlFor="gender" className="label mb-3">
@@ -220,7 +209,7 @@ export default function StaffList() {
         </div>
       </div>
       {staffList.length === 0 && !loading && !error && (
-        <div className="w-full text-center text-gray-600 my-16 bg-gray-200 p-6 rounded-xl">
+        <div className="w-full text-center text-gray-600 my-8 bg-gray-200 p-6 rounded-xl">
           No staff found for the selected filters.
         </div>
       )}

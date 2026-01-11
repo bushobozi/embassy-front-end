@@ -4,6 +4,7 @@ import type { StaffOverview } from "./types/StaffOverview";
 import { useAuth } from "~/contexts/AuthContext";
 import StatsCard from "~/components/staff/stats-card/StatsCard";
 import { Banner } from "~/components";
+import StaffList from "./staff-list/StaffList";
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "Staff" },
@@ -66,7 +67,7 @@ export default function Staff() {
       </Banner></div>     
       <div className="my-8 w-full">
         {staffOverview && !loading && (
-          <div className="mt-0 grid grid-cols-1 sm:grid-cols-6 gap-4">
+          <div className="mt-0 grid grid-cols-1 sm:grid-cols-9 gap-4">
             <StatsCard title="Total Staff" value={staffOverview.total} />
             <StatsCard title="Active Staff" value={staffOverview.byStatus.active} />
             <StatsCard title="Inactive Staff" value={staffOverview.byStatus.inactive} />
@@ -100,6 +101,9 @@ export default function Staff() {
           <span>{error}</span>
         </div>
       )}
+      </div>
+      <div className="w-full">
+      <StaffList />
       </div>
     </div>
   );

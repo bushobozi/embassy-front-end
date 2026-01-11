@@ -31,7 +31,6 @@ export default [
       ]),
       layout("components/layouts/staff-page/StaffLayout.tsx", [
         route("embassy_staff", "routes/staff/Staff.tsx"),
-        route("embassy_staff_list", "routes/staff/staff-list/StaffList.tsx"),
         route("embassy_staff_add", "routes/staff/add-staff/AddStaff.tsx"),
         route("embassy_staff_profile/:staffId/page", "routes/staff/staff-profile/StaffProfile.tsx"),
       ]),

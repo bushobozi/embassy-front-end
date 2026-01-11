@@ -21,7 +21,7 @@ const navigationLinks = [
   { to: "/home_embassy", label: "Home", icon: RiHome5Line },
   { to: "/em_my_publications", label: "My News Updates", icon: RiArticleLine },
   { to: "/em_manage_publications", label: "Manage News Updates", icon: RiPenNibLine },
-  { to: "/information_desk_boards", label: "Information Desk", icon: RiSpeakerLine },
+  { to: "/information_desk_boards", label: "Information Boards", icon: RiSpeakerLine },
   { to: "/messages", label: "Messages", icon: RiInbox2Line },
   { to: "/events", label: "Events", icon: RiCalendarEventLine },
   { to: "/tasks", label: "Tasks", icon: RiTimeLine },

@@ -92,7 +92,6 @@ export default function StaffProfile({
       <BreadCrumb
         links={[
           { label: "Embassy Staff Overview", href: "/embassy_staff" },
-          { label: "Embassy Staff List", href: "/embassy_staff_list" },
           { label: staffData ? getStaffFullName() : "loading..." },
         ]}
       />
