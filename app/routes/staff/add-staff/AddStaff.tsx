@@ -105,7 +105,7 @@ export default function AddStaff() {
   const URL = import.meta.env.VITE_API_URL;
   const STAFF_URL = `${URL}/staff`;
   const goToStaffList = () => {
-    navigate("/embassy_staff_list");
+    navigate("/embassy_staff");
   };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -169,7 +169,6 @@ export default function AddStaff() {
         <BreadCrumb
           links={[
             { label: "Embassy Staff Overview", href: "/embassy_staff" },
-            { label: "Embassy Staff List", href: "/embassy_staff_list" },
             { label: "Add Staff Member to Embassy" },
           ]}
         />

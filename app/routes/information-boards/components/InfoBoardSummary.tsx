@@ -8,7 +8,11 @@ interface InfoBoardStats {
     inactiveBoards: number;
 }
 
-export default function InfoBoardSummary() {
+interface InfoBoardSummaryProps {
+    refreshKey?: number;
+}
+
+export default function InfoBoardSummary({ refreshKey }: InfoBoardSummaryProps) {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const [stats, setStats] = useState<InfoBoardStats | null>(null);
@@ -45,7 +49,7 @@ export default function InfoBoardSummary() {
 
     useEffect(() => {
         fetchStats();
-    }, [embassyId, token]);
+    }, [embassyId, token, refreshKey]);
   return (
     <div>
       <h1 className="my-4 text-2xl font-bold text-blue-900">Information Boards Summary</h1>
