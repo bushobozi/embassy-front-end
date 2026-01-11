@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "~/components";
 import CreateBoardModal from "~/components/modals/CreateBoardModal";
 import EditBoardModal from "~/components/modals/EditBoardModal";
 import { apolloClient } from "~/apolloClient";
 import { useAuth } from "~/contexts/AuthContext";
-import { apiDelete } from "~/utils/api";
 import { GET_INFORMATION_BOARDS } from "./graphql";
 
 export interface Board {
@@ -110,12 +109,22 @@ export function BoardCard({ onEdit, onDelete, ...board }: BoardCardProps) {
   );
 }
 
+interface Toast {
+  id: string;
+  type: 'confirm' | 'undo' | 'success' | 'error';
+  title: string;
+  message: string;
+  boardId?: string;
+  countdown?: number;
+}
+
 interface BoardsProps {
   onRefresh?: () => void;
 }
 
 export default function Boards({ onRefresh }: BoardsProps) {
-  const { user } = useAuth();
+  const { user, accessToken } = useAuth();
+  const token = accessToken;
   const embassyId = user?.embassy_id || "";
   const userId = user?.id || "";
 
@@ -123,6 +132,9 @@ export default function Boards({ onRefresh }: BoardsProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [editingBoard, setEditingBoard] = useState<Board | null>(null);
+  const [toasts, setToasts] = useState<Toast[]>([]);
+  const deleteTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const countdownIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const fetchBoards = async () => {
     if (!embassyId) {
@@ -181,26 +193,125 @@ export default function Boards({ onRefresh }: BoardsProps) {
     }, 0);
   };
 
+  const addToast = (toast: Omit<Toast, 'id'>) => {
+    const id = Date.now().toString();
+    setToasts(prev => [...prev, { ...toast, id }]);
+    return id;
+  };
+
+  const removeToast = (id: string) => {
+    setToasts(prev => prev.filter(t => t.id !== id));
+  };
+
   const handleDeleteBoard = async (board: Board) => {
     if (!board.id) return;
 
-    const confirmed = window.confirm(`Are you sure you want to delete "${board.title}"?`);
-    if (!confirmed) return;
+    const toastId = addToast({
+      type: 'confirm',
+      title: 'Delete Board?',
+      message: `Are you sure you want to delete "${board.title}"?`,
+      boardId: board.id,
+    });
+  };
 
+  const startDeleteCountdown = (boardId: string) => {
+    let countdown = 5;
+    const toastId = addToast({
+      type: 'undo',
+      title: 'Deleting Board',
+      message: `Board will be deleted in ${countdown} seconds. Click Undo to cancel.`,
+      boardId,
+      countdown,
+    });
+
+    countdownIntervalRef.current = setInterval(() => {
+      countdown -= 1;
+      setToasts(prev => prev.map(t => 
+        t.id === toastId ? { ...t, countdown, message: `Board will be deleted in ${countdown} seconds. Click Undo to cancel.` } : t
+      ));
+    }, 1000);
+
+    deleteTimerRef.current = setTimeout(() => {
+      if (countdownIntervalRef.current) {
+        clearInterval(countdownIntervalRef.current);
+      }
+      executeDelete(boardId);
+      removeToast(toastId);
+    }, 5000);
+  };
+
+  const undoDelete = (boardId: string) => {
+    if (deleteTimerRef.current) {
+      clearTimeout(deleteTimerRef.current);
+      deleteTimerRef.current = null;
+    }
+    if (countdownIntervalRef.current) {
+      clearInterval(countdownIntervalRef.current);
+      countdownIntervalRef.current = null;
+    }
+    setToasts(prev => prev.filter(t => t.boardId !== boardId));
+    addToast({
+      type: 'success',
+      title: 'Deletion Cancelled',
+      message: 'The board was not deleted.',
+    });
+  };
+
+  const executeDelete = async (boardId: string) => {
+    if (!boardId) return;
+
+    setLoading(true);
+    setError(null);
+
+    const URL = import.meta.env.VITE_API_URL;
     try {
-      const URL = import.meta.env.VITE_API_URL;
-      await apiDelete(`${URL}/information-boards/${board.id}`);
+      const response = await fetch(`${URL}/information-boards/${boardId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete board");
+      }
+
+      addToast({
+        type: 'success',
+        title: 'Deleted Successfully',
+        message: 'The board has been deleted.',
+      });
+
       fetchBoards();
-      // Trigger parent refresh for summary stats
       onRefresh?.();
     } catch (err) {
-      alert(err instanceof Error ? err.message : "Failed to delete board");
+      console.error("Error deleting board:", err);
+      addToast({
+        type: 'error',
+        title: 'Delete Failed',
+        message: err instanceof Error ? err.message : "Failed to delete board",
+      });
+    } finally {
+      setLoading(false);
     }
+  };
+
+  const handleConfirmDelete = (boardId: string, toastId: string) => {
+    removeToast(toastId);
+    startDeleteCountdown(boardId);
   };
 
   useEffect(() => {
     fetchBoards();
   }, [embassyId]);
+
+  useEffect(() => {
+    return () => {
+      if (deleteTimerRef.current) clearTimeout(deleteTimerRef.current);
+      if (countdownIntervalRef.current) clearInterval(countdownIntervalRef.current);
+    };
+  }, []);
 
   const openModal = () => {
     (document.getElementById('create_board_modal') as HTMLDialogElement)?.showModal();
@@ -258,6 +369,64 @@ export default function Boards({ onRefresh }: BoardsProps) {
           onSuccess={handleBoardUpdated}
         />
       )}
+
+      {/* Toast Notifications */}
+      <div className="fixed inset-x-0 bottom-4 z-50 flex flex-col items-center gap-4 pointer-events-none">
+        {toasts.map((toast) => (
+          <div
+            key={toast.id}
+            className={`alert pointer-events-auto shadow-lg max-w-full ${
+              toast.type === 'confirm' ? 'alert-warning' :
+              toast.type === 'undo' ? 'alert-info' :
+              toast.type === 'success' ? 'alert-success' :
+              'alert-error'
+            }`}
+          >
+            <div className="flex-1">
+              <h3 className="font-bold">{toast.title}</h3>
+              <div className="text-sm">{toast.message}</div>
+            </div>
+            <div className="flex-none">
+              {toast.type === 'confirm' && toast.boardId && (
+                <div className="flex gap-2">
+                  <Button
+                    size="sm"
+                    variant="danger"
+                    onClick={() => handleConfirmDelete(toast.boardId!, toast.id)}
+                  >
+                    Yes, Delete
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => removeToast(toast.id)}
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              )}
+              {toast.type === 'undo' && toast.boardId && (
+                <Button
+                  size="sm"
+                  variant="secondary"
+                  onClick={() => undoDelete(toast.boardId!)}
+                >
+                  Undo
+                </Button>
+              )}
+              {(toast.type === 'success' || toast.type === 'error') && (
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => removeToast(toast.id)}
+                >
+                  Close
+                </Button>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
