@@ -22,12 +22,12 @@ const navigationLinks = [
   { to: "/em_my_publications", label: "My News Updates", icon: RiArticleLine },
   { to: "/em_manage_publications", label: "Manage News Updates", icon: RiPenNibLine },
   { to: "/information_desk_boards", label: "Information Boards", icon: RiSpeakerLine },
-  { to: "/messages", label: "Messages", icon: RiInbox2Line },
+  // { to: "/messages", label: "Messages", icon: RiInbox2Line },
   { to: "/events", label: "Events", icon: RiCalendarEventLine },
   { to: "/tasks", label: "Tasks", icon: RiTimeLine },
   { to: "/embassy_staff", label: "Embassy Staff", icon: RiParentLine },
   { to: "/user", label: "My Profile", icon: RiAccountCircleLine },
-  { to: "/settings", label: "Settings", icon: RiSettings3Line },
+  // { to: "/settings", label: "Settings", icon: RiSettings3Line },
 ];
 
 export default function DashboardLayout() {
