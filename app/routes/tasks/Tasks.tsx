@@ -2,6 +2,7 @@ import { Banner, StatsCard, Button } from "~/components";
 import type { Route } from "./+types/Tasks";
 import { useState, useEffect } from "react";
 import { useAuth } from "~/contexts/AuthContext";
+import { useOutletContext } from "react-router";
 import type { TasksOverview } from "./types/TasksOver";
 import type { Task, TaskStatus } from "./types";
 import { apolloClient } from "~/apolloClient";
@@ -9,7 +10,6 @@ import { GET_TASKS } from "./graphql";
 import TasksBoard from "./components/TasksBoard";
 import CreateTaskModal from "./components/CreateTaskModal";
 import EditTaskModal from "./components/EditTaskModal";
-import UserList from "./components/users/UserList";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -20,6 +20,19 @@ export function meta({}: Route.MetaArgs) {
 
 interface TasksQueryResult {
   tasks: Task[];
+}
+
+interface TasksLayoutContext {
+  selectedUserId: string | null;
+  selectedStatus: string | null;
+  selectedPriority: string | null;
+  searchQuery: string;
+  sortBy: string;
+  setSelectedUserId: (id: string | null) => void;
+  setSelectedStatus: (status: string | null) => void;
+  setSelectedPriority: (priority: string | null) => void;
+  setSearchQuery: (query: string) => void;
+  setSortBy: (sortBy: string) => void;
 }
 
 export default function Tasks() {
@@ -35,9 +48,9 @@ export default function Tasks() {
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [refreshKey, setRefreshKey] = useState(0);
-  const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
-  const [selectedStatus, setSelectedStatus] = useState<TaskStatus | null>(null);
-  const [selectedPriority, setSelectedPriority] = useState<string | null>(null);
+  
+  // Get filter state from layout context
+  const { selectedUserId, selectedStatus, selectedPriority } = useOutletContext<TasksLayoutContext>();
 
   const { accessToken, user } = useAuth();
   const embassyId = user?.embassy_id;
@@ -123,9 +136,17 @@ export default function Tasks() {
   };
 
   const handleRefresh = () => {
-    setRefreshKey((prev) => prev + 1);
+    setLoading(true);
+    try {
+      setRefreshKey((prev) => prev + 1);
     fetchTasks();
     fetchTasksOverview();
+    } catch (error) {
+      console.error("Error during refresh:", error);
+    } finally {
+      setLoading(false);
+    }
+    
   };
 
   const handleStatusChange = async (taskId: string, newStatus: TaskStatus) => {
@@ -180,8 +201,9 @@ export default function Tasks() {
               onClick={handleRefresh}
               variant="outline"
               size="md"
+              disabled={loading}
             >
-              Refresh
+              {loading ? "Refreshing..." : "Refresh"}
             </Button>
             <Button
               onClick={() => setShowCreateModal(true)}

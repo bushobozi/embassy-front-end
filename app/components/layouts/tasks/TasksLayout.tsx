@@ -48,7 +48,18 @@ export default function StaffLayout() {
       </aside>
       <div className="overflow-auto w-2/3 no-scrollbar">
         <main className="flex-1 flex-col min-w-0 p-0 pb-12 bg-gray-50/20 mx-2">
-          <Outlet />
+          <Outlet context={{
+            selectedUserId,
+            selectedStatus,
+            selectedPriority,
+            searchQuery,
+            sortBy,
+            setSelectedUserId,
+            setSelectedStatus,
+            setSelectedPriority,
+            setSearchQuery,
+            setSortBy
+          }} />
         </main>
       </div>
       <div className="w-full md:w-1/6 p-4 sticky top-0 self-stretch h-full hidden md:block">
