@@ -10,7 +10,7 @@ interface StatsCardProps {
 export default function StatsCard({ title, value, icon, className = "" }: StatsCardProps) {
   return (
     <div
-      className={`bg-white rounded-3xl p-6 hover:shadow-lg transition-shadow border-2 border-blue-300 shadow-lg shadow-blue-500/30  ${className}`}
+      className={`bg-white rounded-3xl p-6 hover:shadow-lg transition-shadow border-2 border-blue-300 shadow-md shadow-blue-500/30  ${className}`}
     >
       <div className="flex justify-between items-start">
         <div className="flex-1">
