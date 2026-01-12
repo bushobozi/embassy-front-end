@@ -138,6 +138,7 @@ export default function UserList({
                         <div className="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center border-2 border-yellow-300">
                           <span className="text-sm font-bold text-gray-700">
                             {user.first_name.charAt(0)}
+                            {user.middle_name ? user.middle_name.charAt(0) : ""}
                             {user.last_name.charAt(0)}
                           </span>
                         </div>
@@ -146,7 +147,7 @@ export default function UserList({
                         <h3 className="font-semibold text-sm text-gray-900">
                           {user.first_name} {user.last_name}
                         </h3>
-                        <p className="text-xs text-gray-600">{user.role}</p>
+                        <p className="text-xs text-gray-600">{user.email}</p>
                       </div>
                     </div>
                   </button>
