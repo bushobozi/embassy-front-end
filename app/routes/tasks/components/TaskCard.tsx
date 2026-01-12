@@ -333,6 +333,28 @@ export default function TaskCard({
             </span>
           </div>
         )}
+        <div className="avatar-group -space-x-6">
+  <div className="avatar">
+    <div className="w-10">
+      <img src="https://img.daisyui.com/images/profile/demo/batperson@192.webp" />
+    </div>
+  </div>
+  <div className="avatar">
+    <div className="w-10">
+      <img src="https://img.daisyui.com/images/profile/demo/spiderperson@192.webp" />
+    </div>
+  </div>
+  <div className="avatar">
+    <div className="w-10">
+      <img src="https://img.daisyui.com/images/profile/demo/averagebulk@192.webp" />
+    </div>
+  </div>
+  <div className="avatar avatar-placeholder">
+    <div className="bg-neutral text-neutral-content w-10">
+      <span>+99</span>
+    </div>
+  </div>
+</div>
 
         {/* <div className="flex gap-2">
           <select
