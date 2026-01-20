@@ -4,11 +4,11 @@ import ImportantLinks from "../home-layout/important-links";
 import FooterBottom from "../dashboard/FooterBottom";
 import UserList from "~/routes/tasks/components/users/UserList";
 
-const staffQuickLinks = [{ name: "Tasks Overview", href: "/tasks" }];
+const staffQuickLinks = [{ name: "Tasks Overview", href: "/tasks" }, { name: "Manage Users", href: "/embassy_staff_users"}];
 
 export default function StaffLayout() {
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
-  const [selectedStatus, setSelectedStatus] = useState<string | null>("all");
+  const [selectedStatus, setSelectedStatus] = useState<string | null>(null);
   const [selectedPriority, setSelectedPriority] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [sortBy, setSortBy] = useState<string>("name");

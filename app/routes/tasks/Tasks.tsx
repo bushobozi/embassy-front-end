@@ -218,7 +218,7 @@ export default function Tasks() {
         {/* Stats Overview */}
         <div className="w-full">
           {tasksOverview && !loading && (
-            <div className="grid grid-cols-3 sm:grid-cols-4 gap-4">
+            <div className="grid grid-cols-3 sm:grid-cols-3 gap-4">
               <StatsCard title="Total Tasks" value={tasksOverview.total} />
               <StatsCard
                 title="Pending"
@@ -232,12 +232,12 @@ export default function Tasks() {
                 title="Completed"
                 value={tasksOverview.byStatus.completed}
               />
-              <StatsCard title="Low" value={tasksOverview.byPriority.low} />
+              {/* <StatsCard title="Low" value={tasksOverview.byPriority.low} />
               <StatsCard
                 title="Medium"
                 value={tasksOverview.byPriority.medium}
               />
-              <StatsCard title="High" value={tasksOverview.byPriority.high} />
+              <StatsCard title="High" value={tasksOverview.byPriority.high} /> */}
               <StatsCard title="Urgent" value={tasksOverview.urgent} />
               <StatsCard title="Overdue" value={tasksOverview.overdue} />
             </div>

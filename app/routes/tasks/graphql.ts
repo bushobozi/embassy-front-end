@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const GET_TASKS = gql`
   query GetTasks(
@@ -26,6 +26,12 @@ export const GET_TASKS = gql`
       title
       description
       assigned_to
+      assigned_user {
+        id
+        first_name
+        middle_name
+        last_name
+      }
       status
       priority
       is_urgent

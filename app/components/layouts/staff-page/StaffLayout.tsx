@@ -4,7 +4,8 @@ import ImportantLinks from "../home-layout/important-links";
 
 const staffQuickLinks = [
   { name: "Staff Overview", href: "/embassy_staff" },
-  { name: "Add Staff", href: "/embassy_staff_add" },
+   { name: "Embassy Users", href: "/embassy_staff_users" },
+  { name: "Add Staff", href: "/embassy_staff_add" }, 
 ];
 
 export default function StaffLayout() {
