@@ -8,8 +8,8 @@ const staffQuickLinks = [
 export default function StaffLayout() {
   return (
     <div className="w-full h-screen">
-    <div className="flex items-stretch sticky top-0 bg-white border-b border-b-gray-300 rounded-t-2xl container-fluid mx-auto overflow-hidden">
-      <aside className="w-full md:w-1/6 flex-none p-6 sticky top-0 self-stretch h-full">
+    <div className="flex items-stretch rounded-t-2xl container-fluid mx-auto overflow-hidden">
+      <aside className="w-full md:w-1/6 flex-none p-6 self-stretch h-full">
         <nav>
           <ul className="space-y-2">
             {staffQuickLinks.map((link) => {
@@ -39,7 +39,7 @@ export default function StaffLayout() {
         </div>  
         </main>
       </div>
-      <div className="w-full md:w-1/6 p-6 sticky top-0 self-stretch h-full hidden md:block">
+      <div className="w-full md:w-1/6 p-6 self-stretch h-full hidden md:block">
        <p className="text-gray-500 text-sm">
           Incase of any issues associated with events management. Please reach out to
           the system admin through the link below:
