@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { RiNewspaperLine, RiRefreshLine, RiExternalLinkLine } from "react-icons/ri";
+import { RiRefreshLine, RiExternalLinkLine } from "react-icons/ri";
 import { apiGet } from "~/utils/api";
 
 type NewsHeadline = {
@@ -27,11 +27,18 @@ export default function NewsCard() {
     try {
       setLoading(true);
       setError(null);
-      const data: NewsResponse = await apiGet(
-        newsAPI
-      );
-      setNews(data.headlines);
-      setFetchedAt(data.fetchedAt);
+      const data: NewsResponse = await apiGet(newsAPI);
+      console.log("News API Response:", data);
+      console.log("Headlines array:", data.headlines);
+      console.log("Number of headlines:", data.headlines?.length);
+      
+      if (data && Array.isArray(data.headlines)) {
+        setNews(data.headlines);
+        setFetchedAt(data.fetchedAt);
+      } else {
+        console.error("Invalid response structure:", data);
+        setError("Invalid news data structure");
+      }
     } catch (err: any) {
       console.error("Error fetching news:", err);
       setError(err.message || "Failed to fetch news");
@@ -57,8 +64,7 @@ export default function NewsCard() {
     <div className="mt-4 mb-4">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <RiNewspaperLine className="text-blue-600 w-5 h-5" />
-          <h3 className="font-semibold text-gray-900">Latest News</h3>
+          <h3 className="text-xl font-bold text-blue-900">Latest News</h3>
         </div>
         <button
           onClick={fetchNews}
@@ -67,7 +73,7 @@ export default function NewsCard() {
           title="Refresh news"
         >
           <RiRefreshLine
-            className={`w-4 h-4 text-gray-600 ${loading ? "animate-spin" : ""}`}
+            className={`w-4 h-4 text-blue-600 ${loading ? "animate-spin" : ""}`}
           />
         </button>
       </div>
@@ -91,39 +97,51 @@ export default function NewsCard() {
         </div>
       ) : (
         <div className="space-y-4">
-          {news.map((headline, index) => (
-            <a
-              key={index}
-              href={headline.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block group hover:bg-gray-50 p-2 rounded-lg transition-colors"
-            >
-              <div className="flex gap-3">
-                {headline.imageUrl && (
-                  <img
-                    src={headline.imageUrl}
-                    alt={headline.title}
-                    className="w-16 h-16 object-cover rounded shrink-0"
-                  />
-                )}
-                <div className="flex-1 min-w-0">
-                  <h4 className="text-sm font-medium text-gray-900 line-clamp-2 group-hover:text-blue-600 transition-colors">
-                    {headline.title}
-                  </h4>
-                  <div className="flex items-center gap-1 mt-1">
-                    <span className="text-xs text-gray-500">
-                      {headline.source}
-                    </span>
-                    <RiExternalLinkLine className="w-3 h-3 text-gray-400" />
+          {news.map((headline, index) => {
+            console.log(`Rendering headline ${index}:`, headline);
+            return (
+              <a
+                key={`${headline.url}-${index}`}
+                href={headline.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block group hover:bg-gray-50 p-0 rounded-lg transition-colors"
+              >
+                <div className="flex gap-3">
+                  {headline.imageUrl ? (
+                    <img
+                      src={headline.imageUrl}
+                      alt={headline.title}
+                      className="w-16 h-16 object-cover rounded shrink-0"
+                      onError={(e) => {
+                        console.error(`Failed to load image for headline ${index}:`, headline.imageUrl);
+                        e.currentTarget.style.display = 'none';
+                      }}
+                    />
+                  ) : (
+                    <div className="w-16 h-16 bg-gray-200 rounded shrink-0 flex items-center justify-center">
+                      <span className="text-gray-400 text-xs">No img</span>
+                    </div>
+                  )}
+                  <div className="flex-1 min-w-0">
+                    <h4 className="text-sm font-medium text-gray-900 line-clamp-2 group-hover:text-blue-600 transition-colors">
+                      {headline.title || "No title"}
+                    </h4>
+                    <div className="flex items-center gap-1 mt-1">
+                      <span className="text-xs text-gray-500">
+                        {headline.source || "Unknown source"}
+                      </span>
+                      <RiExternalLinkLine className="w-3 h-3 text-gray-400" />
+                    </div>
                   </div>
                 </div>
-              </div>
-            </a>
-          ))}
+              </a>
+            );
+          })}
+          <hr className="my-2 border-t border-gray-300" />
           {fetchedAt && (
-            <p className="text-xs text-gray-400 text-center pt-2 border-t">
-              Updated at {formatTime(fetchedAt)}
+            <p className="text-xs text-gray-400 text-start pt-2">
+              Updated at {formatTime(fetchedAt)} from <a href="https://www.newvision.co.ug/" target="_blank" className="hover:underline" rel="noopener noreferrer">New Vision Uganda</a>
             </p>
           )}
         </div>

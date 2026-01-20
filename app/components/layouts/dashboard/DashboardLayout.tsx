@@ -30,7 +30,7 @@ const navigationLinks = [
   { to: "/em_my_publications", label: "My News", icon: RiArticleLine, activeIcon: RiArticleFill },
   { to: "/em_manage_publications", label: "Manage", icon: RiPenNibLine, activeIcon: RiPenNibFill },
   { to: "/information_desk_boards", label: "Boards", icon: RiSpeakerLine, activeIcon: RiSpeakerFill },
-  { to: "/em_community_forum", label: "Messages", icon: RiChat1Fill, activeIcon: RiChat1Fill },
+  // { to: "/em_community_forum", label: "Messages", icon: RiChat1Fill, activeIcon: RiChat1Fill },
   { to: "/events", label: "Events", icon: RiCalendarEventLine, activeIcon: RiCalendarEventFill },
   { to: "/tasks", label: "Tasks", icon: RiTimeLine, activeIcon: RiTimeFill },
   { to: "/embassy_staff", label: "Staff", icon: RiParentLine, activeIcon: RiParentFill },
