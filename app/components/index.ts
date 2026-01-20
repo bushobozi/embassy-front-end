@@ -17,4 +17,5 @@ import StatsCard from "./staff/stats-card/StatsCard";
 import EmbassyPublications from "./publications/embassy-publications/EmbassyPublications";
 import ManagePublicationCard from "./publications/cards/ManagePublicationCard";
 import Loader from "./loader/Loader";
-export { Button, Publications, Alert, Banner, Stats, FancyText, PublicationCard, Welcome, ProtectedLayout, ProfileTabs, UserProfileHeader, BiographyTab, PersonalDetailsTab, UserHistoryTab, BreadCrumb, StatsCard, EmbassyPublications, ManagePublicationCard, Loader };
+import NewsCard from "./news-card/NewsCard";
+export { Button, Publications, Alert, Banner, Stats, FancyText, PublicationCard, Welcome, ProtectedLayout, ProfileTabs, UserProfileHeader, BiographyTab, PersonalDetailsTab, UserHistoryTab, BreadCrumb, StatsCard, EmbassyPublications, ManagePublicationCard, Loader, NewsCard };

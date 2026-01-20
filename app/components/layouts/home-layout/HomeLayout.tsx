@@ -2,6 +2,7 @@ import { Link, Outlet, useLocation } from "react-router";
 import ImportantLinks from "./important-links";
 import FooterBottom from "../dashboard/FooterBottom";
 import { EmbassyList } from "~/components/embassy-lists/EmbassyList";
+import NewsCard from "~/components/news-card/NewsCard";
 
 const quickInnerLinks = [
   { name: "Latest News", href: "/home_embassy" },
@@ -43,6 +44,7 @@ export default function HomeLayout() {
           </h1>
         </div>
         <EmbassyList />
+         <NewsCard />
       </aside>
       <div className="overflow-auto w-2/3 no-scrollbar">
         <main className="flex-1 flex-col min-w-0 p-0 pb-12 bg-gray-50/20 mx-2">
@@ -50,7 +52,7 @@ export default function HomeLayout() {
         </main>
       </div>
       <div className="w-1/6 flex-none p-4 sticky top-0 self-stretch h-full">
-        <div className="mt-3">
+        <div className="mt-3">         
           <ImportantLinks />
           <p className="text-gray-500 text-sm mt-8">
             Incase of any issues associated with news management. Please reach
