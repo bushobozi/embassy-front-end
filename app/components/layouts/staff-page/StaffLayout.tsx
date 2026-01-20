@@ -1,6 +1,7 @@
-import { Outlet, Link } from "react-router";
+import { Outlet, Link, useNavigate } from "react-router";
 import FooterBottom from "../dashboard/FooterBottom";
 import ImportantLinks from "../home-layout/important-links";
+import Button from "~/components/buttons/Button";
 
 const staffQuickLinks = [
   { name: "Staff Overview", href: "/embassy_staff" },
@@ -9,9 +10,16 @@ const staffQuickLinks = [
 ];
 
 export default function StaffLayout() {
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate(-1);
+  };
   return (
     <div className="w-full h-screen flex items-stretch relative container-fluid mx-auto overflow-hidden">
       <aside className="w-1/6 flex-none p-6 sticky top-0 self-stretch h-full">
+      <Button onClick={goBack} variant="secondary" rounded={true} block={true} size="lg" className="mb-4 cursor-pointer tooltip tooltip-bottom" data-tip="Go Back">
+          Go Back
+        </Button>
         <nav>
           <ul className="space-y-2">
             {staffQuickLinks.map((link) => {

@@ -15,6 +15,7 @@ import {
   RiUserUnfollowLine,
   RiAlertLine,
 } from "react-icons/ri";
+import { BiTrash } from "react-icons/bi";
 
 export function meta() {
   return [
@@ -427,9 +428,12 @@ export default function Users() {
                   )}
                 </div>
               </div>
-               <div className="p-3">
+               <div className="p-3 flex gap-2">
                   <Button block={true} size="lg" variant="secondary" rounded={true}>
                     View Profile
+                  </Button>
+                  <Button variant="danger" rounded={true} size="lg">
+                    <BiTrash size={20} />
                   </Button>
                   </div>
             </div>
