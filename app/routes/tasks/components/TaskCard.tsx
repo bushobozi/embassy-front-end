@@ -106,7 +106,7 @@ export default function TaskCard({
             "Content-Type": "application/json",
             Authorization: `Bearer ${accessToken}`,
           },
-        }
+        },
       );
 
       const responseText = await response.text();
@@ -135,7 +135,7 @@ export default function TaskCard({
 
   const handleStatusChange = async (newStatus: TaskStatus) => {
     if (newStatus === task.status) return;
-    
+
     try {
       await onStatusChange(task.id, newStatus);
       if (onRefresh) onRefresh();
@@ -156,7 +156,7 @@ export default function TaskCard({
             "Content-Type": "application/json",
             Authorization: `Bearer ${accessToken}`,
           },
-        }
+        },
       );
 
       if (!response.ok) {
@@ -171,17 +171,14 @@ export default function TaskCard({
 
   const handleUrgentToggle = async () => {
     try {
-      const endpoint = task.is_urgent ? 'unmark-urgent' : 'mark-urgent';
-      const response = await fetch(
-        `${URL}/tasks/${task.id}/${endpoint}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
+      const endpoint = task.is_urgent ? "unmark-urgent" : "mark-urgent";
+      const response = await fetch(`${URL}/tasks/${task.id}/${endpoint}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
 
       if (!response.ok) {
         throw new Error("Failed to update urgent flag");
@@ -224,7 +221,8 @@ export default function TaskCard({
                 />
               </svg>
               <span>
-                Task will be deleted in {countdown} second{countdown !== 1 ? "s" : ""}
+                Task will be deleted in {countdown} second
+                {countdown !== 1 ? "s" : ""}
               </span>
             </div>
             <button
@@ -250,11 +248,7 @@ export default function TaskCard({
               onClick={() => setShowDropdown(!showDropdown)}
               className="text-gray-500 hover:text-gray-700 p-1"
             >
-              <svg
-                className="w-5 h-5"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
               </svg>
             </button>
@@ -298,14 +292,14 @@ export default function TaskCard({
         <div className="flex flex-wrap gap-2 mb-3">
           <span
             className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${getPriorityColor(
-              task.priority
+              task.priority,
             )}`}
           >
             {getPriorityIcon(task.priority)} {task.priority}
           </span>
           {task.is_urgent && (
             <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-red-200 text-red-900">
-            Urgent
+              Urgent
             </span>
           )}
           {task.due_date && (
@@ -322,62 +316,20 @@ export default function TaskCard({
           )}
         </div>
 
-        {task.assigned_to && task.assigned_to.first_name && task.assigned_to.last_name && (
-          <div className="flex items-center gap-2 mb-3 text-sm text-gray-600">
-            <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-semibold">
-              {task.assigned_to.first_name[0]}
-              {task.assigned_to.last_name[0]}
+        {task.assigned_user &&
+          task.assigned_user.first_name &&
+          task.assigned_user.last_name && (
+            <div className="flex items-center gap-2 mb-3 text-sm text-gray-600">
+              <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-semibold">
+                {task.assigned_user.first_name[0]}
+                {task.assigned_user.middle_name ? task.assigned_user.middle_name[0] : ""}
+                {task.assigned_user.last_name[0]}
+              </div>
+              <span>
+                {task.assigned_user.first_name} {" "} {task.assigned_user.middle_name ? task.assigned_user.middle_name + " " : ""}{task.assigned_user.last_name}
+              </span>
             </div>
-            <span>
-              {task.assigned_to.first_name} {task.assigned_to.last_name}
-            </span>
-          </div>
-        )}
-        <div className="avatar-group -space-x-6">
-  <div className="avatar">
-    <div className="w-10">
-      <img src="https://img.daisyui.com/images/profile/demo/batperson@192.webp" />
-    </div>
-  </div>
-  <div className="avatar">
-    <div className="w-10">
-      <img src="https://img.daisyui.com/images/profile/demo/spiderperson@192.webp" />
-    </div>
-  </div>
-  <div className="avatar">
-    <div className="w-10">
-      <img src="https://img.daisyui.com/images/profile/demo/averagebulk@192.webp" />
-    </div>
-  </div>
-  <div className="avatar avatar-placeholder">
-    <div className="bg-neutral text-neutral-content w-10">
-      <span>+99</span>
-    </div>
-  </div>
-</div>
-
-        {/* <div className="flex gap-2">
-          <select
-            value={task.status}
-            onChange={(e) => handleStatusChange(e.target.value as TaskStatus)}
-            className="flex-1 text-xs border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            <option value="pending">To Do</option>
-            <option value="in-progress">In Progress</option>
-            <option value="completed">Completed</option>
-          </select>
-          <select
-            value={task.priority}
-            onChange={(e) =>
-              handlePriorityChange(e.target.value as TaskPriority)
-            }
-            className="flex-1 text-xs border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-          </select>
-        </div> */}
+          )}
       </div>
     </>
   );

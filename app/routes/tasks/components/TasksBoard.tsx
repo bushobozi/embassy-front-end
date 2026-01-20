@@ -41,8 +41,8 @@ export default function TasksBoard({
 
   return (
    <div>
-     <h1 className="my-5 text-2xl font-bold text-blue-900">Tasks Management</h1>
-    <div className="mt-3 grid grid-cols-1 md:grid-cols-3 gap-6 p-0">
+     <h1 className="my-5 text-2xl font-bold text-blue-900">Tasks Board</h1>
+    <div className="mt-3 grid grid-cols-1 md:grid-cols-3 gap-4 p-0">
       {columns.map((column) => (
         <TaskColumn
           key={column.status}

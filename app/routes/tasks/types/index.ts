@@ -4,6 +4,7 @@ export interface Task {
   title: string;
   description: string;
   assigned_to?: User | null;
+  assigned_user?: User | null;
   status: TaskStatus;
   priority: TaskPriority;
   is_urgent: boolean;

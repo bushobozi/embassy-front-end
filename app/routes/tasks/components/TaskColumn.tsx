@@ -23,10 +23,10 @@ export default function TaskColumn({
   onRefresh,
 }: TaskColumnProps) {
   return (
-    <div className={`${bgColor} rounded-3xl border border-gray-200 shadow-0 p-4 min-h-125`}>
-      <div className="flex items-center justify-between mb-4">
+    <div className={`${bgColor} rounded-2xl border border-gray-200 shadow-0 p-1.5 min-h-125`}>
+      <div className="flex items-center justify-between mb-4 px-2">
         <h3 className="font-semibold text-lg text-gray-800">{title}</h3>
-        <span className="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-600">
+        <span className="bg-white px-3 py-1 rounded-full text-sm font-bold text-gray-600">
           {tasks.length}
         </span>
       </div>
