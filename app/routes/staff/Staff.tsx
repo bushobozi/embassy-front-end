@@ -67,15 +67,15 @@ export default function Staff() {
       </Banner></div>     
       <div className="my-8 w-full">
         {staffOverview && !loading && (
-          <div className="mt-0 grid grid-cols-1 sm:grid-cols-9 gap-4">
+          <div className="mt-0 grid grid-cols-3 sm:grid-cols-4 gap-4">
             <StatsCard title="Total Staff" value={staffOverview.total} />
-            <StatsCard title="Active Staff" value={staffOverview.byStatus.active} />
-            <StatsCard title="Inactive Staff" value={staffOverview.byStatus.inactive} />
+            <StatsCard title="Active" value={staffOverview.byStatus.active} />
+            <StatsCard title="Inactive" value={staffOverview.byStatus.inactive} />
             <StatsCard title="On-Leave" value={staffOverview.byStatus.onLeave} />
             <StatsCard title="Retired Staff" value={staffOverview.byStatus.retired} />
             <StatsCard title="Male Staff" value={staffOverview.byGender.male ?? 0} />
             <StatsCard title="Female Staff" value={staffOverview.byGender.female ?? 0} />
-            <StatsCard title="Other Gender" value={staffOverview.byGender.other ?? 0} />
+            <StatsCard title="Other" value={staffOverview.byGender.other ?? 0} />
             <StatsCard title="Transferred" value={staffOverview.transferred ?? 0} />
             {Object.entries(staffOverview.byDepartment).map(([dept, count]) => (
               <StatsCard key={dept} title={`${dept} Staff`} value={count} />

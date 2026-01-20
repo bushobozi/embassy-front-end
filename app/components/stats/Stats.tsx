@@ -68,7 +68,7 @@ export default function Stats() {
           >
             <div className="flex justify-between items-start">
               <div>
-                <p className="text-gray-500 text-sm font-medium">
+                <p className="text-gray-500 text-xs font-medium">
                   {stat.title}
                 </p>
                 <h3 className="text-2xl font-bold mt-1 text-gray-800">

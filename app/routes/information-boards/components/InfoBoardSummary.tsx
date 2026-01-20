@@ -58,7 +58,7 @@ export default function InfoBoardSummary({ refreshKey }: InfoBoardSummaryProps) 
      ) : error ? (
         <p className="text-red-500">Error: {error}</p>
      ) : stats ? (
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-8 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
             <StatsCard title="Total Boards" value={stats.totalBoards} />
             <StatsCard title="Active Boards" value={stats.activeBoards} />
             <StatsCard title="Inactive Boards" value={stats.inactiveBoards} />

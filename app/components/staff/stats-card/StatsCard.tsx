@@ -10,10 +10,10 @@ interface StatsCardProps {
 export default function StatsCard({ title, value, icon, className = "" }: StatsCardProps) {
   return (
     <div
-      className={`bg-white rounded-3xl p-6 hover:shadow-lg transition-shadow border-2 border-blue-300 shadow-md shadow-blue-500/30  ${className}`}
+      className={`bg-white rounded p-5 hover:shadow-lg transition-shadow border border-blue-200 border-l-8 border-l-blue-300 shadow-0 shadow-blue-500/30  ${className}`}
     >
       <div className="flex justify-between items-start">
-        <div className="flex-1">
+        <div className="flex-1 flex flex-row justify-between items-center">
           <h2 className="text-sm font-medium text-gray-500">{title}</h2>
           <p className="text-5xl font-bold mt-1 text-gray-800">
             {value}
