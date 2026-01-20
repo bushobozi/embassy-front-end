@@ -117,7 +117,7 @@ export default function ManagePublications() {
         <div className="text-red-500">Error: {error}</div>
       ) : stats ? (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-8 gap-4 my-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 my-8">
             <StatsCard title="Total" value={stats.total} />
             <StatsCard title="Published" value={stats.published} />
             <StatsCard title="Drafts" value={stats.draft} />
