@@ -844,9 +844,23 @@ export default function AddStaff() {
                     required
                   />
                 </div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-4">
                 <div className="flex flex-col">
+                  <label htmlFor="hiredDate" className="label mb-3">
+                    Hired Date*
+                  </label>
+                  <input
+                    type="date"
+                    id="hiredDate"
+                    name="hired_date"
+                    value={formData.hired_date}
+                    onChange={(e) =>
+                      setformData({ ...formData, hired_date: e.target.value })
+                    }
+                    className="input w-full"
+                    required
+                  />
+                </div>
+                 <div className="flex flex-col">
                   <label htmlFor="isTransferred" className="label mb-3">
                     Is Transferred?
                   </label>
