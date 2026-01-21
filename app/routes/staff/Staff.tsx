@@ -67,7 +67,7 @@ export default function Staff() {
       </Banner></div>     
       <div className="my-8 w-full">
         {staffOverview && !loading && (
-          <div className="mt-0 grid grid-cols-3 sm:grid-cols-4 gap-4">
+          <div className="mt-0 grid grid-cols-2 sm:grid-cols-4 gap-4">
             <StatsCard title="Total Staff" value={staffOverview.total} />
             <StatsCard title="Active" value={staffOverview.byStatus.active} />
             <StatsCard title="Inactive" value={staffOverview.byStatus.inactive} />
