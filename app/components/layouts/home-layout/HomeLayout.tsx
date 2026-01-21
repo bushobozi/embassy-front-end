@@ -16,7 +16,7 @@ export default function HomeLayout() {
   const location = useLocation();
   return (
     <div className="w-full h-screen flex items-stretch relative container-fluid mx-auto overflow-hidden">
-      <aside className="w-1/6 flex-none p-6 sticky top-0 self-stretch h-full">
+      <aside className="hidden lg:block lg:w-1/6 flex-none p-6 sticky top-0 self-stretch h-full">
         <nav>
           <ul className="space-y-2">
             {quickInnerLinks.map((link) => {
@@ -46,12 +46,12 @@ export default function HomeLayout() {
         <EmbassyList />
          <NewsCard />
       </aside>
-      <div className="overflow-auto w-2/3 no-scrollbar">
+      <div className="overflow-auto w-full lg:w-2/3 no-scrollbar">
         <main className="flex-1 flex-col min-w-0 p-0 pb-12 bg-gray-50/20 mx-2">
           <Outlet />
         </main>
       </div>
-      <div className="w-1/6 flex-none p-4 sticky top-0 self-stretch h-full">
+      <div className="hidden lg:block lg:w-1/6 flex-none p-4 sticky top-0 self-stretch h-full">
         <div className="mt-3">         
           <ImportantLinks />
           <p className="text-gray-500 text-sm mt-8">
