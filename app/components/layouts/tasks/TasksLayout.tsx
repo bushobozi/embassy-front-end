@@ -15,7 +15,7 @@ export default function StaffLayout() {
 
   return (
     <div className="w-full h-screen flex items-stretch relative container-fluid mx-auto overflow-hidden">
-      <aside className="w-1/6 flex-none p-6 sticky top-0 self-stretch h-full">
+      <aside className="hidden lg:block lg:w-1/6 flex-none p-6 sticky top-0 self-stretch h-full">
         <nav>
           <ul className="space-y-2">
             {staffQuickLinks.map((link) => {
@@ -62,7 +62,7 @@ export default function StaffLayout() {
           }} />
         </main>
       </div>
-      <div className="w-full md:w-1/6 p-4 sticky top-0 self-stretch h-full hidden md:block">
+      <div className="hidden lg:block lg:w-1/6 p-4 sticky top-0 self-stretch h-full">
         <div className="mt-3">
           <ImportantLinks />
           <p className="text-gray-500 text-sm mt-8">
