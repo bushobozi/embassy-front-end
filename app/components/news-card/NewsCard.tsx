@@ -28,9 +28,6 @@ export default function NewsCard() {
       setLoading(true);
       setError(null);
       const data: NewsResponse = await apiGet(newsAPI);
-      console.log("News API Response:", data);
-      console.log("Headlines array:", data.headlines);
-      console.log("Number of headlines:", data.headlines?.length);
       
       if (data && Array.isArray(data.headlines)) {
         setNews(data.headlines);

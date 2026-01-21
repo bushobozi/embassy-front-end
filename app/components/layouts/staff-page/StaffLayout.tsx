@@ -2,6 +2,7 @@ import { Outlet, Link, useNavigate } from "react-router";
 import FooterBottom from "../dashboard/FooterBottom";
 import ImportantLinks from "../home-layout/important-links";
 import Button from "~/components/buttons/Button";
+import NewsCard from "~/components/news-card/NewsCard";
 
 const staffQuickLinks = [
   { name: "Staff Overview", href: "/embassy_staff" },
@@ -17,7 +18,7 @@ export default function StaffLayout() {
   return (
     <div className="w-full h-screen flex items-stretch relative container-fluid mx-auto overflow-hidden">
       <aside className="w-1/6 flex-none p-6 sticky top-0 self-stretch h-full">
-      <Button onClick={goBack} variant="secondary" rounded={true} block={true} size="lg" className="mb-4 cursor-pointer tooltip tooltip-bottom" data-tip="Go Back">
+      <Button onClick={goBack} variant="secondary" rounded={true} block={true} size="md" className="mb-4 cursor-pointer tooltip tooltip-bottom" data-tip="Go Back">
           Go Back
         </Button>
         <nav>
@@ -41,6 +42,7 @@ export default function StaffLayout() {
             })}
           </ul>
         </nav>
+        <NewsCard />
       </aside>
       <div className="overflow-auto w-2/3 no-scrollbar">
         <main className="flex-1 flex-col min-w-0 p-0 pb-12 bg-gray-50/20 mx-2">
