@@ -46,7 +46,7 @@ export default function StaffLayout() {
           onPrioritySelect={setSelectedPriority}
         />
       </aside>
-      <div className="overflow-auto w-2/3 no-scrollbar">
+      <div className="overflow-auto w-full lg:w-2/3 no-scrollbar">
         <main className="flex-1 flex-col min-w-0 p-0 pb-12 bg-gray-50/20 mx-2">
           <Outlet context={{
             selectedUserId,
