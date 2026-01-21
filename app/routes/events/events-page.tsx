@@ -118,7 +118,7 @@ export default function EventsPage() {
 
   return (
     <>
-      <div className="min-h-screen p-6">
+      <div className="min-h-screen p-2 sm:p-4 md:p-6">
         <div className="max-w-full mx-auto">
           <EventHeader
             currentDate={currentDate}
@@ -154,8 +154,8 @@ export default function EventsPage() {
           )}
 
           {!loading && (
-            <div className="flex gap-6">
-              <div className="w-80 space-y-6">
+            <div className="flex flex-col lg:flex-row gap-4 md:gap-6">
+              <div className="w-full lg:w-80 space-y-4 md:space-y-6">
                 <Button
                   variant="outline"
                   size="lg"
@@ -180,7 +180,7 @@ export default function EventsPage() {
                 <EventCategories />
               </div>
 
-              <div className="flex-1 bg-white rounded-2xl border border-gray-200 p-6 h-fit overflow-auto">
+              <div className="flex-1 bg-white rounded-2xl border border-gray-200 p-3 sm:p-4 md:p-6 h-fit overflow-auto">
                 {view === "week" && (
                   <WeekView events={calendarEvents} weekDates={weekDates} />
                 )}
@@ -192,7 +192,7 @@ export default function EventsPage() {
                 )}
               </div>
 
-              <div className="w-80 space-y-4">
+              <div className="w-full lg:w-80 space-y-4 order-first lg:order-last">
                 <EventStats events={embassyEvents} />
                 <EventsList events={embassyEvents} />
               </div>
