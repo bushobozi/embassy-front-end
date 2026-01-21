@@ -64,7 +64,7 @@ export default function PersonalDetailsTab({
   onUpdateSuccess: () => void;
 }) {
   return (
-    <div className="flex justify-between w-full container mt-8 mb-16 mx-auto">
+    <div className="flex justify-between flex-wrap w-full container mt-8 mb-16 mx-auto">
       <UserPhoto
         profile_picture={UserInfo.profile_picture}
         firstName={UserInfo.first_name}
