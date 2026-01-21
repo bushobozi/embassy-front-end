@@ -9,7 +9,7 @@ export default function StaffLayout() {
   return (
     <div className="w-full h-screen">
     <div className="flex items-stretch rounded-t-2xl container-fluid mx-auto overflow-hidden">
-      <aside className="w-full md:w-1/6 flex-none p-6 self-stretch h-full">
+      <aside className="hidden lg:block lg:w-1/6 flex-none p-6 self-stretch h-full">
         <nav>
           <ul className="space-y-2">
             {staffQuickLinks.map((link) => {
@@ -32,14 +32,14 @@ export default function StaffLayout() {
           </ul>
         </nav>
       </aside>
-      <div className="overflow-auto w-full md:w-3/4">
+      <div className="overflow-auto w-full lg:w-2/3 no-scrollbar">
         <main className="flex-1 flex-col min-w-0 p-0 bg-gray-50/20 mx-2">
           <div className="w-full md:-3/4 container mx-auto">
         <Banner>Embassy Events</Banner>
         </div>  
         </main>
       </div>
-      <div className="w-full md:w-1/6 p-6 self-stretch h-full hidden md:block">
+      <div className="hidden lg:block lg:w-1/6 p-6 self-stretch h-full">
        <p className="text-gray-500 text-sm">
           Incase of any issues associated with events management. Please reach out to
           the system admin through the link below:
