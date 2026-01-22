@@ -5,6 +5,7 @@ import { Coat } from "~/images";
 
 const navItems = [
   { name: "Home", href: "/landing-gov-services" },
+  { name: "Information Boards", href: "/landing-page#information-boards" },
   { name: "Services", href: "/landing-gov-services#services" },
   { name: "About Us", href: "/landing-gov-services#about" },
   { name: "Contact", href: "/landing-gov-services#contact" },

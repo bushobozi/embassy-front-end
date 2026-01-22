@@ -12,7 +12,24 @@ type LinkItem = {
   description?: string;
 };
 
-export default function Hero() {
+interface FeaturedBoard {
+  id?: string;
+  title: string;
+  description: string;
+  image?: string;
+  embassy?: {
+    name: string;
+    city: string;
+    country: string;
+  };
+}
+
+interface HeroProps {
+  featuredBoards?: FeaturedBoard[];
+  loadingBoards?: boolean;
+}
+
+export default function Hero({ featuredBoards = [], loadingBoards = false }: HeroProps) {
   const [query, setQuery] = useState("");
   const dialogRef = useRef<HTMLDialogElement | null>(null);
   const [results, setResults] = useState<LinkItem[]>([]);
@@ -109,6 +126,51 @@ export default function Hero() {
           query={query}
           onClose={closeDialog}
         />
+
+        {/* Featured Information Boards */}
+        {loadingBoards ? (
+          <div className="mt-8 w-full">
+            <h3 className="text-2xl font-bold mb-4">Information Boards</h3>
+            <div className="flex justify-center py-4">
+              <span className="loading loading-spinner loading-md"></span>
+            </div>
+          </div>
+        ) : featuredBoards.length > 0 ? (
+          <div className="mt-4 w-full">
+            {/* <h3 className="text-2xl font-bold mb-4">Information Boards</h3> */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+              {featuredBoards.slice(0, 3).map((board) => (
+                <div
+                  key={board.id || board.title}
+                  className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100"
+                >
+                  {board.image && (
+                    <img
+                      src={board.image}
+                      alt={board.title}
+                      className="w-full h-32 object-cover"
+                      loading="lazy"
+                    />
+                  )}
+                  <div className="p-4">
+                    <h4 className="font-semibold text-gray-900 line-clamp-1">
+                      {board.title}
+                    </h4>
+                    <p className="text-sm text-gray-600 mt-1 line-clamp-2">
+                      {board.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <a
+              href="#boards-heading"
+              className="inline-block bg-white px-6 py-4 w-1/4 text-center rounded-4xl mt-4 text-red-700 hover:text-red-800 font-medium"
+            >
+              View all boards →
+            </a>
+          </div>
+        ) : null}
       </HeroLayout>
     </>
   );

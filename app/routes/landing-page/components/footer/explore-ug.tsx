@@ -38,10 +38,10 @@ export default function ExploreUG() {
             src={embedSrc}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
-            className="absolute top-0 left-0 w-full h-full border-0 rounded-none"
+            className="absolute top-0 left-0 w-full h-full border-0 rounded-3xl"
           />
         ) : (
-          <div className="absolute top-0 left-0 w-full h-full bg-black/10 flex items-center justify-center text-gray-500">
+          <div className="absolute top-0 left-0 w-full h-full bg-transparent flex items-center justify-center text-gray-500">
             Loading video...
           </div>
         )}
@@ -51,7 +51,7 @@ export default function ExploreUG() {
           onClick={togglePlay}
           aria-pressed={isPlaying}
           aria-label={isPlaying ? "Pause video" : "Play video"}
-          className="absolute cursor-pointer inset-0 flex items-center justify-center bg-black/35 rounded-none hover:bg-black/45 transition-colors"
+          className="absolute cursor-pointer inset-0 flex items-center justify-center bg-transparent rounded-none hover:bg-transparent transition-colors"
         >
           <span className="flex items-center justify-center w-20 h-20 rounded-full bg-white/90 shadow-lg">
             {isPlaying ? (
