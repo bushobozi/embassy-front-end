@@ -4,11 +4,10 @@ import { Link } from "react-router";
 import { Coat } from "~/images";
 
 const navItems = [
-  { name: "Home", href: "/landing-gov-services" },
-  { name: "Information Boards", href: "/landing-page#information-boards" },
-  { name: "Services", href: "/landing-gov-services#services" },
-  { name: "About Us", href: "/landing-gov-services#about" },
-  { name: "Contact", href: "/landing-gov-services#contact" },
+  { name: "Home", href: "/" },
+  { name: "Information Boards", href: "#boards-heading" },
+  { name: "Government Links", href: "#links-heading" },
+  { name: "Explore Uganda", href: "#explore-heading" },
 ];
 
 export default function Nav() {
@@ -26,9 +25,39 @@ export default function Nav() {
               />
             </Link>
           </div>
+
+          {/* Inline navigation links - visible on larger screens */}
+          <div className="hidden md:flex items-center gap-6">
+             <a
+              href="/"
+              target="_self"
+              className="text-white border-b-2 border-white hover:text-gray-50 font-medium transition-colors"
+            >
+             Home
+            </a>
+            <a
+              href="#boards-heading"
+              className="text-white border-b-2 border-white hover:text-gray-50 font-medium transition-colors"
+            >
+              Information Boards
+            </a>
+            <a
+              href="#links-heading"
+              className="text-white border-b-2 border-white hover:text-gray-50 font-medium transition-colors"
+            >
+              Government Links
+            </a>
+            <a
+              href="#explore-heading"
+              className="text-white border-b-2 border-white hover:text-gray-50 font-medium transition-colors"
+            >
+              Explore Uganda
+            </a>
+          </div>
+
           <div>
             <button
-              className="cursor-pointer border-gray-50 border-b-2 flex gap-4 items-center px-3 py-3.5 text-xl font-medium hover:bg-gray-700 hover:text-white"
+              className="cursor-pointer  flex gap-4 items-center px-3 py-3.5 text-xl font-medium hover:bg-gray-700 hover:text-white"
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? <FaChevronUp /> : <FaChevronDown />} Menu

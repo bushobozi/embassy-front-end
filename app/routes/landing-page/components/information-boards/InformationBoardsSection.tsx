@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 export interface PublicBoard {
   id?: string;
   title: string;
@@ -73,6 +71,7 @@ function PublicBoardCard({ board }: PublicBoardCardProps) {
               target="_blank"
               rel="noopener noreferrer"
               className="hover:underline"
+              download
             >
               View Attachment
             </a>
