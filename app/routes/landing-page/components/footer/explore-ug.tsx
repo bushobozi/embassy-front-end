@@ -29,7 +29,10 @@ export default function ExploreUG() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto py-2 pb-12">
+    <div id="explore-heading" className="max-w-7xl mx-auto py-2 pb-12 mt-16">
+      <h2 className="text-5xl font-semibold mb-4 border-b pb-4 border-gray-200">
+        Explore Uganda
+      </h2>
       <div className="relative w-full pt-[56.25%] mt-4">
         {embedSrc ? (
           <iframe

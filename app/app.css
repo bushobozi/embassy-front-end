@@ -27,4 +27,5 @@ html,
 body {
   font-size: 14px;
   @apply bg-white text-gray-900;
+  scroll-behavior: smooth;
 }
