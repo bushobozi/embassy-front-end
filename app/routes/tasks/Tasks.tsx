@@ -195,7 +195,7 @@ export default function Tasks() {
 
         {/* Action Bar */}
         <div className="flex justify-between items-center my-5">
-          <h1 className="my-4 text-2xl font-bold text-blue-900">Tasks Overview</h1>
+          <h1 className="my-4 lg:text-2xl text-xl font-bold text-blue-900">Tasks Overview</h1>
           <div className="flex gap-3">
             <Button
               onClick={handleRefresh}
