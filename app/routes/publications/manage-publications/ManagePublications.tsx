@@ -74,7 +74,7 @@ export default function ManagePublications() {
         Manage News Update - Publish, Archive, Draft, Update and Delete
       </Banner>
       <div className="my-4">
-        <div className="flex justify-between">
+        <div className="flex justify-between flex-wrap gap-4">
           <div className="flex flex-wrap gap-3">
             <Button
               variant="outline"

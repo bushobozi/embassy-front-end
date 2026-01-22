@@ -180,7 +180,7 @@ export default function Publications() {
       </div>
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-4">
-          <h1 className="text-3xl font-bold text-gray-900">
+          <h1 className="lg:text-3xl text-xl font-bold text-gray-900">
             View all News Updates From Other Embassies
           </h1>
           {embassyIdFromUrl && (
