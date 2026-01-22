@@ -171,7 +171,7 @@ export default function DashboardLayout() {
 
       {/* Main Content Area */}
       <main className="flex-1 pb-16 lg:pb-0">
-        <div className="max-w-5/6 mx-auto">
+        <div className="lg:max-w-5/6 max-w-full lg:mx-auto mx-1.5">
           <Outlet />
         </div>
       </main>
