@@ -1,5 +1,6 @@
 import { Outlet, Link } from "react-router";
 import Banner from "~/components/banner/Banner";
+import BackButton from "~/components/buttons/BackButton";
 
 const staffQuickLinks = [
   { name: "Events Overview", href: "/events" },
@@ -10,6 +11,7 @@ export default function StaffLayout() {
     <div className="w-full h-screen">
     <div className="flex items-stretch rounded-t-2xl container-fluid mx-auto overflow-hidden">
       <aside className="hidden lg:block lg:w-1/6 flex-none p-6 self-stretch h-full">
+        <BackButton />
         <nav>
           <ul className="space-y-2">
             {staffQuickLinks.map((link) => {
