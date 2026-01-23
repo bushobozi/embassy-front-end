@@ -2,8 +2,7 @@ import { Button, PublicationCard, Banner } from "~/components";
 import { useNavigate, useSearchParams } from "react-router";
 import { useState, useMemo, useEffect } from "react";
 import { apolloClient } from "~/apolloClient";
-import { useAuth } from "~/contexts/AuthContext";
-import { GET_PUBLICATIONS } from "~/routes/publications/components/graphql";
+import { GET_PUBLICATIONS, GET_ALL_PUBLICATIONS } from "~/routes/publications/components/graphql";
 
 type Publication = {
   id: number;
@@ -63,8 +62,6 @@ const PUBLICATION_TAGS = [
 const ITEMS_PER_PAGE = 25;
 
 export default function Publications() {
-  const { user } = useAuth();
-  const embassyId = user?.embassy_id;
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -98,26 +95,28 @@ export default function Publications() {
   };
 
   const fetchPublications = async () => {
-    const targetEmbassyId = embassyIdFromUrl || embassyId;
-
-    if (!targetEmbassyId) {
-      setError("Embassy ID not found");
-      return;
-    }
-
     setLoading(true);
     setError(null);
 
     try {
-      const variables = {
-        // embassy_id: targetEmbassyId,
-        page: 1,
-        limit: 25,
-        status: "published",
-      };
-      console.log("Fetching publications with variables:", variables);
+      // Use embassy filter only when embassyIdFromUrl is provided
+      const useEmbassyFilter = !!embassyIdFromUrl;
+
+      const variables = useEmbassyFilter
+        ? {
+            embassy_id: embassyIdFromUrl,
+            page: 1,
+            limit: 25,
+            status: "published",
+          }
+        : {
+            page: 1,
+            limit: 25,
+            status: "published",
+          };
+
       const result = await apolloClient.query<PublicationQueryResponse>({
-        query: GET_PUBLICATIONS,
+        query: useEmbassyFilter ? GET_PUBLICATIONS : GET_ALL_PUBLICATIONS,
         variables,
         fetchPolicy: "network-only",
       });
