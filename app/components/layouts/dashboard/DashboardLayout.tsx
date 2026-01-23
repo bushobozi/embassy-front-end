@@ -23,7 +23,7 @@ import {
 } from "react-icons/ri";
 import { Coat } from "~/images";
 import { useAuth } from "~/contexts/AuthContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const navigationLinks = [
   { to: "/home_embassy", label: "Home", icon: RiHome5Line, activeIcon: RiHome5Fill },
@@ -43,8 +43,39 @@ const moreMenuLinks = navigationLinks.slice(4);
 
 export default function DashboardLayout() {
   const location = useLocation();
-  const { user } = useAuth();
+  const { user, accessToken, updateUserData } = useAuth();
   const [moreMenuOpen, setMoreMenuOpen] = useState(false);
+
+  // Fetch user profile data on mount if profile_picture is missing
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      if (!user?.id || !accessToken || user?.profile_picture) return;
+
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/users/${user.id}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          if (data.profile_picture) {
+            updateUserData({ profile_picture: data.profile_picture });
+          }
+        }
+      } catch (error) {
+        console.error("Failed to fetch user profile:", error);
+      }
+    };
+
+    fetchUserProfile();
+  }, [user?.id, accessToken]);
 
   const userProfilePicture = user?.profile_picture || "https://cdn.pixabay.com/photo/2025/10/07/10/59/parrot-9878922_1280.jpg";
 

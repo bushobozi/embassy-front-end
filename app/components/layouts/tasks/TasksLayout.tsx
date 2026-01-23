@@ -3,7 +3,7 @@ import { useState } from "react";
 import ImportantLinks from "../home-layout/important-links";
 import FooterBottom from "../dashboard/FooterBottom";
 import UserList from "~/routes/tasks/components/users/UserList";
-
+import BackButton from "~/components/buttons/BackButton";
 const staffQuickLinks = [{ name: "Tasks Overview", href: "/tasks" }, { name: "Manage Users", href: "/embassy_staff_users"}];
 
 export default function StaffLayout() {
@@ -16,6 +16,7 @@ export default function StaffLayout() {
   return (
     <div className="w-full h-screen flex items-stretch relative container-fluid mx-auto overflow-hidden">
       <aside className="hidden lg:block lg:w-1/6 flex-none p-6 sticky top-0 self-stretch h-full">
+      <BackButton />
         <nav>
           <ul className="space-y-2">
             {staffQuickLinks.map((link) => {
