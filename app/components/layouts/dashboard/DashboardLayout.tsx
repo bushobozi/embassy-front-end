@@ -148,16 +148,6 @@ export default function DashboardLayout() {
                   </span>
                 </div>
               </div>
-              {/* Mobile: User avatar & menu toggle */}
-              <div className="flex-1 lg:hidden items-center justify-end gap-2">
-                <Link to="/user">
-                  <img
-                    src={userProfilePicture}
-                    alt="User Avatar"
-                    className="w-8 h-8 rounded-full object-cover"
-                  />
-                </Link>
-              </div>
             </div>
 
             {/* Desktop Navigation - Hidden on mobile */}
@@ -364,6 +354,16 @@ export default function DashboardLayout() {
           </div>
         </div>
       </nav>
+      {/* Mobile: User avatar & menu toggle */}
+      <div className="flex ml-4 lg:hidden items-center justify-end gap-2">
+        <Link to="/user">
+          <img
+            src={userProfilePicture}
+            alt="User Avatar"
+            className="w-8 h-8 rounded-full object-cover"
+          />
+        </Link>
+      </div>
     </div>
   );
 }
