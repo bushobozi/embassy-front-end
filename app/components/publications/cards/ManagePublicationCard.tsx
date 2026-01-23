@@ -64,7 +64,7 @@ function ManagePublicationCard({
   };
   return (
     <>
-      <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-md overflow-hidden h-60">
+      <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-md overflow-hidden lg:h-60 h-auto">
         <Link to={`/publication_detail_view_id/${id}/viewed`} className="flex-1">
           <div className="relative h-60 bg-white overflow-hidden flex flex-col">
             <div className="relative">

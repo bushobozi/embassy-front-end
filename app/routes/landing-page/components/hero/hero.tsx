@@ -86,7 +86,7 @@ export default function Hero({
   return (
     <>
       <HeroLayout>
-        <h1 className="text-8xl font-bold">
+        <h1 className="text-5xl lg:text-8xl font-bold">
           Welcome to Uganda Consulate Services
         </h1>
 
@@ -105,8 +105,8 @@ export default function Hero({
           <label htmlFor="hero-search" className="sr-only">
             Search government services
           </label>
-          <p className="font-bold text-xl">Search</p>
-          <div className="relative flex w-full max-w-2xl pt-3 pb-6">
+          {/* <p className="font-bold text-xl">Search</p> */}
+          <div className="relative flex w-full max-w-full pt-3 pb-6">
             <input
               id="hero-search"
               name="q"
@@ -142,15 +142,23 @@ export default function Hero({
           </div>
         ) : featuredBoards.length > 0 ? (
           <div className="mt-4 w-full">
-           <div className="flex justify-between items-center mb-12">
-             <h3 className="text-4xl font-bold mb-4">Information Boards</h3>
-             <a
-              href="#boards-heading"
-              className="inline-block bg-white px-4 py-4 w-1/4 text-center text-xl rounded-4xl text-gray-900 hover:underline transition font-medium"
+            <div
+              id="boards-heading"
+              className="flex flex-wrap lg:flex-nowrap justify-between items-start lg:items-center mb-12 gap-4"
             >
-              View all boards <BsChevronRight className="inline-block ml-2" />
-            </a>
-           </div>
+              <h3 className="text-4xl font-bold">Information Boards</h3>
+
+              <a
+                href="#boards-heading"
+                className="inline-flex items-center justify-center bg-white px-4 py-4
+               w-full md:w-auto text-center text-xl rounded-4xl
+               text-gray-900 hover:underline transition font-medium"
+              >
+                View all boards
+                <BsChevronRight className="ml-2" />
+              </a>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mt-4 gap-8">
               {featuredBoards.slice(0, 3).map((board) => (
                 <div

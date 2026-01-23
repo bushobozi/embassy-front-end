@@ -319,11 +319,11 @@ export default function Boards({ onRefresh }: BoardsProps) {
 
   return (
     <div>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center flex-wrap lg:flex-nowrap justify-between">
         <h3 className="my-4 text-2xl font-bold text-blue-900">
           Manage Information Boards
         </h3>
-        <div className="flex items-center justify-end gap-4 mb-4">
+        <div className="flex items-center justify-end gap-4 mb-4 lg:pt-0 pt-0">
           <Button variant="secondary" size="md" onClick={openModal}>
             Create New Board
           </Button>
