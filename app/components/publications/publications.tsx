@@ -224,7 +224,7 @@ export default function Publications() {
     <div className="w-full pb-8 pt-0">
       {/* New Publications Toast */}
       {showNewPublicationsToast && (
-        <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 animate-fade-in">
+        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 animate-fade-in">
           <div className="flex items-center gap-3 bg-blue-600 text-white px-4 py-3 rounded-lg shadow-lg border border-blue-500">
             <span className="font-medium">
               {newPublicationsCount} new publication{newPublicationsCount > 1 ? "s" : ""} available
