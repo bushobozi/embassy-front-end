@@ -90,7 +90,7 @@ export default function UserPhoto({
   };
 
   return (
-    <div className="w-1/3">
+    <div className="lg:w-1/3 w-full px-4">
       <div>
         <div className="flex flex-col items-center mb-6">
           <div className="w-50 h-50 mask mask-squircle bg-gray-300 overflow-hidden ring-gray-300 ring-2">

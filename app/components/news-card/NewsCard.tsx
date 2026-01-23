@@ -95,7 +95,6 @@ export default function NewsCard() {
       ) : (
         <div className="space-y-4">
           {news.map((headline, index) => {
-            console.log(`Rendering headline ${index}:`, headline);
             return (
               <a
                 key={`${headline.url}-${index}`}

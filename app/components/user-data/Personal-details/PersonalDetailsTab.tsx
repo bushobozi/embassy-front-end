@@ -64,7 +64,7 @@ export default function PersonalDetailsTab({
   onUpdateSuccess: () => void;
 }) {
   return (
-    <div className="flex justify-between flex-wrap w-full container mt-8 mb-16 mx-auto">
+    <div className="flex flex-wrap w-full container mt-8 mb-16 mx-auto">
       <UserPhoto
         profile_picture={UserInfo.profile_picture}
         firstName={UserInfo.first_name}
@@ -73,7 +73,7 @@ export default function PersonalDetailsTab({
         token={token}
         onUpdateSuccess={onUpdateSuccess}
       />
-      <div className="2/3">
+      <div className="lg:w-2/3 w-full lg:pl-10 mt-6 lg:mt-0">
         <div className="space-y-6">
           <div className="bg-white border border-gray-200 rounded-xl p-5">
             <PersonalInformation
