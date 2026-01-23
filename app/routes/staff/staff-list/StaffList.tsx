@@ -129,8 +129,8 @@ export default function StaffList() {
   };
   return (
     <div className="h-full">
-      <div className="w-full grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mb-8">
-        <div>
+      <div className="w-full grid gap-4 grid-cols-2 lg:grid-cols-4 mb-8">
+        <div className="flex flex-col">
           <label htmlFor="gender" className="label mb-3">
             Select Gender
           </label>
@@ -148,7 +148,7 @@ export default function StaffList() {
             ))}
           </select>
         </div>
-        <div>
+        <div className="flex flex-col">
           <label htmlFor="marital_status" className="label mb-3">
             Select Marital Status
           </label>
@@ -168,7 +168,7 @@ export default function StaffList() {
             ))}
           </select>
         </div>
-        <div>
+        <div className="flex flex-col">
           <label htmlFor="religion" className="label mb-3">
             Select Religion
           </label>
@@ -186,7 +186,7 @@ export default function StaffList() {
             ))}
           </select>
         </div>
-        <div>
+        <div className="flex flex-col">
           <label htmlFor="staff_status" className="label mb-3">
             Select Staff Status
           </label>

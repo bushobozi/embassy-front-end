@@ -88,7 +88,7 @@ export default function DashboardLayout() {
         <div className="max-w-2/3 mx-auto px-3 md:px-4">
           <div className="flex items-center justify-between h-14">
             {/* Left: Logo & Search */}
-            <div className="flex items-center gap-2 md:gap-3 flex-1">
+            <div className="flex items-center sm:justify-between sm:items-start gap-2 md:gap-3 flex-1">
               <Link to="/home_embassy" className="shrink-0">
                 <img
                   src={Coat}
@@ -99,7 +99,7 @@ export default function DashboardLayout() {
               {/* Search Bar */}
               <div className="relative flex-1 max-w-md">
                 <div className="flex items-center bg-blue-50 rounded-md px-3 py-2 border border-transparent focus-within:border-blue-500 focus-within:bg-white transition-all">
-                  <RiSearchLine className="text-gray-500 w-5 h-5 flex-shrink-0" />
+                  <RiSearchLine className="text-gray-500 w-5 h-5 shrink-0" />
                   <input
                     type="search"
                     placeholder="Search"
@@ -111,6 +111,16 @@ export default function DashboardLayout() {
                   </span>
                 </div>
               </div>
+              {/* Mobile: User avatar & menu toggle */}
+            <div className="flex lg:hidden items-center justify-end gap-2">
+              <Link to="/user">
+                <img
+                  src={userProfilePicture}
+                  alt="User Avatar"
+                  className="w-8 h-8 rounded-full object-cover"
+                />
+              </Link>
+            </div>
             </div>
 
             {/* Desktop Navigation - Hidden on mobile */}
@@ -184,25 +194,14 @@ export default function DashboardLayout() {
                   </li>
                 </ul>
               </div>
-            </nav>
-
-            {/* Mobile: User avatar & menu toggle */}
-            <div className="flex lg:hidden items-center gap-2">
-              <Link to="/user">
-                <img
-                  src={userProfilePicture}
-                  alt="User Avatar"
-                  className="w-8 h-8 rounded-full object-cover"
-                />
-              </Link>
-            </div>
+            </nav>            
           </div>
         </div>
       </header>
 
       {/* Main Content Area */}
       <main className="flex-1 pb-16 lg:pb-0">
-        <div className="lg:max-w-11/12 max-w-full lg:mx-auto mx-1.5">
+        <div className="lg:max-w-11/12 max-w-full lg:mx-auto mx-1">
           <Outlet />
         </div>
       </main>
