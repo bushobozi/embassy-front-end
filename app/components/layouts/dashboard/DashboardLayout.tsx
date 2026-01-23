@@ -20,6 +20,7 @@ import {
   RiSearchLine,
   RiMore2Fill,
   RiChat1Fill,
+  RiBankLine, RiBankFill 
 } from "react-icons/ri";
 import { Coat } from "~/images";
 import { useAuth } from "~/contexts/AuthContext";
@@ -65,11 +66,18 @@ const navigationLinks = [
     activeIcon: RiParentFill,
   },
   {
+    to: "/embassy_profile",
+    label: "Embassy",
+    icon: RiBankLine,
+    activeIcon: RiBankFill,
+  },
+  {
     to: "/user",
     label: "Profile",
     icon: RiAccountCircleLine,
     activeIcon: RiAccountCircleFill,
   },
+
 ];
 
 // Mobile bottom nav shows first 4 items + more menu
