@@ -25,7 +25,7 @@ export default function UserProfileHeader({
     return text.replace(/_/g, " ");
   }
   return (
-    <div className="flex items-center justify-between py-4">
+    <div className="flex items-center justify-between pb-4">
       <div className="flex items-center gap-4">
         <h2 className="text-xl font-semibold text-gray-800">
           {firstName} {middleName || ""} {lastName}

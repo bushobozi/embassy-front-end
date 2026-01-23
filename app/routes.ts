@@ -35,7 +35,10 @@ export default [
         route("embassy_staff_profile/:staffId/page", "routes/staff/staff-profile/StaffProfile.tsx"),
         route("embassy_staff_users", "routes/users/Users.tsx"),
       ]),
-      route("user", "routes/user/User.tsx"),
+      layout("components/layouts/profile-page/ProfileLayout.tsx", [
+        route("user", "routes/user/User.tsx"),
+        route("embassy_profile", "routes/embassy/EmbassyProfile.tsx"),
+      ]),
     ]),
   ]),
   layout("components/layouts/login/LoginLayout.tsx", [
