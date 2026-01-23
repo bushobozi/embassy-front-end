@@ -33,7 +33,6 @@ export const GET_EMBASSY_PUBLICATIONS = gql`
 
 export const GET_PUBLICATIONS = gql`
   query GetEmbassyPublications(
-    $embassy_id: String!
     $page: Float
     $limit: Float
     $status: String
@@ -44,7 +43,6 @@ export const GET_PUBLICATIONS = gql`
       limit: $limit
       status: $status
       publication_type: $publication_type
-      embassy_id: $embassy_id
     ) {
       id
       title

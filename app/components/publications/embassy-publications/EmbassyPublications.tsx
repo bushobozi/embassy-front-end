@@ -182,9 +182,9 @@ function EmbassyPublications() {
       <div className="relative">
         <Banner>My Embassy News Updates</Banner>
       </div>
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between flex-wrap lg:flex-nowrap mb-8">
         <div className="flex items-center gap-4">
-          <h1 className="lg:text-3xl text-xl font-bold text-gray-900">My Publications</h1>
+          <h1 className="lg:text-3xl text-2xl font-bold text-gray-900">My Publications</h1>
           {embassyIdFromUrl && (
             <button
               onClick={() => {
@@ -197,7 +197,7 @@ function EmbassyPublications() {
             </button>
           )}
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 lg:pt-0 pt-4">
           <Button
             variant="secondary"
             className="cursor-pointer tooltip tooltip-bottom"
@@ -227,7 +227,7 @@ function EmbassyPublications() {
         </div>
       </div>
       <div className="mb-8">
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-nowrap overflow-x-auto gap-2">
           <button
             onClick={() => handleTagChange(null)}
             className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${

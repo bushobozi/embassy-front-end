@@ -110,7 +110,7 @@ export default function Publications() {
 
     try {
       const variables = {
-        embassy_id: targetEmbassyId,
+        // embassy_id: targetEmbassyId,
         page: 1,
         limit: 25,
         status: "published",
@@ -171,16 +171,16 @@ export default function Publications() {
 
   useEffect(() => {
     fetchPublications();
-  }, [embassyId, embassyIdFromUrl]);
+  }, [embassyIdFromUrl]);
 
   return (
     <div className="w-full pb-8 pt-0">
       <div className="relative">
         <Banner>Latest News Updates</Banner>
       </div>
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex lg:flex-nowrap flex-wrap items-center justify-between mb-8">
         <div className="flex items-center gap-4">
-          <h1 className="lg:text-3xl text-xl font-bold text-gray-900">
+          <h1 className="lg:text-3xl text-2xl font-bold text-gray-900">
             View all News Updates From Other Embassies
           </h1>
           {embassyIdFromUrl && (
@@ -196,7 +196,7 @@ export default function Publications() {
             </button>
           )}
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 lg:pt-0 pt-4">
           <Button
             variant="secondary"
             className="cursor-pointer tooltip tooltip-bottom"
@@ -210,7 +210,7 @@ export default function Publications() {
             variant="outline"
             size="md"
             onClick={refreshPublications}
-            className="cursor-pointer tooltip tooltip-left"
+            className="cursor-pointer tooltip tooltip-bottom"
             data-tip="Refresh publications list"
             disabled={refreshing}
           >
@@ -226,7 +226,7 @@ export default function Publications() {
         </div>
       </div>
       <div className="mb-8">
-        <div className="flex flex-wrap gap-2">
+        <div className="flex lg:flex-nowrap lg:overflow-hidden overflow-x-auto gap-2">
           <button
             onClick={() => handleTagChange(null)}
             className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
