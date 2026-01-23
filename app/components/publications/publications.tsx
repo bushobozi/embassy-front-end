@@ -4,7 +4,7 @@ import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import { apolloClient } from "~/apolloClient";
 import { GET_PUBLICATIONS, GET_ALL_PUBLICATIONS } from "~/routes/publications/components/graphql";
 
-const POLL_INTERVAL = 5000; // 5 seconds
+const POLL_INTERVAL = 20000; // 20 seconds
 
 type Publication = {
   id: number;
@@ -196,15 +196,6 @@ export default function Publications() {
     }
   };
 
-  // Load new publications when user clicks the toast
-  const handleLoadNewPublications = async () => {
-    setShowNewPublicationsToast(false);
-    setNewPublicationsCount(0);
-    await fetchPublications(false);
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   // Dismiss toast without loading
   const dismissToast = () => {
     setShowNewPublicationsToast(false);
@@ -233,17 +224,11 @@ export default function Publications() {
     <div className="w-full pb-8 pt-0">
       {/* New Publications Toast */}
       {showNewPublicationsToast && (
-        <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 animate-bounce">
+        <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 animate-fade-in">
           <div className="flex items-center gap-3 bg-blue-600 text-white px-4 py-3 rounded-lg shadow-lg border border-blue-500">
             <span className="font-medium">
               {newPublicationsCount} new publication{newPublicationsCount > 1 ? "s" : ""} available
             </span>
-            <button
-              onClick={handleLoadNewPublications}
-              className="px-3 py-1 bg-white text-blue-600 rounded-md text-sm font-medium hover:bg-blue-50 transition-colors"
-            >
-              View
-            </button>
             <button
               onClick={dismissToast}
               className="p-1 hover:bg-blue-700 rounded transition-colors"
