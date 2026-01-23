@@ -18,4 +18,5 @@ import EmbassyPublications from "./publications/embassy-publications/EmbassyPubl
 import ManagePublicationCard from "./publications/cards/ManagePublicationCard";
 import Loader from "./loader/Loader";
 import NewsCard from "./news-card/NewsCard";
-export { Button, Publications, Alert, Banner, Stats, FancyText, PublicationCard, Welcome, ProtectedLayout, ProfileTabs, UserProfileHeader, BiographyTab, PersonalDetailsTab, UserHistoryTab, BreadCrumb, StatsCard, EmbassyPublications, ManagePublicationCard, Loader, NewsCard };
+import BackButton from "./buttons/BackButton";
+export { Button, Publications, Alert, Banner, Stats, FancyText, PublicationCard, Welcome, ProtectedLayout, ProfileTabs, UserProfileHeader, BiographyTab, PersonalDetailsTab, UserHistoryTab, BreadCrumb, StatsCard, EmbassyPublications, ManagePublicationCard, Loader, NewsCard, BackButton };
