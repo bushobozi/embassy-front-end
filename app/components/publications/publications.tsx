@@ -1,8 +1,10 @@
 import { Button, PublicationCard, Banner } from "~/components";
 import { useNavigate, useSearchParams } from "react-router";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import { apolloClient } from "~/apolloClient";
 import { GET_PUBLICATIONS, GET_ALL_PUBLICATIONS } from "~/routes/publications/components/graphql";
+
+const POLL_INTERVAL = 5000; // 5 seconds
 
 type Publication = {
   id: number;
@@ -72,6 +74,12 @@ export default function Publications() {
   const [displayCount, setDisplayCount] = useState(ITEMS_PER_PAGE);
   const [publications, setPublications] = useState<Publication[]>([]);
 
+  // Auto-refresh state
+  const [newPublicationsCount, setNewPublicationsCount] = useState(0);
+  const [showNewPublicationsToast, setShowNewPublicationsToast] = useState(false);
+  const knownPublicationIds = useRef<Set<number>>(new Set());
+  const pollIntervalRef = useRef<NodeJS.Timeout | null>(null);
+
   const filteredPublications = useMemo(() => {
     let filtered = publications;
     if (selectedTag) {
@@ -94,8 +102,10 @@ export default function Publications() {
     setDisplayCount(ITEMS_PER_PAGE);
   };
 
-  const fetchPublications = async () => {
-    setLoading(true);
+  const fetchPublications = useCallback(async (isPolling = false) => {
+    if (!isPolling) {
+      setLoading(true);
+    }
     setError(null);
 
     try {
@@ -122,7 +132,6 @@ export default function Publications() {
       });
 
       if (result.data?.publications) {
-        console.log(`Fetched ${result.data.publications.length} publications`);
         const mappedPublications: Publication[] = result.data.publications.map(
           (pub: any) => ({
             id: pub.id,
@@ -134,11 +143,11 @@ export default function Publications() {
             created_at: pub.created_at,
             updated_at: pub.updated_at,
             created_by: {
-              id: 0, // Not provided in GraphQL response
+              id: 0,
               name: pub.created_by || "Unknown",
               profile_picture: "",
             },
-            views: 0, // Not provided in GraphQL response
+            views: 0,
             embassy: {
               id: 0,
               name: pub.embassy_name || "",
@@ -146,18 +155,37 @@ export default function Publications() {
             },
           })
         );
-        setPublications(mappedPublications);
-      } else {
-        console.log("No publications in response");
+
+        // Check for new publications during polling
+        if (isPolling && knownPublicationIds.current.size > 0) {
+          const newPubs = mappedPublications.filter(
+            (pub) => !knownPublicationIds.current.has(pub.id)
+          );
+          if (newPubs.length > 0) {
+            setNewPublicationsCount(newPubs.length);
+            setShowNewPublicationsToast(true);
+          }
+        }
+
+        // Update known publication IDs
+        knownPublicationIds.current = new Set(mappedPublications.map((p) => p.id));
+
+        if (!isPolling || !showNewPublicationsToast) {
+          setPublications(mappedPublications);
+        }
       }
     } catch (error) {
-      setError(
-        error instanceof Error ? error.message : "Failed to fetch publications"
-      );
+      if (!isPolling) {
+        setError(
+          error instanceof Error ? error.message : "Failed to fetch publications"
+        );
+      }
     } finally {
-      setLoading(false);
+      if (!isPolling) {
+        setLoading(false);
+      }
     }
-  };
+  }, [embassyIdFromUrl, showNewPublicationsToast]);
 
   const refreshPublications = async () => {
     setRefreshing(true);
@@ -168,12 +196,67 @@ export default function Publications() {
     }
   };
 
+  // Load new publications when user clicks the toast
+  const handleLoadNewPublications = async () => {
+    setShowNewPublicationsToast(false);
+    setNewPublicationsCount(0);
+    await fetchPublications(false);
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // Dismiss toast without loading
+  const dismissToast = () => {
+    setShowNewPublicationsToast(false);
+    setNewPublicationsCount(0);
+  };
+
+  // Initial fetch
   useEffect(() => {
-    fetchPublications();
+    fetchPublications(false);
   }, [embassyIdFromUrl]);
+
+  // Polling for new publications
+  useEffect(() => {
+    pollIntervalRef.current = setInterval(() => {
+      fetchPublications(true);
+    }, POLL_INTERVAL);
+
+    return () => {
+      if (pollIntervalRef.current) {
+        clearInterval(pollIntervalRef.current);
+      }
+    };
+  }, [fetchPublications]);
 
   return (
     <div className="w-full pb-8 pt-0">
+      {/* New Publications Toast */}
+      {showNewPublicationsToast && (
+        <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 animate-bounce">
+          <div className="flex items-center gap-3 bg-blue-600 text-white px-4 py-3 rounded-lg shadow-lg border border-blue-500">
+            <span className="font-medium">
+              {newPublicationsCount} new publication{newPublicationsCount > 1 ? "s" : ""} available
+            </span>
+            <button
+              onClick={handleLoadNewPublications}
+              className="px-3 py-1 bg-white text-blue-600 rounded-md text-sm font-medium hover:bg-blue-50 transition-colors"
+            >
+              View
+            </button>
+            <button
+              onClick={dismissToast}
+              className="p-1 hover:bg-blue-700 rounded transition-colors"
+              aria-label="Dismiss"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className="relative">
         <Banner>Latest News Updates</Banner>
       </div>
