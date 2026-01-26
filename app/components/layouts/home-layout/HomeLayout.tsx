@@ -3,7 +3,8 @@ import ImportantLinks from "./important-links";
 import FooterBottom from "../dashboard/FooterBottom";
 import { EmbassyList } from "~/components/embassy-lists/EmbassyList";
 import NewsCard from "~/components/news-card/NewsCard";
-
+import Button from "~/components/buttons/Button";
+import { BiChevronRight } from "react-icons/bi";
 const quickInnerLinks = [
   { name: "Latest News", href: "/home_embassy" },
   { name: "My News Updates", href: "/em_my_publications" },
@@ -45,6 +46,11 @@ export default function HomeLayout() {
         </div>
         <EmbassyList />
          <NewsCard />
+         <Button block={true} size="lg" rounded={true} variant="secondary" className="tooltip tooltip-top cursor-pointer" data-tip="Public Access">
+          <Link to="/" target="_blank">
+           Public Access <BiChevronRight className="inline-block ml-2 text-2xl" />
+          </Link>
+         </Button>
       </aside>
       <div className="overflow-auto w-full lg:w-2/3 no-scrollbar">
         <main className="flex-1 flex-col min-w-0 p-0 pb-12 bg-gray-50/20 mx-2">
