@@ -32,10 +32,10 @@ export default function LinksList() {
   };
 
   return (
-    <section aria-labelledby="links-heading" className="my-8">
+    <section aria-labelledby="government-links" className="my-8">
       <h2
-        id="links-heading"
-        className="text-5xl font-semibold mb-4 border-b pb-4 border-gray-200"
+        id="government-links"
+        className="text-5xl font-semibold mb-8 pb-4"
       >
         Government Links
       </h2>

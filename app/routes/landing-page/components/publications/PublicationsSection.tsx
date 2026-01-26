@@ -167,7 +167,7 @@ export default function PublicationsSection({
     return (
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-5xl font-semibold mb-8 border-b pb-4 border-gray-200">
+          <h2 className="text-5xl font-semibold mb-8 pb-4">
             Latest News Updates
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -192,7 +192,7 @@ export default function PublicationsSection({
     return (
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-5xl font-semibold mb-8 border-b pb-4 border-gray-200">
+          <h2 className="text-5xl font-semibold mb-8 pb-4">
             Latest Publications
           </h2>
           <p className="text-red-500">Unable to load publications.</p>
@@ -210,7 +210,7 @@ export default function PublicationsSection({
   return (
     <section className="py-16 px-4 bg-gray-50" aria-labelledby="publications-heading">
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-center justify-between mb-8 border-b pb-4 border-gray-200">
+        <div className="flex items-center justify-between mb-8 pb-4">
           <h2 id="publications-heading" className="text-5xl font-semibold">
             Latest News Updates
           </h2>
