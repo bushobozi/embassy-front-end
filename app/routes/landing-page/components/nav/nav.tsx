@@ -13,7 +13,7 @@ const navItems = [
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <nav className="w-full pb-12">
+    <nav className="w-full pb-12 pt-6">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
