@@ -4,5 +4,6 @@ import ShowLinks from "./hero/show-links";
 import FooterBottom from "./footer/footer";
 import ExploreUG from "./footer/explore-ug";
 import InformationBoardsSection from "./information-boards/InformationBoardsSection";
+import PublicationsSection from "./publications/PublicationsSection";
 
-export { Hero, Nav, ShowLinks, FooterBottom, ExploreUG, InformationBoardsSection };
+export { Hero, Nav, ShowLinks, FooterBottom, ExploreUG, InformationBoardsSection, PublicationsSection };

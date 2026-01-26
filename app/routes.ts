@@ -7,6 +7,8 @@ import {
 
 export default [
   index("routes/home.tsx"),
+  route("publications", "routes/landing-page/publication/PublicationsListing.tsx"),
+  route("publication/:publicationId", "routes/landing-page/publication/PublicationDetail.tsx"),
   layout("components/layouts/protected/ProtectedLayout.tsx", [
     layout("components/layouts/dashboard/DashboardLayout.tsx", [
       layout("components/layouts/home-layout/HomeLayout.tsx", [

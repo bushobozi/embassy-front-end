@@ -99,7 +99,7 @@ export default function StaffProfile({
       {staffData && (
         <>
           {/* Staff Profile Header */}
-          <div className="backdrop-blur-sm mb-6 sticky top-10 z-10 hover:shadow-md transition-shadow">
+          <div className="backdrop-blur-sm mb-6 relative top-10 z-10 hover:shadow-md transition-shadow">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-start gap-4">
               <div>
                 <h1 className="text-3xl font-bold text-gray-800">
