@@ -29,8 +29,8 @@ export default function ExploreUG() {
   };
 
   return (
-    <div id="explore-heading" className="max-w-7xl mx-auto py-2 pb-12 mt-16">
-      <h2 className="text-5xl font-semibold mb-4 border-b pb-4 border-gray-200">
+    <div id="explore-uganda" aria-labelledby="explore-uganda" className="max-w-7xl mx-auto py-2 pb-12 mt-16">
+      <h2 className="text-5xl font-semibold mb-8 pb-4">
         Explore Uganda
       </h2>
       <div className="relative w-full pt-[56.25%] mt-4">

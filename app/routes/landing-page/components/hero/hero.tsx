@@ -159,7 +159,7 @@ export default function Hero({
               </a>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mt-4 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-4 gap-8">
               {featuredBoards.slice(0, 3).map((board) => (
                 <div
                   key={board.id || board.title}

@@ -138,11 +138,11 @@ export default function InformationBoardsSection({
   }
 
   return (
-    <section className="py-12 px-4 bg-white" aria-labelledby="boards-heading">
+    <section className="py-12 px-4 bg-white" aria-labelledby="information-boards">
       <div className="max-w-7xl mx-auto">        
         <h2
-        id="boards-heading"
-        className="text-5xl font-semibold mb-4 border-b pb-4 border-gray-200"
+        id="information-boards"
+        className="text-5xl font-semibold mb-8 pb-4"
       >
           Information Boards
       </h2>

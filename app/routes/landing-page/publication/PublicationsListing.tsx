@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router";
 import { Nav, FooterBottom } from "../components";
+import { Button } from "~/components";
 
 interface Publication {
   id: string;
@@ -110,24 +111,10 @@ export default function PublicationsListing() {
           <Link
             to="/"
             className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-6 transition-colors"
-          >
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10 19l-7-7m0 0l7-7m-7 7h18"
-              />
-            </svg>
-            Back to Home
-          </Link>
+          ><Button rounded={true} variant="outline" size="lg" className="cursor-pointer tooltip tooltip-bottom" data-tip="Back to Home">Back to Home</Button>
+          </Link>          
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Publications
+            Latest News Updates
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl">
             Stay informed with the latest news, articles, and announcements from
