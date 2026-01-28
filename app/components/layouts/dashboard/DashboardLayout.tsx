@@ -205,7 +205,7 @@ export default function DashboardLayout() {
                 >
                   <img
                     src={userProfilePicture}
-                    alt="User Avatar"
+                    alt="UA"
                     className="w-6 h-6 rounded-full object-cover ring-2 ring-transparent group-hover:ring-gray-300"
                   />
                   <span className="text-xs mt-0.5 text-gray-500 group-hover:text-gray-900 flex items-center gap-0.5">
