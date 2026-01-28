@@ -75,14 +75,15 @@ export default function Users() {
         throw new Error(errorData.message || "Failed to fetch users");
       }
 
-      const data: User[] = await response.json();
-      setUsers(data);
+      const data = await response.json();
+      setUsers(Array.isArray(data) ? data : data.data || []);
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
       } else {
         setError("An unknown error occurred");
       }
+      setUsers([]);
     } finally {
       setLoading(false);
     }
