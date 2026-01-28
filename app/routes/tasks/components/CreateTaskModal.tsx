@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import type { TaskPriority, TaskStatus, User } from "../types";
 import { useAuth } from "~/contexts/AuthContext";
 import { Button } from "~/components";
@@ -19,6 +19,7 @@ export default function CreateTaskModal({
   const [error, setError] = useState<string | null>(null);
   const [users, setUsers] = useState<User[]>([]);
   const [loadingUsers, setLoadingUsers] = useState(false);
+  const modalRef = useRef<HTMLDialogElement>(null);
 
   const [formData, setFormData] = useState({
     title: "",
@@ -34,7 +35,10 @@ export default function CreateTaskModal({
 
   useEffect(() => {
     if (isOpen) {
+      modalRef.current?.showModal();
       fetchUsers();
+    } else {
+      modalRef.current?.close();
     }
   }, [isOpen]);
 
@@ -57,9 +61,10 @@ export default function CreateTaskModal({
       }
 
       const data = await response.json();
-      setUsers(data);
+      setUsers(Array.isArray(data) ? data : data.data || []);
     } catch (error) {
       console.error("Error fetching users:", error);
+      setUsers([]);
     } finally {
       setLoadingUsers(false);
     }
@@ -121,36 +126,24 @@ export default function CreateTaskModal({
     }
   };
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
-      <div className="bg-white rounded-3xl shadow-sm border border-gray-300 p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+    <dialog ref={modalRef} className="modal modal-bottom sm:modal-middle">
+      <div className="modal-box max-w-2xl">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-2xl font-bold text-gray-900">Create New Task</h2>
-          <button
-            onClick={onClose}
-            className="text-gray-500 hover:text-gray-700"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+          <form method="dialog">
+            <button
+              onClick={onClose}
+              className="btn btn-sm btn-circle btn-ghost"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
+              ✕
+            </button>
+          </form>
         </div>
 
         {error && (
-          <div className="bg-red-100 text-red-800 p-3 rounded mb-4">
-            {error}
+          <div className="alert alert-error mb-4">
+            <span>{error}</span>
           </div>
         )}
 
@@ -286,13 +279,12 @@ export default function CreateTaskModal({
             </label>
           </div>
 
-          <div className="flex justify-end gap-3 mt-6">
+          <div className="modal-action">
             <Button
               type="button"
               onClick={onClose}
               variant="outline"
               size="md"
-              className="hover:bg-gray-50"
             >
               Cancel
             </Button>
@@ -301,13 +293,12 @@ export default function CreateTaskModal({
               disabled={loading}
               variant="primary"
               size="md"
-              className="disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? "Creating..." : "Create Task"}
             </Button>
           </div>
         </form>
       </div>
-    </div>
+    </dialog>
   );
 }
