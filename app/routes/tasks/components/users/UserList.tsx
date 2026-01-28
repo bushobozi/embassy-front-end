@@ -61,9 +61,10 @@ export default function UserList({
       }
 
       const data = await response.json();
-      setUsers(data);
+      setUsers(Array.isArray(data) ? data : data.data || []);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to fetch users");
+      setUsers([]);
       console.error("Error fetching users:", err);
     } finally {
       setLoading(false);
