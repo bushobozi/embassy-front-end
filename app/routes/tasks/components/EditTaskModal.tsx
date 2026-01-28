@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import type { Task, TaskPriority, TaskStatus, User } from "../types";
 import { useAuth } from "~/contexts/AuthContext";
-
+import { Button } from "~/components";
 interface EditTaskModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -20,6 +20,7 @@ export default function EditTaskModal({
   const [error, setError] = useState<string | null>(null);
   const [users, setUsers] = useState<User[]>([]);
   const [loadingUsers, setLoadingUsers] = useState(false);
+  const modalRef = useRef<HTMLDialogElement>(null);
 
   const [formData, setFormData] = useState({
     title: "",
@@ -35,6 +36,7 @@ export default function EditTaskModal({
 
   useEffect(() => {
     if (isOpen && task) {
+      modalRef.current?.showModal();
       setFormData({
         title: task.title,
         description: task.description,
@@ -47,6 +49,8 @@ export default function EditTaskModal({
         is_urgent: task.is_urgent,
       });
       fetchUsers();
+    } else if (!isOpen) {
+      modalRef.current?.close();
     }
   }, [isOpen, task]);
 
@@ -126,36 +130,26 @@ export default function EditTaskModal({
     }
   };
 
-  if (!isOpen || !task) return null;
+  if (!task) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
-      <div className="bg-white rounded-3xl shadow-sm border border-gray-300 p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+    <dialog ref={modalRef} className="modal modal-bottom sm:modal-middle">
+      <div className="modal-box max-w-2xl">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-2xl font-bold text-gray-900">Edit Task</h2>
-          <button
-            onClick={onClose}
-            className="text-gray-500 hover:text-gray-700"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+          <form method="dialog">
+            <button
+              onClick={onClose}
+              className="btn btn-sm btn-circle btn-ghost"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
+              ✕
+            </button>
+          </form>
         </div>
 
         {error && (
-          <div className="bg-red-100 text-red-800 p-3 rounded mb-4">
-            {error}
+          <div className="alert alert-error mb-4">
+            <span>{error}</span>
           </div>
         )}
 
@@ -291,24 +285,26 @@ export default function EditTaskModal({
             </label>
           </div>
 
-          <div className="flex justify-end gap-3 mt-6">
-            <button
+          <div className="modal-action">
+            <Button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 border border-gray-300 rounded text-gray-700 hover:bg-gray-50"
+              variant="outline"
+              size="md"
             >
               Cancel
-            </button>
-            <button
+            </Button>
+            <Button
               type="submit"
               disabled={loading}
-              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+              variant="primary"
+              size="md"
             >
               {loading ? "Updating..." : "Update Task"}
-            </button>
+            </Button>
           </div>
         </form>
       </div>
-    </div>
+    </dialog>
   );
 }
