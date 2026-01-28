@@ -79,6 +79,12 @@ export default function Publications() {
   const [showNewPublicationsToast, setShowNewPublicationsToast] = useState(false);
   const knownPublicationIds = useRef<Set<number>>(new Set());
   const pollIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const showToastRef = useRef(false);
+
+  // Keep ref in sync with state
+  useEffect(() => {
+    showToastRef.current = showNewPublicationsToast;
+  }, [showNewPublicationsToast]);
 
   const filteredPublications = useMemo(() => {
     let filtered = publications;
@@ -170,7 +176,8 @@ export default function Publications() {
         // Update known publication IDs
         knownPublicationIds.current = new Set(mappedPublications.map((p) => p.id));
 
-        if (!isPolling || !showNewPublicationsToast) {
+        // Use ref to avoid dependency on state
+        if (!isPolling || !showToastRef.current) {
           setPublications(mappedPublications);
         }
       }
@@ -185,7 +192,7 @@ export default function Publications() {
         setLoading(false);
       }
     }
-  }, [embassyIdFromUrl, showNewPublicationsToast]);
+  }, [embassyIdFromUrl]);
 
   const refreshPublications = async () => {
     setRefreshing(true);
@@ -205,10 +212,15 @@ export default function Publications() {
   // Initial fetch
   useEffect(() => {
     fetchPublications(false);
-  }, [embassyIdFromUrl]);
+  }, [fetchPublications]);
 
-  // Polling for new publications
+  // Polling for new publications - stable, doesn't recreate interval
   useEffect(() => {
+    // Clear any existing interval first
+    if (pollIntervalRef.current) {
+      clearInterval(pollIntervalRef.current);
+    }
+
     pollIntervalRef.current = setInterval(() => {
       fetchPublications(true);
     }, POLL_INTERVAL);
@@ -216,6 +228,7 @@ export default function Publications() {
     return () => {
       if (pollIntervalRef.current) {
         clearInterval(pollIntervalRef.current);
+        pollIntervalRef.current = null;
       }
     };
   }, [fetchPublications]);
