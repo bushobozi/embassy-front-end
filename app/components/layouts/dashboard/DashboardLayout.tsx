@@ -89,10 +89,10 @@ export default function DashboardLayout() {
   const { user, accessToken, updateUserData } = useAuth();
   const [moreMenuOpen, setMoreMenuOpen] = useState(false);
 
-  // Fetch user profile data on mount if profile_picture is missing
+  // Fetch user profile data on mount to ensure profile_picture is up-to-date
   useEffect(() => {
     const fetchUserProfile = async () => {
-      if (!user?.id || !accessToken || user?.profile_picture) return;
+      if (!user?.id || !accessToken) return;
 
       try {
         const response = await fetch(
@@ -108,7 +108,7 @@ export default function DashboardLayout() {
 
         if (response.ok) {
           const data = await response.json();
-          if (data.profile_picture) {
+          if (data.profile_picture && data.profile_picture !== user.profile_picture) {
             updateUserData({ profile_picture: data.profile_picture });
           }
         }
@@ -118,7 +118,7 @@ export default function DashboardLayout() {
     };
 
     fetchUserProfile();
-  }, [user?.id, accessToken]);
+  }, [user?.id, accessToken, updateUserData]);
 
   const userProfilePicture =
     user?.profile_picture ||
